@@ -58,18 +58,24 @@ const Sidebar = () => {
     >
       <div className="py-6 px-3 flex flex-col h-full">
         <div className={cn("flex items-center", collapsed ? "justify-center" : "px-3")}>
-          {!collapsed && (
-            <div className="animate-fade-in">
+          {!collapsed ? (
+            <div className="animate-fade-in flex items-center">
+              <img 
+                src="/lovable-uploads/5ec3f8f5-d5fa-43a6-bc6d-2e84759d406a.png" 
+                alt="Company Logo" 
+                className="h-10 w-auto mr-3 logo-glow"
+              />
               <p className="text-2xl font-semibold tracking-tight text-gradient">
                 AI HUB
               </p>
             </div>
-          )}
-          {collapsed && (
+          ) : (
             <div className="flex justify-center w-full animate-fade-in">
-              <div className="p-2 rounded-full bg-primary/10">
-                <Bot size={22} className="text-primary" />
-              </div>
+              <img 
+                src="/lovable-uploads/5ec3f8f5-d5fa-43a6-bc6d-2e84759d406a.png" 
+                alt="Company Logo" 
+                className="h-10 w-auto logo-glow"
+              />
             </div>
           )}
         </div>
