@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { 
@@ -59,21 +58,18 @@ const Sidebar = () => {
       <div className="py-6 px-3 flex flex-col h-full">
         <div className={cn("flex items-center", collapsed ? "justify-center" : "px-3")}>
           {!collapsed ? (
-            <div className="animate-fade-in flex items-center">
+            <div className="animate-fade-in flex items-center justify-center w-full">
               <img 
-                src="/lovable-uploads/5ec3f8f5-d5fa-43a6-bc6d-2e84759d406a.png" 
-                alt="Company Logo" 
-                className="h-10 w-auto mr-3 logo-glow"
+                src="/lovable-uploads/7cde59e6-81c6-467f-8b5a-fd5f2be3df08.png" 
+                alt="MarTech Buddy Logo" 
+                className="h-14 w-auto logo-glow"
               />
-              <p className="text-2xl font-semibold tracking-tight text-gradient">
-                AI HUB
-              </p>
             </div>
           ) : (
             <div className="flex justify-center w-full animate-fade-in">
               <img 
-                src="/lovable-uploads/5ec3f8f5-d5fa-43a6-bc6d-2e84759d406a.png" 
-                alt="Company Logo" 
+                src="/lovable-uploads/7cde59e6-81c6-467f-8b5a-fd5f2be3df08.png" 
+                alt="MarTech Buddy Logo" 
                 className="h-10 w-auto logo-glow"
               />
             </div>
