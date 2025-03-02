@@ -107,7 +107,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
           "w-full mt-2",
           isActive 
             ? "glass-button border border-primary/20 text-primary-foreground" 
-            : "bg-primary text-primary-foreground hover:bg-primary/90"
+            : "text-primary-foreground hover:bg-[#2A2F3C]"
         )}
       >
         {isActive ? "Configured" : "Configure"}
@@ -126,7 +126,7 @@ const Agents = () => {
             Configure and manage specialized AI agents for your campaigns
           </p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button className="bg-[#1A1F2C] hover:bg-[#2A2F3C] text-primary-foreground">
           <Plus size={16} className="mr-2" /> Custom Agent
         </Button>
       </div>
