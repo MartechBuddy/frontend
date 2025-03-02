@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Check, CreditCard, Key, Lock, Save, User, UserCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const Settings = () => {

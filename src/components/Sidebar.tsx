@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Workflow, 
-  Robot, 
+  Bot, 
   Calendar, 
   Settings, 
   Boxes,
@@ -36,7 +36,7 @@ const Sidebar = () => {
     {
       name: "AI Agents",
       path: "/agents",
-      icon: <Robot size={20} />,
+      icon: <Bot size={20} />,
     },
     {
       name: "Settings",
@@ -68,7 +68,7 @@ const Sidebar = () => {
           {collapsed && (
             <div className="flex justify-center w-full animate-fade-in">
               <div className="p-2 rounded-full bg-primary/10">
-                <Robot size={22} className="text-primary" />
+                <Bot size={22} className="text-primary" />
               </div>
             </div>
           )}
@@ -98,16 +98,20 @@ const Sidebar = () => {
                 )
               }
             >
-              <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
-                {item.icon}
-              </div>
-              {!collapsed && (
-                <span className={cn(
-                  "ml-3 tracking-tight whitespace-nowrap transition", 
-                  isActive ? "font-medium text-foreground" : "text-muted-foreground"
-                )}>
-                  {item.name}
-                </span>
+              {({ isActive }) => (
+                <>
+                  <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
+                    {item.icon}
+                  </div>
+                  {!collapsed && (
+                    <span className={cn(
+                      "ml-3 tracking-tight whitespace-nowrap transition", 
+                      isActive ? "font-medium text-foreground" : "text-muted-foreground"
+                    )}>
+                      {item.name}
+                    </span>
+                  )}
+                </>
               )}
             </NavLink>
           ))}
