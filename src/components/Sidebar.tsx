@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { 
@@ -8,7 +9,8 @@ import {
   Settings, 
   Boxes,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  HelpCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -120,16 +122,22 @@ const Sidebar = () => {
         </div>
 
         <div className="mt-auto">
-          {!collapsed && (
-            <div className="glass-card p-4 rounded-xl animate-fade-in">
-              <p className="text-sm font-medium mb-2">Pro Plan</p>
-              <div className="w-full bg-white/10 rounded-full h-2 mb-3">
-                <div className="bg-primary h-2 rounded-full w-3/4" />
-              </div>
-              <p className="text-xs text-muted-foreground">
-                75% of monthly usage
-              </p>
-            </div>
+          {!collapsed ? (
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2 glass-button"
+            >
+              <HelpCircle size={16} />
+              Help and Support
+            </Button>
+          ) : (
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="w-10 h-10 mx-auto glass-button"
+            >
+              <HelpCircle size={16} />
+            </Button>
           )}
         </div>
       </div>
