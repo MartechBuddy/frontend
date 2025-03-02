@@ -83,7 +83,7 @@
   }
   
   .glass-card:hover {
-    @apply backdrop-blur-lg bg-white/8 border-white/20 shadow-xl;
+    @apply backdrop-blur-lg bg-white/10 border-white/20 shadow-xl;
   }
 
   .glass-nav {
