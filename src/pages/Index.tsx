@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
-import { Bot, Calendar, ChevronRight, ExternalLink, LayoutDashboard, Plus, Target, Workflow, Zap } from "lucide-react";
+import { Bot, Calendar, ChevronRight, ExternalLink, LayoutDashboard, Plus, Target, Workflow, Zap, Activity } from "lucide-react";
 import StatsCard from "@/components/dashboard/StatsCard";
 import CampaignTable from "@/components/dashboard/CampaignTable";
 import ActivityLog from "@/components/dashboard/ActivityLog";

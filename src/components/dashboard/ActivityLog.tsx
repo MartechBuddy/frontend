@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Activity, Bot, Mail, Phone, User } from "lucide-react";
+import { Bot, Mail, Phone, User, Activity } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Mock data for activities
