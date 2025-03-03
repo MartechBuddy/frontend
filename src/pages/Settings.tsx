@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, CreditCard, Key, Lock, Save, User, UserCog } from "lucide-react";
+import { Check, CreditCard, Key, Lock, Save, User, UserCog, Copy, Download, Briefcase, BadgeCheck, AlertCircle, UserPlus, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Avatar } from "@/components/ui/avatar";
 
 const Settings = () => {
   return (
@@ -237,6 +239,213 @@ const Settings = () => {
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Save size={16} className="mr-2" /> Save Changes
               </Button>
+            </div>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="api" className="animate-fade-in pt-4">
+          <div className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-semibold mb-4">API Keys</h2>
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <div className="flex flex-col space-y-2">
+                  <Label htmlFor="api-key">API Key</Label>
+                  <div className="flex items-center">
+                    <Input id="api-key" type="password" value="••••••••••••••••••••••••••••••" className="glass-button mr-2" readOnly />
+                    <Button size="icon" variant="outline" className="glass-button border-0">
+                      <Copy size={16} />
+                    </Button>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    This API key grants full access to your account.
+                  </p>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="font-medium">Regenerate API Key</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Regenerating will invalidate your current API key.
+                    </p>
+                  </div>
+                  <Button variant="outline" className="glass-button border-0">
+                    Regenerate Key
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-lg font-medium">API Documentation</h3>
+                <p className="text-sm text-muted-foreground">
+                  Learn how to integrate with our API and access all features programmatically.
+                </p>
+                <div className="flex gap-2 mt-2">
+                  <Button className="bg-[#1A1F2C] hover:bg-[#2A2F3C] text-primary-foreground">
+                    <Key size={16} className="mr-2" /> API Documentation
+                  </Button>
+                  <Button variant="outline" className="glass-button border-0">
+                    <Download size={16} className="mr-2" /> SDK
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-lg font-medium">Rate Limits</h3>
+                <div className="glass-card rounded-lg p-4 border border-white/5">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium">Requests per minute</span>
+                    <span className="text-primary">60 / 60</span>
+                  </div>
+                  <div className="w-full bg-white/10 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: '100%' }} />
+                  </div>
+                </div>
+                <div className="glass-card rounded-lg p-4 border border-white/5 mt-2">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium">Data processed monthly</span>
+                    <span className="text-primary">75.4 GB / 100 GB</span>
+                  </div>
+                  <div className="w-full bg-white/10 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: '75%' }} />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-lg font-medium">Usage History</h3>
+                <div className="glass-card rounded-lg p-4 border border-white/5">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <Clock size={16} className="mr-2 text-muted-foreground" />
+                      <span className="text-sm">Last 30 days</span>
+                    </div>
+                    <Button variant="ghost" size="sm" className="h-8 text-xs glass-button">
+                      View Details
+                    </Button>
+                  </div>
+                  <div className="h-40 w-full flex items-end justify-between gap-1 pt-4">
+                    {Array.from({ length: 30 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-full bg-primary/20 rounded-t"
+                        style={{
+                          height: `${Math.max(15, Math.random() * 100)}%`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="team" className="animate-fade-in pt-4">
+          <div className="glass-card rounded-xl p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">Team Members</h2>
+              <Button className="bg-[#1A1F2C] hover:bg-[#2A2F3C] text-primary-foreground">
+                <UserPlus size={16} className="mr-2" /> Invite Member
+              </Button>
+            </div>
+            
+            <div className="space-y-6">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-white/5">
+                    <TableHead>Name</TableHead>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[
+                    { name: "John Doe", email: "john@example.com", role: "Owner", status: "Active" },
+                    { name: "Jane Smith", email: "jane@example.com", role: "Admin", status: "Active" },
+                    { name: "Robert Johnson", email: "robert@example.com", role: "Member", status: "Active" },
+                    { name: "Emily Davis", email: "emily@example.com", role: "Member", status: "Pending" },
+                  ].map((member, i) => (
+                    <TableRow key={i} className="border-white/5">
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <Avatar className="h-8 w-8">
+                            <div className="bg-primary/20 text-primary h-full w-full flex items-center justify-center text-sm">
+                              {member.name.charAt(0)}
+                            </div>
+                          </Avatar>
+                          <div>
+                            <div className="font-medium">{member.name}</div>
+                            <div className="text-xs text-muted-foreground">{member.email}</div>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge 
+                          variant="outline" 
+                          className={cn(
+                            "glass-button border-0",
+                            member.role === "Owner" ? "bg-primary/20" : ""
+                          )}
+                        >
+                          {member.role}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge 
+                          className={cn(
+                            member.status === "Active" 
+                              ? "bg-green-500/20 text-green-400 hover:bg-green-500/30" 
+                              : "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
+                          )}
+                        >
+                          {member.status === "Active" ? (
+                            <BadgeCheck size={12} className="mr-1" />
+                          ) : (
+                            <AlertCircle size={12} className="mr-1" />
+                          )}
+                          {member.status}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="ghost" size="sm" className="h-8 glass-button">
+                          {member.status === "Pending" ? "Resend" : "Manage"}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              
+              <div className="space-y-4 mt-8">
+                <h3 className="text-lg font-medium">Team Permissions</h3>
+                <div className="space-y-4">
+                  {[
+                    { role: "Admins", description: "Can manage team members, billing, and all settings", permissions: ["Manage team members", "Access billing", "Create/edit campaigns", "View analytics"]},
+                    { role: "Members", description: "Can create and manage campaigns", permissions: ["Create/edit campaigns", "View analytics"]}
+                  ].map((roleInfo, i) => (
+                    <div key={i} className="glass-card rounded-lg p-4 border border-white/5">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="font-medium">{roleInfo.role}</h4>
+                          <p className="text-sm text-muted-foreground">{roleInfo.description}</p>
+                        </div>
+                        <Button variant="outline" size="sm" className="glass-button border-0">
+                          Edit
+                        </Button>
+                      </div>
+                      <div className="mt-3 space-y-1">
+                        {roleInfo.permissions.map((permission, j) => (
+                          <div key={j} className="flex items-center text-xs text-muted-foreground">
+                            <Check size={12} className="mr-2 text-primary" />
+                            {permission}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </TabsContent>
