@@ -41,30 +41,19 @@ const activities = [
 
 const ActivityLog = () => {
   return (
-    <div className="glass-card rounded-xl animate-fade-in h-full">
-      <div className="p-5 border-b border-white/5">
-        <div className="flex items-center gap-2">
-          <Activity size={18} className="text-primary" />
-          <h3 className="text-lg font-medium">AI Workflow Activity</h3>
+    <div className="space-y-4">
+      {activities.map((activity) => (
+        <div key={activity.id} className="flex gap-3 animate-fade-in" style={{ animationDelay: `${activity.id * 0.1}s` }}>
+          <div className={cn("h-8 w-8 rounded-full flex items-center justify-center", activity.iconClass)}>
+            {activity.icon}
+          </div>
+          <div>
+            <p className="text-sm font-medium">{activity.agent}</p>
+            <p className="text-xs text-muted-foreground">{activity.action}</p>
+            <p className="text-xs text-muted-foreground/70 mt-1">{activity.time}</p>
+          </div>
         </div>
-      </div>
-      
-      <div className="p-5">
-        <div className="space-y-4">
-          {activities.map((activity) => (
-            <div key={activity.id} className="flex gap-3 animate-fade-in" style={{ animationDelay: `${activity.id * 0.1}s` }}>
-              <div className={cn("h-8 w-8 rounded-full flex items-center justify-center", activity.iconClass)}>
-                {activity.icon}
-              </div>
-              <div>
-                <p className="text-sm font-medium">{activity.agent}</p>
-                <p className="text-xs text-muted-foreground">{activity.action}</p>
-                <p className="text-xs text-muted-foreground/70 mt-1">{activity.time}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
