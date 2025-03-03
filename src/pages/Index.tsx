@@ -67,7 +67,7 @@ const Index = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="glass-button border-0 text-xs flex items-center gap-1"
+                className="text-xs flex items-center gap-1"
               >
                 View All <ChevronRight size={14} />
               </Button>
@@ -78,7 +78,7 @@ const Index = () => {
         
         <div className="space-y-5">
           <Card className="glass-card p-5 rounded-xl border-white/5 animate-fade-in">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full justify-between">
+            <Button className="w-full justify-between">
               <div className="flex items-center gap-2">
                 <Plus size={16} />
                 <span>New Campaign</span>
@@ -88,7 +88,7 @@ const Index = () => {
           </Card>
           
           <Card className="glass-card p-5 rounded-xl border-white/5 animate-fade-in">
-            <Button variant="outline" className="glass-button border-0 w-full justify-between">
+            <Button variant="outline" className="w-full justify-between">
               <div className="flex items-center gap-2">
                 <Workflow size={16} />
                 <span>Create Workflow</span>
@@ -171,7 +171,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="sm"
-              className="glass-button border-0 text-xs flex items-center gap-1"
+              className="text-xs flex items-center gap-1"
             >
               View All <ChevronRight size={14} />
             </Button>

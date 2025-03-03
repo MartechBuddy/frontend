@@ -21,7 +21,7 @@ const Campaigns = () => {
             Manage and track your AI-powered marketing campaigns
           </p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button>
           <Plus size={16} className="mr-2" /> New Campaign
         </Button>
       </div>
@@ -38,7 +38,7 @@ const Campaigns = () => {
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="glass-button border-0 flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2">
                 <Filter size={14} />
                 Status <ChevronDown size={14} />
               </Button>
@@ -53,7 +53,7 @@ const Campaigns = () => {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="glass-button border-0 flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2">
                 Sort <ChevronDown size={14} />
               </Button>
             </DropdownMenuTrigger>

@@ -86,7 +86,7 @@ const Workflows = () => {
             Create, edit and manage your automated AI agent workflows
           </p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button>
           <Plus size={16} className="mr-2" /> New Workflow
         </Button>
       </div>
@@ -113,7 +113,7 @@ const Workflows = () => {
         <p className="text-muted-foreground max-w-md mx-auto mb-6">
           Build a workflow from scratch with our visual AI workflow builder
         </p>
-        <Button className="glass-button hover:border-primary/50 transition-all duration-300">
+        <Button variant="outline">
           <Plus size={16} className="mr-2" /> Start Building
         </Button>
       </div>
