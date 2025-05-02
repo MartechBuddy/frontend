@@ -26,7 +26,7 @@ const NotFound = () => {
           className="bg-primary text-primary-foreground hover:bg-primary/90"
           onClick={() => navigate("/")}
         >
-          Return to Dashboard
+          Return to Homepage
         </Button>
       </div>
     </div>

@@ -1,17 +1,17 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomeLayout from "./layouts/HomeLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
-import Index from "./pages/Index";
-import Campaigns from "./pages/Campaigns";
-import Workflows from "./pages/Workflows";
-import Agents from "./pages/Agents";
-import Settings from "./pages/Settings";
+
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
+// Create a new query client
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -21,13 +21,19 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DashboardLayout />}>
-            <Route index element={<Index />} />
-            <Route path="campaigns" element={<Campaigns />} />
-            <Route path="workflows" element={<Workflows />} />
-            <Route path="agents" element={<Agents />} />
-            <Route path="settings" element={<Settings />} />
+          {/* Public Routes */}
+          <Route path="/" element={<HomeLayout />}>
+            <Route index element={<Home />} />
+            {/* Other public pages would be added here */}
           </Route>
+          
+          {/* Dashboard Routes */}
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+            {/* Other dashboard pages would be added here */}
+          </Route>
+          
+          {/* 404 Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
