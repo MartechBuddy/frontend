@@ -1,8 +1,9 @@
 
 import React from "react";
-import { Bell, Search, User } from "lucide-react";
+import { Bell, Search, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,6 +28,32 @@ const DashboardHeader = () => {
         </div>
         
         <div className="flex items-center space-x-1 md:space-x-3 animate-fade-in">
+          {/* Language switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="Select language">
+                <Globe size={18} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
+              <DropdownMenuLabel>Language</DropdownMenuLabel>
+              <DropdownMenuSeparator className="bg-white/10" />
+              <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
+                English
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
+                Español
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+                Français
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Theme toggle */}
+          <ThemeToggle />
+
+          {/* Notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative" size="icon" aria-label="Notifications">
@@ -52,6 +79,7 @@ const DashboardHeader = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* User profile */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative p-0" size="icon" aria-label="User profile">

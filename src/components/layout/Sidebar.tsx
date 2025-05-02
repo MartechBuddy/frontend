@@ -137,7 +137,7 @@ const Sidebar = () => {
         </div>
         
         {/* Navigation */}
-        <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow">
+        <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow scrollbar-hide">
           {navigationItems.map((item) => (
             <NavLink
               key={item.path}
