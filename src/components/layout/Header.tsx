@@ -85,17 +85,6 @@ const Header: React.FC<HeaderProps> = () => {
           {/* Theme Toggle */}
           <ThemeToggle />
           
-          {/* Accessibility Toggle (simplified for now) */}
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="rounded-full"
-            aria-label="Toggle high contrast"
-          >
-            <span className="sr-only">Toggle high contrast</span>
-            <span className="text-xs font-bold">A</span>
-          </Button>
-          
           {/* Language Selector */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -110,8 +99,11 @@ const Header: React.FC<HeaderProps> = () => {
               <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
                 Español
               </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
                 Français
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+                العربية
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

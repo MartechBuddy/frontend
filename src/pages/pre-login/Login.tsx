@@ -1,40 +1,36 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/hooks/use-auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Very simple authentication for test user
-    if (email === "test@example.com" && password === "test123") {
+    // Simplified login - no password check
+    if (login(email)) {
       toast({
         title: "Login Successful",
         description: "Welcome back to MartechEngine.ai",
       });
-      
-      // Store login state
-      localStorage.setItem("martechIsLoggedIn", "true");
       
       // Redirect to dashboard
       navigate("/dashboard");
     } else {
       toast({
         title: "Login Failed",
-        description: "Invalid email or password. Try test@example.com / test123",
+        description: "Please use test@example.com for testing",
         variant: "destructive",
       });
     }
@@ -46,7 +42,7 @@ const Login = () => {
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl">Log in to your account</CardTitle>
           <CardDescription>
-            Enter your email and password to access your account
+            Enter your email to access your account
           </CardDescription>
         </CardHeader>
         
@@ -63,38 +59,6 @@ const Login = () => {
                 className="glass-button border-white/10"
                 required
               />
-            </div>
-            
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
-                <Link 
-                  to="/forgot-password"
-                  className="text-sm text-primary hover:underline"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="glass-button border-white/10 pr-10"
-                  placeholder="••••••••"
-                  required
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-1 top-1/2 transform -translate-y-1/2"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </Button>
-              </div>
             </div>
             
             <div className="flex items-center space-x-2">

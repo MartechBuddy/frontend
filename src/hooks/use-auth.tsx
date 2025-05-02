@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   isLoggedIn: boolean;
-  login: (email: string, password: string) => boolean;
+  login: (email: string) => boolean;
   logout: () => void;
 };
 
@@ -22,9 +22,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const login = (email: string, password: string) => {
-    // Simple authentication for now
-    if (email === "test@example.com" && password === "test123") {
+  const login = (email: string) => {
+    // Simple authentication - just check email
+    if (email === "test@example.com") {
       localStorage.setItem("martechIsLoggedIn", "true");
       setIsLoggedIn(true);
       return true;

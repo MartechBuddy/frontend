@@ -47,8 +47,11 @@ const DashboardHeader = () => {
               <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
                 Español
               </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
                 Français
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+                العربية
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
