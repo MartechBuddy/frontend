@@ -2,12 +2,9 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import SignupModal from "../auth/SignupModal";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-  const [showSignupModal, setShowSignupModal] = useState(false);
-
   return (
     <div className="relative py-20 md:py-32 overflow-hidden">
       {/* Background gradient effect */}
@@ -26,22 +23,24 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              size="lg" 
-              onClick={() => setShowSignupModal(true)}
-              className="text-base"
-            >
-              Start Free Trial
-            </Button>
+            <Link to="/signup">
+              <Button 
+                size="lg" 
+                className="text-base"
+              >
+                Start Free Trial
+              </Button>
+            </Link>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="glass-button text-base"
-              onClick={() => window.location.href = "/contact"}
-            >
-              See Demo <ArrowRight size={16} className="ml-2" />
-            </Button>
+            <Link to="/contact">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="glass-button text-base"
+              >
+                See Demo <ArrowRight size={16} className="ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -52,8 +51,6 @@ const HeroSection = () => {
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-30 animate-pulse-subtle" style={{ animationDelay: "1s" }}></div>
         <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-primary/15 rounded-full blur-3xl opacity-20 animate-pulse-subtle" style={{ animationDelay: "0.5s" }}></div>
       </div>
-
-      {showSignupModal && <SignupModal onClose={() => setShowSignupModal(false)} />}
     </div>
   );
 };
