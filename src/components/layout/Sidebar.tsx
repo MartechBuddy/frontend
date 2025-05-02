@@ -3,14 +3,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
   LayoutDashboard, 
-  Search,
   Boxes, 
   FileText, 
   Settings, 
   ChevronLeft, 
   ChevronRight, 
-  Bell, 
-  User,
   FileStack,
   Globe,
   Map,
@@ -21,15 +18,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -128,54 +116,10 @@ const Sidebar = () => {
             size="icon"
             onClick={toggleSidebar}
             className="absolute -right-3 top-8 h-6 w-6 rounded-full border border-border bg-background shadow-md hover:bg-primary/15 transition-all duration-300"
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
           </Button>
-        </div>
-
-        {/* User profile section at the top */}
-        <div className="mt-6 px-3">
-          <div className={cn(
-            "flex items-center",
-            collapsed ? "justify-center" : "justify-between"
-          )}>
-            {!collapsed ? (
-              <>
-                <div className="flex items-center">
-                  <Avatar className="h-8 w-8 glass-card mr-2">
-                    <AvatarImage src="" />
-                    <AvatarFallback className="text-primary-foreground">JD</AvatarFallback>
-                  </Avatar>
-                  <span className="text-sm font-medium">John Doe</span>
-                </div>
-                <div className="flex items-center">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="relative h-8 w-8 p-0" size="icon">
-                        <Bell size={16} />
-                        <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary animate-pulse-subtle" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
-                      <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                      <DropdownMenuSeparator className="bg-white/10" />
-                      <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
-                        <div className="flex flex-col space-y-1">
-                          <span className="text-sm">Campaign completed</span>
-                          <span className="text-xs text-muted-foreground">10 minutes ago</span>
-                        </div>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </>
-            ) : (
-              <Avatar className="h-8 w-8 glass-card">
-                <AvatarImage src="" />
-                <AvatarFallback className="text-primary-foreground">JD</AvatarFallback>
-              </Avatar>
-            )}
-          </div>
         </div>
 
         {/* LLM Status indicator */}
@@ -191,19 +135,6 @@ const Sidebar = () => {
             {!collapsed && <span className="text-xs text-muted-foreground">LLM Active</span>}
           </div>
         </div>
-
-        {/* Search */}
-        {!collapsed && (
-          <div className="mt-4 px-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
-              <input
-                placeholder="Search..."
-                className="pl-10 glass-button py-2 px-4 rounded-md w-full bg-transparent border border-white/10 text-sm"
-              />
-            </div>
-          </div>
-        )}
         
         {/* Navigation */}
         <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow">
@@ -254,6 +185,7 @@ const Sidebar = () => {
               variant="outline" 
               size="icon" 
               className="w-10 h-10 mx-auto glass-button"
+              aria-label="Help and Support"
             >
               <HelpCircle size={16} />
             </Button>

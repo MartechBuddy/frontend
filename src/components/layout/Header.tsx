@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Moon, Sun, Menu, X, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 
@@ -18,15 +19,10 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const isMobile = useIsMobile();
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -88,20 +84,14 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
 
         <div className="flex items-center space-x-4">
           {/* Theme Toggle */}
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleDarkMode} 
-            className="rounded-full"
-          >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
+          <ThemeToggle />
           
           {/* Accessibility Toggle (simplified for now) */}
           <Button 
             variant="ghost" 
             size="icon" 
             className="rounded-full"
+            aria-label="Toggle high contrast"
           >
             <span className="sr-only">Toggle high contrast</span>
             <span className="text-xs font-bold">A</span>
@@ -132,6 +122,7 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
                   type="text"
                   placeholder="Search content..."
                   className="pl-10 glass-button py-2 px-4 rounded-md w-full bg-transparent border border-white/10"
+                  aria-label="Search content"
                 />
               </div>
             </>
@@ -143,6 +134,7 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
             size="icon" 
             onClick={toggleMenu}
             className="md:hidden"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>

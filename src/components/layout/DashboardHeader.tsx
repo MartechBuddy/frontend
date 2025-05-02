@@ -13,22 +13,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Header = () => {
+const DashboardHeader = () => {
   return (
     <header className="glass-nav border-b border-white/5 py-3 px-6 md:px-8 sticky top-0 z-10">
       <div className="flex items-center justify-between">
         <div className="relative w-full max-w-[400px] animate-fade-in">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
           <Input
-            placeholder="Search..."
+            placeholder="Search content..."
             className="pl-10 glass-button py-4 border-0 focus-visible:ring-primary/40 focus-visible:ring-offset-0"
+            aria-label="Search content"
           />
         </div>
         
         <div className="flex items-center space-x-1 md:space-x-3 animate-fade-in">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative" size="icon">
+              <Button variant="ghost" className="relative" size="icon" aria-label="Notifications">
                 <Bell size={18} />
                 <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-primary animate-pulse-subtle" />
               </Button>
@@ -53,9 +54,9 @@ const Header = () => {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative p-0" size="icon">
+              <Button variant="ghost" className="relative p-0" size="icon" aria-label="User profile">
                 <Avatar className="h-8 w-8 glass-card">
-                  <AvatarImage src="" />
+                  <AvatarImage src="" alt="User avatar" />
                   <AvatarFallback className="text-primary-foreground">JD</AvatarFallback>
                 </Avatar>
               </Button>
@@ -74,4 +75,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default DashboardHeader;
