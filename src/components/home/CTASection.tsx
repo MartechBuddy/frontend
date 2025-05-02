@@ -1,11 +1,9 @@
 
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import SignupModal from "../auth/SignupModal";
 
 const CTASection = () => {
-  const [showSignupModal, setShowSignupModal] = useState(false);
-  
   return (
     <section className="py-20 relative">
       {/* Background gradient */}
@@ -22,27 +20,27 @@ const CTASection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              size="lg" 
-              onClick={() => setShowSignupModal(true)}
-              className="text-base"
-            >
-              Start Your Free Trial
-            </Button>
+            <Link to="/signup">
+              <Button 
+                size="lg" 
+                className="text-base w-full sm:w-auto"
+              >
+                Start Your Free Trial
+              </Button>
+            </Link>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="glass-button text-base"
-              onClick={() => window.location.href = "/pricing"}
-            >
-              View Pricing
-            </Button>
+            <Link to="/pricing">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="glass-button text-base w-full sm:w-auto"
+              >
+                View Pricing
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
-      
-      {showSignupModal && <SignupModal onClose={() => setShowSignupModal(false)} />}
     </section>
   );
 };

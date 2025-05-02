@@ -1,9 +1,10 @@
 
 import React from "react";
-import { Bell, Search, Globe } from "lucide-react";
+import { Bell, Search, Globe, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useAuth } from "@/hooks/use-auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +16,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const DashboardHeader = () => {
+  const { logout } = useAuth();
+
   return (
     <header className="glass-nav border-b border-white/5 py-3 px-6 md:px-8 sticky top-0 z-10">
       <div className="flex items-center justify-between">
@@ -94,7 +97,10 @@ const DashboardHeader = () => {
               <DropdownMenuSeparator className="bg-white/10" />
               <DropdownMenuItem className="glass-button rounded-lg mt-1 mb-1 cursor-pointer">Profile</DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg mb-1 cursor-pointer">Settings</DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">Log out</DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer" onClick={logout}>
+                <LogOut size={16} className="mr-2" />
+                Log out
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

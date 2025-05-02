@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, Search } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, Search, Globe } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,18 +11,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import LoginModal from "@/components/auth/LoginModal";
-import SignupModal from "@/components/auth/SignupModal";
+import { useAuth } from "@/hooks/use-auth";
 
 interface HeaderProps {
   isLoggedIn?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
+const Header: React.FC<HeaderProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
   const isMobile = useIsMobile();
+  const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -97,21 +96,41 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
             <span className="text-xs font-bold">A</span>
           </Button>
           
+          {/* Language Selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="Select language">
+                <Globe size={18} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
+              <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
+                English
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
+                Español
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
+                Français
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           {!isLoggedIn ? (
             <>
-              <Button 
-                variant="ghost" 
-                onClick={() => setShowLoginModal(true)}
-                className="hidden md:flex"
-              >
-                Login
-              </Button>
-              <Button 
-                onClick={() => setShowSignupModal(true)}
-                className="hidden md:flex"
-              >
-                Try Free
-              </Button>
+              <Link to="/login">
+                <Button 
+                  variant="ghost" 
+                  className="hidden md:flex"
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button className="hidden md:flex">
+                  Try Free
+                </Button>
+              </Link>
             </>
           ) : (
             <>
@@ -125,6 +144,13 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
                   aria-label="Search content"
                 />
               </div>
+              
+              <Button 
+                variant="ghost" 
+                onClick={logout}
+              >
+                Log Out
+              </Button>
             </>
           )}
           
@@ -177,31 +203,19 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn = false }) => {
           </div>
           {!isLoggedIn && (
             <div className="flex space-x-2 pt-2">
-              <Button 
-                variant="ghost" 
-                onClick={() => setShowLoginModal(true)}
-                className="flex-1"
-              >
-                Login
-              </Button>
-              <Button 
-                onClick={() => setShowSignupModal(true)}
-                className="flex-1"
-              >
-                Try Free
-              </Button>
+              <Link to="/login" className="flex-1">
+                <Button variant="ghost" className="w-full">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup" className="flex-1">
+                <Button className="w-full">
+                  Try Free
+                </Button>
+              </Link>
             </div>
           )}
         </div>
-      )}
-      
-      {/* Modals */}
-      {showLoginModal && (
-        <LoginModal onClose={() => setShowLoginModal(false)} />
-      )}
-      
-      {showSignupModal && (
-        <SignupModal onClose={() => setShowSignupModal(false)} />
       )}
     </header>
   );
