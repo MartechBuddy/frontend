@@ -32,12 +32,31 @@ import Dashboard from "./pages/post-login/Dashboard";
 import Projects from "./pages/post-login/Projects";
 import ContentHub from "./pages/post-login/ContentHub";
 import AiReadiness from "./pages/post-login/AiReadiness";
+import SiteOptimization from "./pages/post-login/SiteOptimization";
+import LocalSeo from "./pages/post-login/LocalSeo";
+import SocialMedia from "./pages/post-login/SocialMedia";
+import ContentStudio from "./pages/post-login/ContentStudio";
+import InsightsReports from "./pages/post-login/InsightsReports";
+import ContentPerformance from "./pages/post-login/InsightsReports/ContentPerformance";
+import Inbox from "./pages/post-login/Inbox";
+import ContentScheduler from "./pages/post-login/ContentScheduler";
+
+// Settings Pages
 import ProfileSettings from "./pages/post-login/settings/Profile";
+import IntegrationsSettings from "./pages/post-login/settings/Integrations";
+import LlmConfig from "./pages/post-login/settings/LLMConfig";
+import PreferencesSettings from "./pages/post-login/settings/Preferences";
+import LicensesSettings from "./pages/post-login/settings/Licenses";
+import ProjectsSettings from "./pages/post-login/settings/Projects";
+import NotesSettings from "./pages/post-login/settings/Notes";
+import EnterpriseContact from "./pages/post-login/settings/EnterpriseContact";
+import GdprManagement from "./pages/post-login/settings/GDPR";
 
 // Shared components
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/use-auth";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ContentCollaboration from "./pages/post-login/ContentCollaboration";
 
 // Create a new query client
 const queryClient = new QueryClient();
@@ -83,15 +102,16 @@ const App = () => (
                 <Route index element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="content-hub" element={<ContentHub />} />
+                <Route path="content-hub/scheduler" element={<ContentScheduler />} />
+                <Route path="content-hub/collaboration" element={<ContentCollaboration />} />
                 <Route path="ai-readiness" element={<AiReadiness />} />
-
-                {/* Additional routes will be added as they're implemented */}
-                <Route path="site-optimization" element={<div className="p-8">Site Optimization Page (Coming Soon)</div>} />
-                <Route path="local-seo" element={<div className="p-8">Local SEO Page (Coming Soon)</div>} />
-                <Route path="social-media" element={<div className="p-8">Social Media Page (Coming Soon)</div>} />
-                <Route path="content-studio" element={<div className="p-8">Content Studio Page (Coming Soon)</div>} />
-                <Route path="insights-reports" element={<div className="p-8">Insights & Reports Page (Coming Soon)</div>} />
-                <Route path="inbox" element={<div className="p-8">Inbox Page (Coming Soon)</div>} />
+                <Route path="site-optimization" element={<SiteOptimization />} />
+                <Route path="local-seo" element={<LocalSeo />} />
+                <Route path="social-media" element={<SocialMedia />} />
+                <Route path="content-studio" element={<ContentStudio />} />
+                <Route path="insights-reports" element={<InsightsReports />} />
+                <Route path="insights-reports/content-performance" element={<ContentPerformance />} />
+                <Route path="inbox" element={<Inbox />} />
               </Route>
 
               {/* Settings Routes (Protected) */}
@@ -103,14 +123,14 @@ const App = () => (
                 </ProtectedRoute>
               }>
                 <Route path="profile" element={<ProfileSettings />} />
-                <Route path="integrations" element={<div className="p-6">Integrations Settings (Coming Soon)</div>} />
-                <Route path="llm" element={<div className="p-6">LLM Configuration (Coming Soon)</div>} />
-                <Route path="preferences" element={<div className="p-6">Preferences Settings (Coming Soon)</div>} />
-                <Route path="licenses" element={<div className="p-6">Licenses Information (Coming Soon)</div>} />
-                <Route path="projects" element={<div className="p-6">Projects Management (Coming Soon)</div>} />
-                <Route path="notes" element={<div className="p-6">Notes Settings (Coming Soon)</div>} />
-                <Route path="enterprise-contact" element={<div className="p-6">Enterprise Contact (Coming Soon)</div>} />
-                <Route path="gdpr" element={<div className="p-6">GDPR Management (Coming Soon)</div>} />
+                <Route path="integrations" element={<IntegrationsSettings />} />
+                <Route path="llm" element={<LlmConfig />} />
+                <Route path="preferences" element={<PreferencesSettings />} />
+                <Route path="licenses" element={<LicensesSettings />} />
+                <Route path="projects" element={<ProjectsSettings />} />
+                <Route path="notes" element={<NotesSettings />} />
+                <Route path="enterprise-contact" element={<EnterpriseContact />} />
+                <Route path="gdpr" element={<GdprManagement />} />
               </Route>
               
               {/* 404 Not Found */}
