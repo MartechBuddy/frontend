@@ -1,93 +1,128 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "@/hooks/use-toast";
-import { LayoutGrid, Edit, Trash, Plus } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Edit, Trash2, ExternalLink } from "lucide-react";
+
+interface Project {
+  id: string;
+  name: string;
+  website: string;
+  socialAccounts: string[];
+  createdAt: string;
+  status: "active" | "inactive" | "pending";
+}
 
 const ProjectList = () => {
-  const [projects, setProjects] = useState([
-    { id: 1, name: "Company Website", website: "https://example.com", created: "2025-01-15" },
-    { id: 2, name: "Blog", website: "https://blog.example.com", created: "2025-02-20" },
-    { id: 3, name: "E-commerce Store", website: "https://store.example.com", created: "2025-03-10" },
-  ]);
-
-  const handleDeleteProject = (id: number) => {
-    if (confirm("Are you sure you want to delete this project?")) {
-      setProjects(projects.filter(project => project.id !== id));
-      toast({
-        title: "Project deleted",
-        description: "The project has been deleted successfully.",
-      });
-    }
-  };
+  const projects: Project[] = [
+    {
+      id: "1",
+      name: "Main Website",
+      website: "https://example.com",
+      socialAccounts: ["Twitter", "LinkedIn"],
+      createdAt: "2023-01-15",
+      status: "active",
+    },
+    {
+      id: "2",
+      name: "Blog",
+      website: "https://blog.example.com",
+      socialAccounts: ["Twitter", "Facebook"],
+      createdAt: "2023-02-20",
+      status: "active",
+    },
+    {
+      id: "3",
+      name: "Landing Page",
+      website: "https://landing.example.com",
+      socialAccounts: ["Instagram"],
+      createdAt: "2023-03-10",
+      status: "inactive",
+    },
+  ];
 
   return (
-    <div className="space-y-6 animate-fade-in pb-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight mb-1">Projects</h1>
-        <p className="text-muted-foreground">
-          Manage your projects and connected websites
-        </p>
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Projects</h2>
+        <Button>Create Project</Button>
       </div>
-
-      <Card className="glass-card border-white/10">
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <div>
-            <CardTitle className="flex items-center">
-              <LayoutGrid className="mr-2 h-5 w-5 text-primary" />
-              Your Projects
-            </CardTitle>
-            <CardDescription>
-              All your connected websites and projects
-            </CardDescription>
-          </div>
-          <Button size="sm">
-            <Plus className="h-4 w-4 mr-2" /> Add Project
-          </Button>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-3 px-4 text-sm font-medium">Name</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium">Website</th>
-                  <th className="text-left py-3 px-4 text-sm font-medium">Created</th>
-                  <th className="text-right py-3 px-4 text-sm font-medium">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projects.map((project) => (
-                  <tr key={project.id} className="border-b border-white/10 hover:bg-white/5">
-                    <td className="py-3 px-4">{project.name}</td>
-                    <td className="py-3 px-4">
-                      <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                        {project.website}
-                      </a>
-                    </td>
-                    <td className="py-3 px-4">{project.created}</td>
-                    <td className="py-3 px-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Button variant="outline" size="icon">
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="icon"
-                          onClick={() => handleDeleteProject(project.id)}
-                        >
-                          <Trash className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+      
+      <div className="glass-card border border-white/10 rounded-lg overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Website</TableHead>
+              <TableHead>Social Accounts</TableHead>
+              <TableHead>Created Date</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {projects.map((project) => (
+              <TableRow key={project.id}>
+                <TableCell className="font-medium">{project.name}</TableCell>
+                <TableCell>
+                  <a 
+                    href={project.website} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-primary hover:underline"
+                  >
+                    {project.website.replace(/^https?:\/\//, '')}
+                    <ExternalLink size={14} />
+                  </a>
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-1">
+                    {project.socialAccounts.map((account, index) => (
+                      <span 
+                        key={index} 
+                        className="bg-primary/10 text-primary text-xs px-2 py-1 rounded"
+                      >
+                        {account}
+                      </span>
+                    ))}
+                  </div>
+                </TableCell>
+                <TableCell>{new Date(project.createdAt).toLocaleDateString()}</TableCell>
+                <TableCell>
+                  <span 
+                    className={`px-2 py-1 rounded text-xs ${
+                      project.status === "active" 
+                        ? "bg-green-500/10 text-green-500" 
+                        : project.status === "inactive"
+                        ? "bg-red-500/10 text-red-500"
+                        : "bg-yellow-500/10 text-yellow-500"
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-2">
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <Edit size={16} />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500">
+                      <Trash2 size={16} />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

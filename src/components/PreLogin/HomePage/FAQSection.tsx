@@ -1,35 +1,54 @@
 
 import React from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FAQSection = () => {
+  const faqs = [
+    {
+      question: "What is AI Readiness?",
+      answer: "AI Readiness is a comprehensive assessment of how well your website is optimized for modern AI systems like search engines, virtual assistants, and recommendation algorithms. Our tools analyze various aspects of your site and provide actionable recommendations to improve visibility and performance."
+    },
+    {
+      question: "How does the Content Automation work?",
+      answer: "Our Content Automation tools leverage advanced AI models to help you create, optimize, and distribute content across platforms. You can generate ideas, outline content, improve existing drafts, and schedule posts - all while maintaining your brand voice and SEO best practices."
+    },
+    {
+      question: "Do I need technical knowledge to use MartechEngine?",
+      answer: "No, MartechEngine.ai is designed to be user-friendly for marketers with any level of technical expertise. Our intuitive interface guides you through each process, and our AI assistants help translate complex technical concepts into actionable marketing steps."
+    },
+    {
+      question: "Can I connect my existing marketing tools?",
+      answer: "Yes, MartechEngine.ai integrates with popular marketing platforms including WordPress, Google Analytics, social media platforms, and email marketing tools. You can manage all your marketing activities from a single dashboard."
+    }
+  ];
+
   return (
     <div className="container mx-auto px-4 py-20">
-      <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div className="glass-card border border-white/10 p-5 rounded-xl">
-          <h3 className="text-lg font-semibold mb-2">What is AI Readiness?</h3>
-          <p className="text-muted-foreground">
-            AI Readiness is about optimizing your website to be properly understood and indexed by AI systems like search engines, voice assistants, and chatbots. It ensures your content is structured in a way that makes it accessible and interpretable by AI.
-          </p>
-        </div>
-        <div className="glass-card border border-white/10 p-5 rounded-xl">
-          <h3 className="text-lg font-semibold mb-2">How does the AI content generation work?</h3>
-          <p className="text-muted-foreground">
-            Our AI content generation uses advanced language models to create original, SEO-optimized content based on your inputs and brand guidelines. It can generate blog posts, product descriptions, social media content, and more while maintaining your unique voice.
-          </p>
-        </div>
-        <div className="glass-card border border-white/10 p-5 rounded-xl">
-          <h3 className="text-lg font-semibold mb-2">Is my data secure?</h3>
-          <p className="text-muted-foreground">
-            Yes, we take data security seriously. All your data is encrypted in transit and at rest. We don't share your information with third parties, and we comply with all relevant data protection regulations including GDPR.
-          </p>
-        </div>
-        <div className="glass-card border border-white/10 p-5 rounded-xl">
-          <h3 className="text-lg font-semibold mb-2">Can I integrate with my existing tools?</h3>
-          <p className="text-muted-foreground">
-            Yes, MartechEngine.ai integrates with popular marketing tools including WordPress, Google Analytics, social media platforms, and many CMS systems. We're constantly adding new integrations to our ecosystem.
-          </p>
-        </div>
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p className="text-xl text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
+        Everything you need to know about our platform
+      </p>
+      
+      <div className="max-w-3xl mx-auto">
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-lg font-medium text-left">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </div>
   );

@@ -110,10 +110,10 @@ const Sidebar = () => {
         <SidebarItem to="/dashboard" icon={<LayoutDashboard size={18} />} end>
           Dashboard
         </SidebarItem>
-        <SidebarItem to="/projects" icon={<Folders size={18} />}>
+        <SidebarItem to="/dashboard/projects" icon={<Folders size={18} />}>
           Projects
         </SidebarItem>
-        <SidebarItem to="/content-hub" icon={<Library size={18} />}>
+        <SidebarItem to="/dashboard/content-hub" icon={<Library size={18} />}>
           Content Hub
         </SidebarItem>
       </div>
@@ -123,22 +123,22 @@ const Sidebar = () => {
       </div>
       
       <div className="px-3 space-y-1 mb-6">
-        <SidebarItem to="/ai-readiness" icon={<Gauge size={18} />}>
+        <SidebarItem to="/dashboard/ai-readiness" icon={<Gauge size={18} />}>
           AI Readiness
         </SidebarItem>
-        <SidebarItem to="/site-optimization" icon={<Globe size={18} />}>
+        <SidebarItem to="/dashboard/site-optimization" icon={<Globe size={18} />}>
           Site Optimization
         </SidebarItem>
-        <SidebarItem to="/local-seo" icon={<MapPin size={18} />}>
+        <SidebarItem to="/dashboard/local-seo" icon={<MapPin size={18} />}>
           Local SEO
         </SidebarItem>
-        <SidebarItem to="/social-media" icon={<Share size={18} />}>
+        <SidebarItem to="/dashboard/social-media" icon={<Share size={18} />}>
           Social Media
         </SidebarItem>
-        <SidebarItem to="/content-studio" icon={<Pencil size={18} />}>
+        <SidebarItem to="/dashboard/content-studio" icon={<Pencil size={18} />}>
           Content Studio
         </SidebarItem>
-        <SidebarItem to="/insights-reports" icon={<BarChart size={18} />}>
+        <SidebarItem to="/dashboard/insights-reports" icon={<BarChart size={18} />}>
           Insights & Reports
         </SidebarItem>
       </div>
@@ -148,7 +148,7 @@ const Sidebar = () => {
       </div>
       
       <div className="px-3 space-y-1">
-        <SidebarItem to="/inbox" icon={<MessageSquare size={18} />}>
+        <SidebarItem to="/dashboard/inbox" icon={<MessageSquare size={18} />}>
           Inbox
         </SidebarItem>
       </div>

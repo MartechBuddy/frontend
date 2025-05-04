@@ -1,91 +1,34 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ResetForm = () => {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    toast({
-      title: "Reset link sent",
-      description: "Check your email for password reset instructions",
-    });
-    
-    setSubmitted(true);
-  };
-
   return (
-    <Card className="w-full max-w-md glass-card border border-white/10">
-      <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl">Forgot your password?</CardTitle>
-        <CardDescription>
-          Enter your email and we'll send you a reset link
-        </CardDescription>
-      </CardHeader>
+    <div className="w-full max-w-md p-8 glass-card border border-white/10 rounded-xl">
+      <h1 className="text-2xl font-bold mb-6 text-center">Reset Password</h1>
       
-      <CardContent>
-        {submitted ? (
-          <div className="text-center space-y-4">
-            <div className="text-primary text-lg font-medium mb-2">
-              Check your inbox
-            </div>
-            <p className="text-muted-foreground">
-              We've sent a password reset link to <strong>{email}</strong>. 
-              Please check your email and follow the instructions.
-            </p>
-            <p className="text-sm text-muted-foreground mt-4">
-              Didn't receive the email? Check your spam folder or try again.
-            </p>
-            <Button 
-              variant="outline" 
-              className="mt-2" 
-              onClick={() => setSubmitted(false)}
-            >
-              Try again
-            </Button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="glass-button border-white/10"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-            <Button type="submit" className="w-full">
-              Send Reset Link
-            </Button>
-          </form>
-        )}
-      </CardContent>
+      <p className="text-muted-foreground text-center mb-6">
+        Enter your email address and we'll send you a link to reset your password.
+      </p>
       
-      <CardFooter>
-        <div className="text-center w-full text-sm">
-          <span className="text-muted-foreground">Remember your password? </span>
-          <Link
-            to="/login"
-            className="text-primary hover:underline"
-          >
-            Back to login
-          </Link>
+      <form className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" type="email" placeholder="your@email.com" required />
         </div>
-      </CardFooter>
-    </Card>
+        
+        <Button type="submit" className="w-full">Send Reset Link</Button>
+      </form>
+      
+      <div className="mt-6 text-center text-sm">
+        <Link to="/login" className="text-primary hover:underline">
+          Back to Login
+        </Link>
+      </div>
+    </div>
   );
 };
 
