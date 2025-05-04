@@ -11,52 +11,53 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import SettingsLayout from "./layouts/SettingsLayout";
 
 // Pre-login pages
-import Home from "./pages/pre-login/Home";
-import Login from "./pages/pre-login/Login";
-import Signup from "./pages/pre-login/Signup";
-import ForgotPassword from "./pages/pre-login/ForgotPassword";
-import Pricing from "./pages/pre-login/Pricing";
-import About from "./pages/pre-login/About";
-import Contact from "./pages/pre-login/Contact";
-import Docs from "./pages/pre-login/resources/Documentation";
-import Blog from "./pages/pre-login/resources/Blog";
-import Community from "./pages/pre-login/resources/Community";
-import FAQ from "./pages/pre-login/resources/FAQ";
-import Careers from "./pages/pre-login/Careers";
-import CookiesPage from "./pages/pre-login/legal/Cookies";
-import PrivacyPage from "./pages/pre-login/legal/Privacy";
-import TermsPage from "./pages/pre-login/legal/Terms";
+import Home from "./pages/PreLogin/Home";
+import LoginPage from "./pages/PreLogin/LoginPage";
+import SignupPage from "./pages/PreLogin/SignupPage";
+import ForgotPasswordPage from "./pages/PreLogin/ForgotPasswordPage";
+import Pricing from "./pages/PreLogin/Pricing";
+import About from "./pages/PreLogin/About";
+import Contact from "./pages/PreLogin/Contact";
+import Docs from "./pages/PreLogin/resources/Documentation";
+import Blog from "./pages/PreLogin/resources/Blog";
+import Community from "./pages/PreLogin/resources/Community";
+import FAQ from "./pages/PreLogin/resources/FAQ";
+import Careers from "./pages/PreLogin/Careers";
+import CookiesPage from "./pages/PreLogin/legal/Cookies";
+import PrivacyPage from "./pages/PreLogin/legal/Privacy";
+import TermsPage from "./pages/PreLogin/legal/Terms";
 
 // Post-login pages
-import Dashboard from "./pages/post-login/Dashboard";
-import Projects from "./pages/post-login/Projects";
-import ContentHub from "./pages/post-login/ContentHub";
-import AiReadiness from "./pages/post-login/AiReadiness";
-import SiteOptimization from "./pages/post-login/SiteOptimization";
-import LocalSeo from "./pages/post-login/LocalSeo";
-import SocialMedia from "./pages/post-login/SocialMedia";
-import ContentStudio from "./pages/post-login/ContentStudio";
-import InsightsReports from "./pages/post-login/InsightsReports";
-import ContentPerformance from "./pages/post-login/InsightsReports/ContentPerformance";
-import Inbox from "./pages/post-login/Inbox";
-import ContentScheduler from "./pages/post-login/ContentScheduler";
+import DashboardPage from "./pages/PostLogin/DashboardPage";
+import ProjectsPage from "./pages/PostLogin/ProjectsPage";
+import ContentHub from "./pages/PostLogin/ContentHub";
+import AiReadiness from "./pages/PostLogin/AiReadiness";
+import SiteOptimization from "./pages/PostLogin/SiteOptimization";
+import LocalSeo from "./pages/PostLogin/LocalSeo";
+import SocialMedia from "./pages/PostLogin/SocialMedia";
+import ContentStudio from "./pages/PostLogin/ContentStudio";
+import InsightsReports from "./pages/PostLogin/InsightsReports";
+import ContentPerformance from "./pages/PostLogin/InsightsReports/ContentPerformance";
+import Inbox from "./pages/PostLogin/Inbox";
+import ContentScheduler from "./pages/PostLogin/ContentScheduler";
+import ContentCollaboration from "./pages/PostLogin/ContentCollaboration";
 
 // Settings Pages
-import ProfileSettings from "./pages/post-login/settings/Profile";
-import IntegrationsSettings from "./pages/post-login/settings/Integrations";
-import LlmConfig from "./pages/post-login/settings/LLMConfig";
-import PreferencesSettings from "./pages/post-login/settings/Preferences";
-import LicensesSettings from "./pages/post-login/settings/Licenses";
-import ProjectsSettings from "./pages/post-login/settings/Projects";
-import NotesSettings from "./pages/post-login/settings/Notes";
-import EnterpriseContact from "./pages/post-login/settings/EnterpriseContact";
-import GdprManagement from "./pages/post-login/settings/GDPR";
+import SettingsPage from "./pages/PostLogin/SettingsPage";
+import ProfileSettings from "./components/PostLogin/SettingsPage/ProfileForm";
+import IntegrationsSettings from "./pages/PostLogin/settings/Integrations";
+import LlmConfig from "./pages/PostLogin/settings/LLMConfig";
+import PreferencesSettings from "./pages/PostLogin/settings/Preferences";
+import LicensesSettings from "./pages/PostLogin/settings/Licenses";
+import ProjectsSettings from "./pages/PostLogin/settings/Projects";
+import NotesSettings from "./pages/PostLogin/settings/Notes";
+import EnterpriseContact from "./pages/PostLogin/settings/EnterpriseContact";
+import GdprManagement from "./pages/PostLogin/settings/GDPR";
 
 // Shared components
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/use-auth";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import ContentCollaboration from "./pages/post-login/ContentCollaboration";
 
 // Create a new query client
 const queryClient = new QueryClient();
@@ -73,9 +74,9 @@ const App = () => (
               {/* Public Routes */}
               <Route path="/" element={<HomeLayout />}>
                 <Route index element={<Home />} />
-                <Route path="login" element={<Login />} />
-                <Route path="signup" element={<Signup />} />
-                <Route path="forgot-password" element={<ForgotPassword />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="signup" element={<SignupPage />} />
+                <Route path="forgot-password" element={<ForgotPasswordPage />} />
                 <Route path="pricing" element={<Pricing />} />
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
@@ -99,8 +100,8 @@ const App = () => (
                   <DashboardLayout />
                 </ProtectedRoute>
               }>
-                <Route index element={<Dashboard />} />
-                <Route path="projects" element={<Projects />} />
+                <Route index element={<DashboardPage />} />
+                <Route path="projects" element={<ProjectsPage />} />
                 <Route path="content-hub" element={<ContentHub />} />
                 <Route path="content-hub/scheduler" element={<ContentScheduler />} />
                 <Route path="content-hub/collaboration" element={<ContentCollaboration />} />

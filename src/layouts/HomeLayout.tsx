@@ -1,21 +1,17 @@
-
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import Header from "@/components/PreLogin/Header";
 
-interface HomeLayoutProps {
-  children?: React.ReactNode;
-}
-
-const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
+const HomeLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex-grow">
-        {children ? children : <Outlet />}
+      
+      <main>
+        <Outlet />
       </main>
-      <Footer />
+      
+      {/* TODO: Add PreLogin Footer component */}
     </div>
   );
 };
