@@ -1,20 +1,55 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useAuth } from "@/hooks/use-auth";
+import { toast } from "@/components/ui/use-toast";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const success = login(email);
+    
+    if (success) {
+      toast({
+        title: "Login successful",
+        description: "You have been successfully logged in.",
+      });
+      navigate("/dashboard");
+    } else {
+      toast({
+        title: "Login failed",
+        description: "Please use an email ending with @example.com for demo purposes.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="w-full max-w-md p-8 glass-card border border-white/10 rounded-xl">
       <h1 className="text-2xl font-bold mb-6 text-center">Login to Your Account</h1>
       
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="your@email.com" required />
+          <Input 
+            id="email" 
+            type="email" 
+            placeholder="your@email.com" 
+            required 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         
         <div className="space-y-2">
@@ -24,11 +59,22 @@ const LoginForm = () => {
               Forgot password?
             </Link>
           </div>
-          <Input id="password" type="password" placeholder="••••••••" required />
+          <Input 
+            id="password" 
+            type="password" 
+            placeholder="••••••••" 
+            required 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         
         <div className="flex items-center space-x-2">
-          <Checkbox id="remember" />
+          <Checkbox 
+            id="remember" 
+            checked={rememberMe}
+            onCheckedChange={(checked) => setRememberMe(checked === true)}
+          />
           <label
             htmlFor="remember"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
