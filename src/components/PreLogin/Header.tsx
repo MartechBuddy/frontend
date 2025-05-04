@@ -1,175 +1,209 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <header className="border-b border-white/10 bg-background/80 backdrop-blur-md z-50">
+    <header className="border-b border-white/10 backdrop-blur-md bg-background/80 fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white">
-                ME
-              </div>
-              <span className="text-lg font-bold">MartechEngine.ai</span>
-            </Link>
-            
-            <nav className="hidden md:flex ml-10 space-x-6">
-              <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground">
-                Pricing
-              </Link>
-              <div className="relative group">
-                <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
-                  Resources
-                </span>
-                <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-background border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <Link to="/docs" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    Documentation
-                  </Link>
-                  <Link to="/blog" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    Blog
-                  </Link>
-                  <Link to="/community" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    Community
-                  </Link>
-                </div>
-              </div>
-              <div className="relative group">
-                <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
-                  Company
-                </span>
-                <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-background border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <Link to="/about" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    About
-                  </Link>
-                  <Link to="/contact" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    Contact
-                  </Link>
-                  <Link to="/careers" className="block px-4 py-2 text-sm hover:bg-white/5">
-                    Careers
-                  </Link>
-                </div>
-              </div>
-            </nav>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full md:flex hidden"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </Button>
-            
-            <div className="hidden md:flex items-center space-x-2">
-              <Link to="/login">
-                <Button variant="outline">Login</Button>
-              </Link>
-              <Link to="/signup">
-                <Button>Try Free</Button>
-              </Link>
-            </div>
-            
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
-          </div>
-        </div>
-      </div>
-      
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10">
-          <div className="container mx-auto px-4 py-4 space-y-3">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center" onClick={closeMenu}>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-indigo-400 bg-clip-text text-transparent">
+              MartechEngine.ai
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             <Link
               to="/pricing"
-              className="block py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm hover:text-primary transition-colors ${
+                isActive("/pricing") ? "text-primary" : "text-foreground"
+              }`}
             >
               Pricing
             </Link>
-            <div className="py-2">
-              <p className="mb-2 font-medium">Resources</p>
-              <div className="pl-4 space-y-2">
+            
+            <div className="relative group">
+              <button className="flex items-center text-sm hover:text-primary transition-colors">
+                Resources <ChevronDown size={16} className="ml-1" />
+              </button>
+              <div className="absolute top-full left-0 transform translate-y-2 hidden group-hover:block bg-background border border-white/10 rounded-lg shadow-lg p-3 w-48 glass-card">
                 <Link
                   to="/docs"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   Documentation
                 </Link>
                 <Link
                   to="/blog"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   Blog
                 </Link>
                 <Link
                   to="/community"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   Community
                 </Link>
               </div>
             </div>
-            <div className="py-2">
-              <p className="mb-2 font-medium">Company</p>
-              <div className="pl-4 space-y-2">
+            
+            <div className="relative group">
+              <button className="flex items-center text-sm hover:text-primary transition-colors">
+                Company <ChevronDown size={16} className="ml-1" />
+              </button>
+              <div className="absolute top-full left-0 transform translate-y-2 hidden group-hover:block bg-background border border-white/10 rounded-lg shadow-lg p-3 w-48 glass-card">
                 <Link
                   to="/about"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   About
                 </Link>
                 <Link
                   to="/contact"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   Contact
                 </Link>
                 <Link
                   to="/careers"
-                  className="block text-sm text-muted-foreground"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-white/5 rounded-md transition-colors"
                 >
                   Careers
                 </Link>
               </div>
             </div>
-            <div className="pt-4 flex flex-col space-y-2 border-t border-white/10">
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full">Login</Button>
+          </nav>
+
+          {/* Right Side Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            
+            <Link to="/login">
+              <Button variant="outline" size="sm" className="glass-button">
+                Login
+              </Button>
+            </Link>
+            
+            <Link to="/signup">
+              <Button size="sm">Try Free</Button>
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center space-x-3">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-md hover:bg-white/10 transition-colors"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-background border-t border-white/10">
+          <div className="container mx-auto px-4 py-4 space-y-4">
+            <Link
+              to="/pricing"
+              className="block py-2"
+              onClick={closeMenu}
+            >
+              Pricing
+            </Link>
+            
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Resources</p>
+              <Link
+                to="/docs"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
+              >
+                Documentation
               </Link>
-              <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full">Try Free</Button>
+              <Link
+                to="/blog"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/community"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
+              >
+                Community
               </Link>
             </div>
-            <div className="pt-2 flex justify-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Company</p>
+              <Link
+                to="/about"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
               >
-                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-              </Button>
+                About
+              </Link>
+              <Link
+                to="/contact"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
+              >
+                Contact
+              </Link>
+              <Link
+                to="/careers"
+                className="block py-1 pl-3 text-sm"
+                onClick={closeMenu}
+              >
+                Careers
+              </Link>
+            </div>
+            
+            <div className="flex flex-col space-y-2 pt-3">
+              <Link to="/login" onClick={closeMenu}>
+                <Button variant="outline" className="w-full glass-button">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup" onClick={closeMenu}>
+                <Button className="w-full">Try Free</Button>
+              </Link>
             </div>
           </div>
         </div>

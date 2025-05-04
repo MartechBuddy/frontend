@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,18 +10,18 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import SettingsLayout from "./layouts/SettingsLayout";
 
 // Pre-login pages
-import Home from "./pages/PreLogin/Home";
+import Home from "./pages/PreLogin/HomePage";
 import LoginPage from "./pages/PreLogin/LoginPage";
 import SignupPage from "./pages/PreLogin/SignupPage";
 import ForgotPasswordPage from "./pages/PreLogin/ForgotPasswordPage";
-import Pricing from "./pages/PreLogin/Pricing";
-import About from "./pages/PreLogin/About";
-import Contact from "./pages/PreLogin/Contact";
+import Pricing from "./pages/PreLogin/PricingPage";
+import About from "./pages/PreLogin/AboutPage";
+import Contact from "./pages/PreLogin/ContactPage";
 import Docs from "./pages/PreLogin/resources/Documentation";
 import Blog from "./pages/PreLogin/resources/Blog";
 import Community from "./pages/PreLogin/resources/Community";
 import FAQ from "./pages/PreLogin/resources/FAQ";
-import Careers from "./pages/PreLogin/Careers";
+import Careers from "./pages/PreLogin/CareersPage";
 import CookiesPage from "./pages/PreLogin/legal/Cookies";
 import PrivacyPage from "./pages/PreLogin/legal/Privacy";
 import TermsPage from "./pages/PreLogin/legal/Terms";
@@ -30,29 +29,29 @@ import TermsPage from "./pages/PreLogin/legal/Terms";
 // Post-login pages
 import DashboardPage from "./pages/PostLogin/DashboardPage";
 import ProjectsPage from "./pages/PostLogin/ProjectsPage";
-import ContentHub from "./pages/PostLogin/ContentHub";
-import AiReadiness from "./pages/PostLogin/AiReadiness";
-import SiteOptimization from "./pages/PostLogin/SiteOptimization";
-import LocalSeo from "./pages/PostLogin/LocalSeo";
-import SocialMedia from "./pages/PostLogin/SocialMedia";
-import ContentStudio from "./pages/PostLogin/ContentStudio";
-import InsightsReports from "./pages/PostLogin/InsightsReports";
-import ContentPerformance from "./pages/PostLogin/InsightsReports/ContentPerformance";
-import Inbox from "./pages/PostLogin/Inbox";
-import ContentScheduler from "./pages/PostLogin/ContentScheduler";
-import ContentCollaboration from "./pages/PostLogin/ContentCollaboration";
+import ContentHub from "./pages/PostLogin/ContentHubPage";
+import AiReadiness from "./pages/PostLogin/AiReadinessPage";
+import SiteOptimization from "./pages/PostLogin/SiteOptimizationPage";
+import LocalSeo from "./pages/PostLogin/LocalSeoPage";
+import SocialMedia from "./pages/PostLogin/SocialMediaPage";
+import ContentStudio from "./pages/PostLogin/ContentStudioPage";
+import InsightsReports from "./pages/PostLogin/InsightsReportsPage";
+import ContentPerformance from "./pages/PostLogin/InsightsReports/ContentPerformancePage";
+import Inbox from "./pages/PostLogin/InboxPage";
+import ContentScheduler from "./pages/PostLogin/ContentSchedulerPage";
+import ContentCollaboration from "./pages/PostLogin/ContentCollaborationPage";
 
 // Settings Pages
 import SettingsPage from "./pages/PostLogin/SettingsPage";
 import ProfileSettings from "./components/PostLogin/SettingsPage/ProfileForm";
-import IntegrationsSettings from "./pages/PostLogin/settings/Integrations";
-import LlmConfig from "./pages/PostLogin/settings/LLMConfig";
-import PreferencesSettings from "./pages/PostLogin/settings/Preferences";
-import LicensesSettings from "./pages/PostLogin/settings/Licenses";
-import ProjectsSettings from "./pages/PostLogin/settings/Projects";
-import NotesSettings from "./pages/PostLogin/settings/Notes";
-import EnterpriseContact from "./pages/PostLogin/settings/EnterpriseContact";
-import GdprManagement from "./pages/PostLogin/settings/GDPR";
+import IntegrationsSettings from "./pages/PostLogin/settings/IntegrationsPage";
+import LlmConfig from "./pages/PostLogin/settings/LLMConfigPage";
+import PreferencesSettings from "./pages/PostLogin/settings/PreferencesPage";
+import LicensesSettings from "./pages/PostLogin/settings/LicensesPage";
+import ProjectsSettings from "./pages/PostLogin/settings/ProjectsPage";
+import NotesSettings from "./pages/PostLogin/settings/NotesPage";
+import EnterpriseContact from "./pages/PostLogin/settings/EnterpriseContactPage";
+import GdprManagement from "./pages/PostLogin/settings/GDPRPage";
 
 // Shared components
 import NotFound from "./pages/NotFound";

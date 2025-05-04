@@ -1,30 +1,32 @@
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-type AuthContextType = {
+interface AuthContextType {
   isLoggedIn: boolean;
   login: (email: string) => boolean;
   logout: () => void;
-};
+}
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType>({
+  isLoggedIn: false,
+  login: () => false,
+  logout: () => {},
+});
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
-  // Check if user is logged in on mount
   useEffect(() => {
-    const loggedInStatus = localStorage.getItem("martechIsLoggedIn");
-    if (loggedInStatus === "true") {
-      setIsLoggedIn(true);
-    }
+    // Check if user is logged in
+    const loggedIn = localStorage.getItem("martechIsLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
   }, []);
 
   const login = (email: string) => {
-    // Simple authentication - just check email
-    if (email === "test@example.com") {
+    // For demo purposes, we'll accept any email that ends with example.com
+    if (email.endsWith("@example.com")) {
       localStorage.setItem("martechIsLoggedIn", "true");
       setIsLoggedIn(true);
       return true;
@@ -35,7 +37,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = () => {
     localStorage.removeItem("martechIsLoggedIn");
     setIsLoggedIn(false);
-    navigate("/login");
   };
 
   return (
@@ -43,12 +44,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
 };

@@ -1,88 +1,177 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
-  Home, 
-  LayoutGrid, 
-  LineChart, 
-  Settings, 
-  FileText, 
-  Target, 
+  LayoutDashboard, 
+  Folders, 
+  Library, 
+  Gauge, 
   Globe, 
   MapPin, 
+  Share, 
+  Pencil, 
+  BarChart, 
   MessageSquare, 
-  PenTool, 
-  Inbox,
+  Settings,
+  ChevronDown,
   ChevronRight,
-  BotIcon
+  CheckCircle
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+type SidebarItemProps = {
+  to: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  end?: boolean;
+};
+
+const SidebarItem = ({ to, icon, children, end }: SidebarItemProps) => (
+  <NavLink
+    to={to}
+    end={end}
+    className={({ isActive }) =>
+      cn(
+        "flex items-center gap-3 rounded-md px-3 py-2 hover:bg-white/5 transition-colors",
+        isActive ? "bg-white/10 text-primary" : "text-muted-foreground"
+      )
+    }
+  >
+    {icon}
+    <span>{children}</span>
+  </NavLink>
+);
+
+type SidebarGroupProps = {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+};
+
+const SidebarGroup = ({ title, children, defaultOpen = false }: SidebarGroupProps) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  
+  return (
+    <div className="mb-2">
+      <button
+        className="flex w-full items-center justify-between rounded-md px-3 py-2 text-muted-foreground hover:bg-white/5 transition-colors"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="text-sm font-medium">{title}</span>
+        {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+      </button>
+      
+      {isOpen && <div className="mt-1 ml-2 border-l border-white/10 pl-2">{children}</div>}
+    </div>
+  );
+};
 
 const Sidebar = () => {
-  const navItems = [
-    { name: "Dashboard", path: "/dashboard", icon: Home },
-    { name: "Projects", path: "/dashboard/projects", icon: LayoutGrid },
-    { name: "Content Hub", path: "/dashboard/content-hub", icon: FileText },
-    { name: "AI Readiness", path: "/dashboard/ai-readiness", icon: Target },
-    { name: "Site Optimization", path: "/dashboard/site-optimization", icon: Globe },
-    { name: "Local SEO", path: "/dashboard/local-seo", icon: MapPin },
-    { name: "Social Media", path: "/dashboard/social-media", icon: MessageSquare },
-    { name: "Content Studio", path: "/dashboard/content-studio", icon: PenTool },
-    { name: "Insights & Reports", path: "/dashboard/insights-reports", icon: LineChart },
-    { name: "Inbox", path: "/dashboard/inbox", icon: Inbox },
-    { name: "Settings", path: "/settings/profile", icon: Settings },
-  ];
-
+  const [isProjectSwitcherOpen, setIsProjectSwitcherOpen] = useState(false);
+  
   return (
-    <div className="w-64 h-screen bg-background/80 border-r border-white/10 pt-6 fixed left-0 top-0 bottom-0 z-10 overflow-y-auto">
-      <div className="px-4 mb-6">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white">
-            ME
-          </div>
-          <div className="text-lg font-bold">MartechEngine.ai</div>
-        </div>
-      </div>
-
+    <aside className="w-64 border-r border-white/10 h-full overflow-y-auto py-4 bg-background/80 backdrop-blur-sm">
       <div className="px-3 mb-6">
-        <div className="bg-white/5 rounded-md p-3 flex justify-between items-center">
+        <button
+          className="glass-card w-full border border-white/10 rounded-md px-3 py-2 flex items-center justify-between"
+          onClick={() => setIsProjectSwitcherOpen(!isProjectSwitcherOpen)}
+        >
           <div className="flex items-center gap-2">
-            <BotIcon size={18} className="text-green-400" />
-            <span className="text-sm">LLM Connected</span>
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <span className="text-sm">Main Website</span>
           </div>
-          <div className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">Active</div>
-        </div>
-      </div>
-
-      <nav className="space-y-1 px-3">
-        {navItems.map((item) => (
-          <NavLink 
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => `
-              flex items-center justify-between py-2 px-3 rounded-md transition-colors
-              ${isActive ? 'bg-primary text-white font-medium' : 'hover:bg-white/5'}
-            `}
-          >
-            <div className="flex items-center gap-3">
-              <item.icon size={18} />
-              <span>{item.name}</span>
+          <ChevronDown size={16} className="text-muted-foreground" />
+        </button>
+        
+        {isProjectSwitcherOpen && (
+          <div className="mt-2 glass-card border border-white/10 rounded-md p-2 text-sm">
+            <div className="flex items-center gap-2 p-2 hover:bg-white/5 rounded-md">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <span>Main Website</span>
             </div>
-            <ChevronRight size={16} className="opacity-60" />
-          </NavLink>
-        ))}
-      </nav>
-
-      <div className="px-3 mt-6 pt-6 border-t border-white/10">
-        <div className="bg-white/5 rounded-md p-3">
-          <div className="text-sm font-medium mb-1">Project: Company Website</div>
-          <div className="text-xs text-muted-foreground">example.com</div>
-          <button className="text-xs text-primary mt-2 flex items-center">
-            Switch Project
-            <ChevronRight size={12} className="ml-1" />
+            <div className="flex items-center gap-2 p-2 hover:bg-white/5 rounded-md">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <span>Blog</span>
+            </div>
+            <div className="flex items-center gap-2 p-2 hover:bg-white/5 rounded-md">
+              <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+              <span>Landing Page</span>
+            </div>
+            <div className="border-t border-white/10 mt-2 pt-2">
+              <button className="w-full text-left p-2 hover:bg-white/5 rounded-md text-primary">
+                + Create New Project
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+      
+      <div className="px-3 space-y-1 mb-6">
+        <SidebarItem to="/dashboard" icon={<LayoutDashboard size={18} />} end>
+          Dashboard
+        </SidebarItem>
+        <SidebarItem to="/projects" icon={<Folders size={18} />}>
+          Projects
+        </SidebarItem>
+        <SidebarItem to="/content-hub" icon={<Library size={18} />}>
+          Content Hub
+        </SidebarItem>
+      </div>
+      
+      <div className="px-4 mb-2">
+        <p className="text-xs uppercase text-muted-foreground font-medium tracking-wider">Tools</p>
+      </div>
+      
+      <div className="px-3 space-y-1 mb-6">
+        <SidebarItem to="/ai-readiness" icon={<Gauge size={18} />}>
+          AI Readiness
+        </SidebarItem>
+        <SidebarItem to="/site-optimization" icon={<Globe size={18} />}>
+          Site Optimization
+        </SidebarItem>
+        <SidebarItem to="/local-seo" icon={<MapPin size={18} />}>
+          Local SEO
+        </SidebarItem>
+        <SidebarItem to="/social-media" icon={<Share size={18} />}>
+          Social Media
+        </SidebarItem>
+        <SidebarItem to="/content-studio" icon={<Pencil size={18} />}>
+          Content Studio
+        </SidebarItem>
+        <SidebarItem to="/insights-reports" icon={<BarChart size={18} />}>
+          Insights & Reports
+        </SidebarItem>
+      </div>
+      
+      <div className="px-4 mb-2">
+        <p className="text-xs uppercase text-muted-foreground font-medium tracking-wider">Communication</p>
+      </div>
+      
+      <div className="px-3 space-y-1">
+        <SidebarItem to="/inbox" icon={<MessageSquare size={18} />}>
+          Inbox
+        </SidebarItem>
+      </div>
+      
+      <div className="mt-auto pt-6 px-3">
+        <SidebarItem to="/settings" icon={<Settings size={18} />}>
+          Settings
+        </SidebarItem>
+        
+        <div className="mt-4 glass-card border border-white/10 rounded-md p-3">
+          <div className="flex items-center gap-2 mb-2">
+            <CheckCircle size={16} className="text-green-500" />
+            <span className="text-xs">LLM Connected</span>
+          </div>
+          <div className="text-xs text-muted-foreground mb-2">
+            Using OpenAI GPT-4
+          </div>
+          <button className="text-xs text-primary hover:underline">
+            Change LLM settings
           </button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

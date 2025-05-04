@@ -1,20 +1,19 @@
 
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "@/components/PostLogin/Sidebar";
 import Header from "@/components/PostLogin/Header";
+import Sidebar from "@/components/PostLogin/Sidebar";
 
 const DashboardLayout = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <div className="min-h-screen bg-background">
-      <Sidebar />
+    <div className="min-h-screen flex flex-col">
       <Header />
-      
-      <main className="ml-64 pt-16 min-h-screen">
-        <div className="container mx-auto p-6">
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-grow p-6 overflow-y-auto">
           {children || <Outlet />}
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };
