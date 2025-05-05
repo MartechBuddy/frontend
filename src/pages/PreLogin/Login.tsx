@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); // Added password state
   const [rememberMe, setRememberMe] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -18,19 +19,21 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simplified login - no password check
-    if (login(email)) {
-      toast({
-        title: "Login Successful",
-        description: "Welcome back to MartechEngine.ai",
-      });
-      
-      // Redirect to dashboard
-      navigate("/dashboard");
+    // Check for temporary credentials
+    if (email === "test@example.com" && password === "test@123") {
+      if (login(email)) {
+        toast({
+          title: "Login Successful",
+          description: "Welcome back to MartechEngine.ai",
+        });
+        
+        // Redirect to dashboard
+        navigate("/dashboard");
+      }
     } else {
       toast({
         title: "Login Failed",
-        description: "Please use test@example.com for testing",
+        description: "Please use test@example.com and password test@123 for testing",
         variant: "destructive",
       });
     }
@@ -42,7 +45,7 @@ const Login = () => {
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl">Log in to your account</CardTitle>
           <CardDescription>
-            Enter your email to access your account
+            Enter your email and password to access your account
           </CardDescription>
         </CardHeader>
         
@@ -56,6 +59,20 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
+                className="glass-button border-white/10"
+                required
+              />
+            </div>
+            
+            {/* Added password field */}
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
                 className="glass-button border-white/10"
                 required
               />
