@@ -102,12 +102,14 @@ function App() {
           <Route path="content-collaboration" element={<ContentCollaboration />} />
         </Route>
 
-        {/* Settings Routes */}
+        {/* Settings Routes - Now within the DashboardLayout */}
         <Route
           path="/settings"
           element={
             <ProtectedRoute>
-              <SettingsLayout />
+              <DashboardLayout>
+                <SettingsLayout />
+              </DashboardLayout>
             </ProtectedRoute>
           }
         >

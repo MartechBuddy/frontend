@@ -1,7 +1,7 @@
 
 import React from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Settings, UserRound, CreditCard, KeyRound, LayoutGrid, Bell, Shield, Users } from "lucide-react";
+import { Settings, UserRound, CreditCard, KeyRound, LayoutGrid, Shield, Users } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
