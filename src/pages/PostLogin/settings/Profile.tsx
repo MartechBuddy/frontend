@@ -5,197 +5,128 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { UserRound, AtSign, Lock, Check } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+import { UserRound, Mail, Lock } from "lucide-react";
 
-const ProfileSettings = () => {
-  const [form, setForm] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    currentPassword: "",
-    newPassword: "",
+const Profile = () => {
+  const { user } = useAuth();
+  const [formData, setFormData] = useState({
+    name: user?.name || "John Doe",
+    email: user?.email || "test@example.com",
+    password: "",
     confirmPassword: ""
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+    if (formData.password && formData.password !== formData.confirmPassword) {
       toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully.",
+        title: "Passwords don't match",
+        description: "Please make sure your passwords match.",
+        variant: "destructive",
       });
-      setIsSubmitting(false);
-      
-      // Reset password fields
-      setForm({
-        ...form,
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: ""
-      });
-    }, 1000);
+      return;
+    }
+    
+    toast({
+      title: "Profile updated",
+      description: "Your profile information has been updated successfully.",
+    });
   };
 
   return (
-    <div className="space-y-6 animate-fade-in pb-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight mb-1">Profile Settings</h1>
-        <p className="text-muted-foreground">
-          Manage your account details and password
-        </p>
-      </div>
-
+    <div className="space-y-6 animate-fade-in">
       <form onSubmit={handleSubmit}>
-        <div className="grid gap-6">
-          <Card className="glass-card border-white/10">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <UserRound className="mr-2 h-5 w-5 text-primary" />
-                Personal Information
-              </CardTitle>
-              <CardDescription>
-                Update your personal details
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input 
-                    id="name" 
-                    name="name" 
-                    value={form.name} 
-                    onChange={handleInputChange} 
-                    className="glass-button"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <div className="relative">
-                    <AtSign className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      id="email" 
-                      name="email" 
-                      type="email" 
-                      value={form.email} 
-                      onChange={handleInputChange} 
-                      className="glass-button pl-10"
-                    />
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="border-t border-white/10 pt-6 flex justify-between">
-              <Button variant="outline" type="reset">
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : "Save Changes"}
-              </Button>
-            </CardFooter>
-          </Card>
+        <div className="space-y-6">
+          <div className="grid gap-6">
+            <div className="grid gap-3">
+              <Label htmlFor="name" className="flex items-center gap-2">
+                <UserRound size={16} className="text-primary" />
+                Full Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="glass-button border"
+              />
+            </div>
+            
+            <div className="grid gap-3">
+              <Label htmlFor="email" className="flex items-center gap-2">
+                <Mail size={16} className="text-primary" />
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="glass-button border"
+              />
+            </div>
+          </div>
 
-          <Card className="glass-card border-white/10">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Lock className="mr-2 h-5 w-5 text-primary" />
-                Change Password
-              </CardTitle>
-              <CardDescription>
-                Update your password to keep your account secure
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="currentPassword">Current Password</Label>
-                  <Input 
-                    id="currentPassword" 
-                    name="currentPassword" 
-                    type="password" 
-                    value={form.currentPassword} 
-                    onChange={handleInputChange} 
-                    className="glass-button"
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="newPassword">New Password</Label>
-                    <Input 
-                      id="newPassword" 
-                      name="newPassword" 
-                      type="password" 
-                      value={form.newPassword} 
-                      onChange={handleInputChange} 
-                      className="glass-button"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
-                    <Input 
-                      id="confirmPassword" 
-                      name="confirmPassword" 
-                      type="password" 
-                      value={form.confirmPassword} 
-                      onChange={handleInputChange} 
-                      className="glass-button"
-                    />
-                  </div>
-                </div>
+          <div className="space-y-4">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-white/10" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Change Password (Optional)
+                </span>
+              </div>
+            </div>
+
+            <div className="grid gap-6">
+              <div className="grid gap-3">
+                <Label htmlFor="password" className="flex items-center gap-2">
+                  <Lock size={16} className="text-primary" />
+                  New Password
+                </Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="glass-button border"
+                />
               </div>
               
-              {form.newPassword && (
-                <div className="bg-white/5 p-3 rounded-md">
-                  <p className="text-sm mb-2">Password requirements:</p>
-                  <ul className="space-y-1 text-xs">
-                    <li className="flex items-center gap-2">
-                      <Check size={12} className={form.newPassword.length >= 8 ? "text-green-400" : "text-muted-foreground"} />
-                      <span className={form.newPassword.length >= 8 ? "text-green-400" : "text-muted-foreground"}>
-                        At least 8 characters
-                      </span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check size={12} className={/[A-Z]/.test(form.newPassword) ? "text-green-400" : "text-muted-foreground"} />
-                      <span className={/[A-Z]/.test(form.newPassword) ? "text-green-400" : "text-muted-foreground"}>
-                        At least one uppercase letter
-                      </span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check size={12} className={/[0-9]/.test(form.newPassword) ? "text-green-400" : "text-muted-foreground"} />
-                      <span className={/[0-9]/.test(form.newPassword) ? "text-green-400" : "text-muted-foreground"}>
-                        At least one number
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </CardContent>
-            <CardFooter className="border-t border-white/10 pt-6 flex justify-between">
-              <Button variant="outline" type="reset">
-                Cancel
-              </Button>
-              <Button 
-                type="submit" 
-                disabled={isSubmitting || !form.currentPassword || !form.newPassword || form.newPassword !== form.confirmPassword}
-              >
-                {isSubmitting ? "Updating..." : "Update Password"}
-              </Button>
-            </CardFooter>
-          </Card>
+              <div className="grid gap-3">
+                <Label htmlFor="confirmPassword" className="flex items-center gap-2">
+                  <Lock size={16} className="text-primary" />
+                  Confirm New Password
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="glass-button border"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end">
+            <Button type="submit" className="px-6">Save Changes</Button>
+          </div>
         </div>
       </form>
     </div>
   );
 };
 
-export default ProfileSettings;
+export default Profile;
