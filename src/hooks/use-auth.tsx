@@ -1,54 +1,84 @@
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-type AuthContextType = {
+// Define the shape of the context
+interface AuthContextType {
   isLoggedIn: boolean;
   login: (email: string) => boolean;
   logout: () => void;
-};
+  user: UserType | null;
+}
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+// Simple user type
+interface UserType {
+  email: string;
+  name: string;
+  role: string;
+}
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+// Create the context with a default value
+const AuthContext = createContext<AuthContextType>({
+  isLoggedIn: false,
+  login: () => false,
+  logout: () => {},
+  user: null
+});
+
+// The provider component
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const [user, setUser] = useState<UserType | null>(null);
 
-  // Check if user is logged in on mount
+  // Check localStorage on initial render
   useEffect(() => {
-    const loggedInStatus = localStorage.getItem("martechIsLoggedIn");
-    if (loggedInStatus === "true") {
+    const storedLoginState = localStorage.getItem("martechIsLoggedIn");
+    const storedUserEmail = localStorage.getItem("martechUserEmail");
+    
+    if (storedLoginState === "true" && storedUserEmail) {
       setIsLoggedIn(true);
+      setUser({
+        email: storedUserEmail,
+        name: "John Doe", // Would normally come from a backend API
+        role: "Administrator"
+      });
     }
   }, []);
 
+  // Login function - simplistic implementation for demo purposes
+  // In a real app, this would validate against a backend
   const login = (email: string) => {
-    // Simple authentication - just check email
-    if (email === "test@example.com") {
+    // Simple validation for demo purposes
+    // Accept any email that ends with @example.com
+    if (email.endsWith("@example.com")) {
       localStorage.setItem("martechIsLoggedIn", "true");
+      localStorage.setItem("martechUserEmail", email);
+      
       setIsLoggedIn(true);
+      setUser({
+        email,
+        name: "John Doe", // Would normally come from a backend API
+        role: "Administrator"
+      });
+      
       return true;
     }
     return false;
   };
 
+  // Logout function
   const logout = () => {
     localStorage.removeItem("martechIsLoggedIn");
+    localStorage.removeItem("martechUserEmail");
     setIsLoggedIn(false);
-    navigate("/login");
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+// Hook to use the auth context
+export const useAuth = () => useContext(AuthContext);

@@ -1,33 +1,20 @@
 
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center max-w-md animate-scale-in px-6">
-        <h1 className="text-7xl font-bold text-gradient mb-4">404</h1>
-        <p className="text-xl text-muted-foreground mb-6">
-          Oops! This page doesn't exist or has been moved to another dimension.
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center space-y-6">
+        <h1 className="text-6xl font-bold">404</h1>
+        <h2 className="text-2xl">Page Not Found</h2>
+        <p className="text-muted-foreground">
+          The page you are looking for doesn't exist or has been moved.
         </p>
-        <Button
-          className="bg-primary text-primary-foreground hover:bg-primary/90"
-          onClick={() => navigate("/")}
-        >
-          Return to Homepage
-        </Button>
+        <Link to="/">
+          <Button>Return to Home</Button>
+        </Link>
       </div>
     </div>
   );
