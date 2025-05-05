@@ -1,13 +1,23 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, Bell, Search } from "lucide-react";
+import { User, Bell, Search, Globe, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -29,26 +39,60 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-3">
+          {/* LLM Status indicator */}
+          <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-md">
+            <div className="h-2 w-2 rounded-full bg-green-500"></div>
+            <span className="text-xs text-muted-foreground hidden md:inline">LLM Active</span>
+          </div>
+
+          {/* Language switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Globe className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-40">
+              <DropdownMenuLabel>Language</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>English</DropdownMenuItem>
+              <DropdownMenuItem>Español</DropdownMenuItem>
+              <DropdownMenuItem>Français</DropdownMenuItem>
+              <DropdownMenuItem>العربية</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Theme toggle */}
+          <ThemeToggle />
+
           <Button variant="ghost" size="icon" className="rounded-full">
             <Bell className="h-5 w-5" />
           </Button>
           
           <div className="h-8 w-px bg-white/10"></div>
           
-          <div className="flex items-center gap-2">
-            <div className="flex flex-col items-end">
-              <span className="text-sm font-medium">John Doe</span>
-              <span className="text-xs text-muted-foreground">Administrator</span>
-            </div>
-            <div className="relative">
-              <button 
-                className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center border border-white/10"
-                onClick={handleLogout}
-              >
-                <User className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="flex items-center gap-2 px-2">
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col items-start">
+                  <span className="text-sm font-medium">{user?.name || 'User'}</span>
+                  <span className="text-xs text-muted-foreground">{user?.role || 'User'}</span>
+                </div>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => navigate("/settings/profile")}>Profile</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/settings")}>Settings</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Log out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

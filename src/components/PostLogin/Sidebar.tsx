@@ -14,7 +14,8 @@ import {
   MessageSquare,
   PenTool,
   BarChartHorizontal,
-  HelpCircle
+  HelpCircle,
+  Inbox
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -74,8 +75,13 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle }) => {
       icon: <BarChartHorizontal size={20} />,
     },
     {
+      name: "Inbox",
+      path: "/dashboard/inbox",
+      icon: <Inbox size={20} />,
+    },
+    {
       name: "Settings",
-      path: "/dashboard/settings",
+      path: "/settings",
       icon: <Settings size={20} />,
     },
   ];
@@ -122,20 +128,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle }) => {
           >
             {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
           </Button>
-        </div>
-
-        {/* LLM Status indicator */}
-        <div className={cn(
-          "mt-4 px-3 py-2",
-          collapsed ? "text-center" : ""
-        )}>
-          <div className={cn(
-            "flex items-center rounded-md bg-white/5 px-3 py-2",
-            collapsed ? "justify-center" : ""
-          )}>
-            <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
-            {!collapsed && <span className="text-xs text-muted-foreground">LLM Active</span>}
-          </div>
         </div>
         
         {/* Navigation */}

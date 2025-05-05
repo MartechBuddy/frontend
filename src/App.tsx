@@ -40,23 +40,23 @@ import InsightsReports from "./pages/PostLogin/InsightsReports";
 import ContentPerformance from "./pages/PostLogin/InsightsReports/ContentPerformance";
 import Inbox from "./pages/PostLogin/Inbox";
 import ContentScheduler from "./pages/PostLogin/ContentScheduler";
+import ContentCollaboration from "./pages/PostLogin/ContentCollaboration";
 
 // Settings Pages
-import ProfileSettings from "./pages/PostLogin/settings/Profile";
-import IntegrationsSettings from "./pages/PostLogin/settings/Integrations";
-import LlmConfig from "./pages/PostLogin/settings/LLMConfig";
-import PreferencesSettings from "./pages/PostLogin/settings/Preferences";
-import LicensesSettings from "./pages/PostLogin/settings/Licenses";
-import ProjectsSettings from "./pages/PostLogin/settings/Projects";
-import NotesSettings from "./pages/PostLogin/settings/Notes";
-import EnterpriseContact from "./pages/PostLogin/settings/EnterpriseContact";
-import GdprManagement from "./pages/PostLogin/settings/GDPR";
+import ProfileSettings from "./pages/PostLogin/Settings/Profile";
+import IntegrationsSettings from "./pages/PostLogin/Settings/Integrations";
+import LlmConfig from "./pages/PostLogin/Settings/LLMConfig";
+import PreferencesSettings from "./pages/PostLogin/Settings/Preferences";
+import LicensesSettings from "./pages/PostLogin/Settings/Licenses";
+import ProjectsSettings from "./pages/PostLogin/Settings/Projects";
+import NotesSettings from "./pages/PostLogin/Settings/Notes";
+import EnterpriseContact from "./pages/PostLogin/Settings/EnterpriseContact";
+import GdprManagement from "./pages/PostLogin/Settings/GDPR";
 
 // Shared components
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/use-auth";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import ContentCollaboration from "./pages/PostLogin/ContentCollaboration";
 
 // Create a new query client
 const queryClient = new QueryClient();
