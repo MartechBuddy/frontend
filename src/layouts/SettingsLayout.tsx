@@ -10,8 +10,7 @@ import {
   LayoutGrid,
   BookOpenText,
   Building,
-  ShieldAlert,
-  Mail
+  ShieldAlert
 } from "lucide-react";
 
 const SettingsLayout = () => {
@@ -21,7 +20,6 @@ const SettingsLayout = () => {
     { name: "LLM Configuration", path: "/settings/llm", icon: <Bot size={16} /> },
     { name: "Preferences", path: "/settings/preferences", icon: <Settings size={16} /> },
     { name: "Licenses", path: "/settings/licenses", icon: <BookOpenText size={16} /> },
-    { name: "Projects", path: "/settings/projects", icon: <LayoutGrid size={16} /> },
     { name: "Notes", path: "/settings/notes", icon: <PanelLeft size={16} /> },
     { name: "Enterprise Contact", path: "/settings/enterprise-contact", icon: <Building size={16} /> },
     { name: "GDPR Management", path: "/settings/gdpr", icon: <ShieldAlert size={16} /> },
