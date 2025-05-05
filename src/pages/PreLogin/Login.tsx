@@ -12,15 +12,19 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     // Check for credentials
-    if (login(email, password)) {
+    const success = login(email, password);
+    
+    if (success) {
       toast({
         title: "Login Successful",
         description: "Welcome back to MartechEngine.ai",
@@ -35,7 +39,16 @@ const Login = () => {
         variant: "destructive",
       });
     }
+    
+    setIsLoading(false);
   };
+
+  // Show test credentials helper text
+  const testCredentials = (
+    <p className="text-xs text-muted-foreground mt-2">
+      For testing, use: <span className="font-medium">test@example.com</span> / <span className="font-medium">test@123</span>
+    </p>
+  );
 
   return (
     <div className="container mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-160px)] py-10 px-4">
@@ -59,6 +72,7 @@ const Login = () => {
                 placeholder="you@example.com"
                 className="glass-button border-white/10"
                 required
+                disabled={isLoading}
               />
             </div>
             
@@ -72,7 +86,9 @@ const Login = () => {
                 placeholder="••••••••"
                 className="glass-button border-white/10"
                 required
+                disabled={isLoading}
               />
+              {testCredentials}
             </div>
             
             <div className="flex items-center space-x-2">
@@ -82,14 +98,15 @@ const Login = () => {
                 className="h-4 w-4 rounded border-white/20 bg-transparent"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
+                disabled={isLoading}
               />
               <Label htmlFor="remember-me" className="text-sm font-normal">
                 Remember me
               </Label>
             </div>
             
-            <Button type="submit" className="w-full">
-              Log in
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Log in"}
             </Button>
           </form>
           
@@ -103,10 +120,10 @@ const Login = () => {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="glass-button">
+            <Button variant="outline" className="glass-button" disabled={isLoading}>
               Google
             </Button>
-            <Button variant="outline" className="glass-button">
+            <Button variant="outline" className="glass-button" disabled={isLoading}>
               LinkedIn
             </Button>
           </div>

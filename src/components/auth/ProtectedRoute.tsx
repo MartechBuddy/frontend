@@ -1,6 +1,8 @@
 
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/use-auth";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -8,6 +10,17 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isLoggedIn } = useAuth();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to access this page",
+        variant: "destructive",
+      });
+    }
+  }, [isLoggedIn, toast]);
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;

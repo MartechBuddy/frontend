@@ -46,11 +46,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Login function with email and password validation
   const login = (email: string, password: string) => {
-    // Validate against the test credentials
+    // For demonstration purposes, check against test credentials
     if (email === "test@example.com" && password === "test@123") {
+      // Save login state to localStorage
       localStorage.setItem("martechIsLoggedIn", "true");
       localStorage.setItem("martechUserEmail", email);
       
+      // Update state
       setIsLoggedIn(true);
       setUser({
         email,
@@ -58,8 +60,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: "Administrator"
       });
       
+      console.log("Login successful");
       return true;
     }
+    
+    console.log("Login failed for:", email);
     return false;
   };
 
@@ -69,6 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem("martechUserEmail");
     setIsLoggedIn(false);
     setUser(null);
+    console.log("User logged out");
   };
 
   return (
