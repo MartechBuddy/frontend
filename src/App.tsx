@@ -38,10 +38,10 @@ import ContentCollaboration from "./pages/PostLogin/ContentCollaboration";
 
 // Settings Pages
 import SettingsPage from "./pages/PostLogin/SettingsPage";
-import Profile from "./pages/PostLogin/Settings/Profile";
-import Preferences from "./pages/PostLogin/Settings/Preferences";
-import Integrations from "./pages/PostLogin/Settings/Integrations";
-import LLMConfig from "./pages/PostLogin/Settings/LLMConfig";
+import Profile from "./pages/PostLogin/settings/Profile";
+import Preferences from "./pages/PostLogin/settings/Preferences";
+import Integrations from "./pages/PostLogin/settings/Integrations";
+import LLMConfig from "./pages/PostLogin/settings/LLMConfig";
 import Billing from "./pages/PostLogin/settings/Billing";
 import Licenses from "./pages/PostLogin/settings/Licenses";
 import GDPR from "./pages/PostLogin/settings/GDPR";

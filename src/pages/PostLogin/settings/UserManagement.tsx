@@ -79,7 +79,7 @@ const UserManagement: React.FC = () => {
                   <Badge variant="secondary">Admin</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="success" className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-300">Active</Badge>
+                  <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-300">Active</Badge>
                 </TableCell>
                 <TableCell className="text-gray-500">Just now</TableCell>
                 <TableCell>
@@ -115,7 +115,7 @@ const UserManagement: React.FC = () => {
                   <Badge variant="secondary">Editor</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="success" className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-300">Active</Badge>
+                  <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-300">Active</Badge>
                 </TableCell>
                 <TableCell className="text-gray-500">2 hours ago</TableCell>
                 <TableCell>
@@ -187,7 +187,7 @@ const UserManagement: React.FC = () => {
                   <Badge variant="secondary">Editor</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="warning" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-300">Pending</Badge>
+                  <Badge variant="outline" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-300">Pending</Badge>
                 </TableCell>
                 <TableCell className="text-gray-500">Never</TableCell>
                 <TableCell>
