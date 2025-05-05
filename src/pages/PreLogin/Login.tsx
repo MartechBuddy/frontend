@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // Added password state
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -19,17 +19,15 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Check for temporary credentials
-    if (email === "test@example.com" && password === "test@123") {
-      if (login(email)) {
-        toast({
-          title: "Login Successful",
-          description: "Welcome back to MartechEngine.ai",
-        });
-        
-        // Redirect to dashboard
-        navigate("/dashboard");
-      }
+    // Check for credentials
+    if (login(email, password)) {
+      toast({
+        title: "Login Successful",
+        description: "Welcome back to MartechEngine.ai",
+      });
+      
+      // Redirect to dashboard
+      navigate("/dashboard");
     } else {
       toast({
         title: "Login Failed",
@@ -64,7 +62,6 @@ const Login = () => {
               />
             </div>
             
-            {/* Added password field */}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input

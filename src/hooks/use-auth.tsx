@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 // Define the shape of the context
 interface AuthContextType {
   isLoggedIn: boolean;
-  login: (email: string) => boolean;
+  login: (email: string, password: string) => boolean;
   logout: () => void;
   user: UserType | null;
 }
@@ -44,12 +44,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Login function - simplistic implementation for demo purposes
-  // In a real app, this would validate against a backend
-  const login = (email: string) => {
-    // Simple validation for demo purposes
-    // Accept any email that ends with @example.com
-    if (email.endsWith("@example.com")) {
+  // Login function with email and password validation
+  const login = (email: string, password: string) => {
+    // Validate against the test credentials
+    if (email === "test@example.com" && password === "test@123") {
       localStorage.setItem("martechIsLoggedIn", "true");
       localStorage.setItem("martechUserEmail", email);
       
