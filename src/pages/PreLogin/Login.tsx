@@ -1,30 +1,45 @@
 
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@example.com"); // Pre-filled for testing
+  const [password, setPassword] = useState("test@123");   // Pre-filled for testing
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const location = useLocation();
+  const { login, isLoggedIn } = useAuth();
+  
+  console.log("Login page rendered, isLoggedIn:", isLoggedIn);
+  
+  // If user is already logged in, redirect to dashboard
+  useEffect(() => {
+    if (isLoggedIn) {
+      console.log("User already logged in, redirecting to dashboard");
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log("Login form submitted:", { email, password });
     
     // Check for credentials
     const success = login(email, password);
     
     if (success) {
+      console.log("Login successful, showing toast");
       toast({
         title: "Login Successful",
         description: "Welcome back to MartechEngine.ai",
@@ -33,9 +48,10 @@ const Login = () => {
       // Redirect to dashboard
       navigate("/dashboard");
     } else {
+      console.log("Login failed, showing error toast");
       toast({
         title: "Login Failed",
-        description: "Please use test@example.com and password test@123 for testing",
+        description: "Please check your credentials and try again",
         variant: "destructive",
       });
     }
@@ -78,16 +94,28 @@ const Login = () => {
             
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="glass-button border-white/10"
-                required
-                disabled={isLoading}
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="glass-button border-white/10 pr-10"
+                  required
+                  disabled={isLoading}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2"
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </Button>
+              </div>
               {testCredentials}
             </div>
             

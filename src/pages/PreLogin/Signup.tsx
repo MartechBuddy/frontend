@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/hooks/use-auth";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -14,20 +15,31 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { login, isLoggedIn } = useAuth();
+  
+  // If user is already logged in, redirect to dashboard
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     if (acceptTerms) {
+      // Store login state - this would be backend registration in a real app
+      localStorage.setItem("martechIsLoggedIn", "true");
+      localStorage.setItem("martechUserEmail", email);
+      
       toast({
         title: "Account created successfully",
         description: "Welcome to MartechEngine.ai!",
       });
-      
-      // Store login state
-      localStorage.setItem("martechIsLoggedIn", "true");
       
       // Redirect to dashboard
       navigate("/dashboard");
@@ -38,6 +50,8 @@ const Signup = () => {
         variant: "destructive",
       });
     }
+    
+    setIsLoading(false);
   };
 
   return (
@@ -62,6 +76,7 @@ const Signup = () => {
                 className="glass-button border-white/10"
                 placeholder="John Doe"
                 required
+                disabled={isLoading}
               />
             </div>
             
@@ -75,6 +90,7 @@ const Signup = () => {
                 className="glass-button border-white/10"
                 placeholder="you@example.com"
                 required
+                disabled={isLoading}
               />
             </div>
             
@@ -89,6 +105,7 @@ const Signup = () => {
                   className="glass-button border-white/10 pr-10"
                   placeholder="••••••••"
                   required
+                  disabled={isLoading}
                 />
                 <Button
                   type="button"
@@ -96,6 +113,7 @@ const Signup = () => {
                   size="icon"
                   className="absolute right-1 top-1/2 transform -translate-y-1/2"
                   onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </Button>
@@ -110,14 +128,15 @@ const Signup = () => {
                 checked={acceptTerms}
                 onChange={(e) => setAcceptTerms(e.target.checked)}
                 required
+                disabled={isLoading}
               />
               <Label htmlFor="accept-terms" className="text-sm font-normal">
                 I accept the <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link> and <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
               </Label>
             </div>
             
-            <Button type="submit" className="w-full" disabled={!acceptTerms}>
-              Create Account
+            <Button type="submit" className="w-full" disabled={!acceptTerms || isLoading}>
+              {isLoading ? "Creating Account..." : "Create Account"}
             </Button>
           </form>
           
@@ -131,10 +150,10 @@ const Signup = () => {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="glass-button">
+            <Button variant="outline" className="glass-button" disabled={isLoading}>
               Google
             </Button>
-            <Button variant="outline" className="glass-button">
+            <Button variant="outline" className="glass-button" disabled={isLoading}>
               LinkedIn
             </Button>
           </div>

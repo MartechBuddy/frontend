@@ -12,8 +12,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isLoggedIn } = useAuth();
   const { toast } = useToast();
 
+  console.log("ProtectedRoute - isLoggedIn:", isLoggedIn);
+
   useEffect(() => {
     if (!isLoggedIn) {
+      console.log("Auth failed - showing toast and redirecting");
       toast({
         title: "Authentication Required",
         description: "Please log in to access this page",

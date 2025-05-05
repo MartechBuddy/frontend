@@ -34,6 +34,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const storedLoginState = localStorage.getItem("martechIsLoggedIn");
     const storedUserEmail = localStorage.getItem("martechUserEmail");
     
+    console.log("Initial auth check:", { storedLoginState, storedUserEmail });
+    
     if (storedLoginState === "true" && storedUserEmail) {
       setIsLoggedIn(true);
       setUser({
@@ -46,6 +48,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Login function with email and password validation
   const login = (email: string, password: string) => {
+    console.log("Login attempt with:", { email, password });
+    
     // For demonstration purposes, check against test credentials
     if (email === "test@example.com" && password === "test@123") {
       // Save login state to localStorage
@@ -70,12 +74,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Logout function
   const logout = () => {
+    console.log("Logging out user");
     localStorage.removeItem("martechIsLoggedIn");
     localStorage.removeItem("martechUserEmail");
     setIsLoggedIn(false);
     setUser(null);
     console.log("User logged out");
   };
+
+  console.log("Current auth state:", { isLoggedIn, user });
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout, user }}>
