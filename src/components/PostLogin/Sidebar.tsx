@@ -140,37 +140,35 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle }) => {
         
         {/* Navigation */}
         <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow scrollbar-hide">
-          {navigationItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path === "/dashboard"}
-              className={({ isActive }) => 
-                cn(
+          {navigationItems.map((item) => {
+            const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
+            
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                end={item.path === "/dashboard"}
+                className={cn(
                   "flex items-center py-2.5 px-3 rounded-md transition duration-200",
                   "hover:bg-white/5",
                   isActive ? "bg-white/5 border-l-2 border-primary" : "border-l-2 border-transparent",
                   collapsed && "justify-center"
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
-                    {item.icon}
-                  </div>
-                  {!collapsed && (
-                    <span className={cn(
-                      "ml-3 tracking-tight whitespace-nowrap transition", 
-                      isActive ? "font-medium text-foreground" : "text-muted-foreground"
-                    )}>
-                      {item.name}
-                    </span>
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
+                )}
+              >
+                <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
+                  {item.icon}
+                </div>
+                {!collapsed && (
+                  <span className={cn(
+                    "ml-3 tracking-tight whitespace-nowrap transition", 
+                    isActive ? "font-medium text-foreground" : "text-muted-foreground"
+                  )}>
+                    {item.name}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="mt-auto">
@@ -197,9 +195,5 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle }) => {
     </div>
   );
 };
-
-// This is a temporary fix since we're importing NavLink from react-router-dom
-// but using it with a render prop pattern
-const NavLink = Link;
 
 export default Sidebar;
