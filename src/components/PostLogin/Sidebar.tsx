@@ -147,7 +147,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                end={item.path === "/dashboard"}
                 className={cn(
                   "flex items-center py-2.5 px-3 rounded-md transition duration-200",
                   "hover:bg-white/5",
