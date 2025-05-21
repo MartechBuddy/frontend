@@ -3,38 +3,50 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import HomePage from "./pages/public/HomePage";
+import PricingPage from "./pages/public/PricingPage";
+import AiReadinessFreeCheckPage from "./pages/public/AiReadinessFreeCheckPage";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import NotFoundPage from "./pages/404/NotFoundPage";
 import { Toaster } from "./components/ui/sonner";
-import { AuthProvider } from "./hooks/use-auth";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<PublicLayout />}>
-            <Route index element={<div className="container mx-auto p-8">Home Page Content</div>} />
-          </Route>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="pricing" element={<PricingPage />} />
+          <Route path="ai-readiness/free-check" element={<AiReadinessFreeCheckPage />} />
+        </Route>
 
-          {/* Authentication Routes */}
-          <Route path="/" element={<AuthLayout />}>
-            <Route path="login" element={<div className="container mx-auto p-8">Login Page</div>} />
-            <Route path="signup" element={<div className="container mx-auto p-8">Signup Page</div>} />
-          </Route>
+        {/* Authentication Routes */}
+        <Route path="/" element={<AuthLayout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignupPage />} />
+        </Route>
 
-          {/* Protected Dashboard Routes */}
-          <Route
-            path="/dashboard"
-            element={<DashboardLayout />}
-          >
-            <Route index element={<div className="container mx-auto p-8">Dashboard Content</div>} />
-          </Route>
+        {/* Protected Dashboard Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+          {/* We'll add more routes here as we build the dashboard */}
+        </Route>
 
-          {/* 404 Route */}
-          <Route path="*" element={<div className="container mx-auto p-8 text-center">404 - Page Not Found</div>} />
-        </Routes>
-        <Toaster />
-      </AuthProvider>
+        {/* 404 Route */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Toaster />
     </Router>
   );
 }
