@@ -12,16 +12,22 @@ import DashboardPage from "./pages/dashboard/DashboardPage";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import { Toaster } from "./components/ui/sonner";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import HomeLayout from "./layouts/HomeLayout";
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Home Page with special layout */}
+        <Route path="/" element={<HomeLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout />}>
-          <Route index element={<HomePage />} />
           <Route path="pricing" element={<PricingPage />} />
           <Route path="ai-readiness/free-check" element={<AiReadinessFreeCheckPage />} />
+          {/* More routes to be added as per sitemap */}
         </Route>
 
         {/* Authentication Routes */}
@@ -41,6 +47,84 @@ function App() {
         >
           <Route index element={<DashboardPage />} />
           {/* We'll add more routes here as we build the dashboard */}
+        </Route>
+
+        {/* Protected Routes for other sections */}
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/ai-readiness"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/content-hub"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/seo-tools"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/social-media"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/inbox"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
+        </Route>
+
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardPage />} />
         </Route>
 
         {/* 404 Route */}

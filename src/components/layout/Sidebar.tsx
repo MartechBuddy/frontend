@@ -10,11 +10,13 @@ import {
   ChevronRight, 
   FileStack,
   Globe,
-  Map,
+  MapPin,
   MessageSquare,
   PenTool,
-  BarChartHorizontal,
-  HelpCircle
+  BarChart,
+  HelpCircle,
+  Search,
+  Inbox
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -34,24 +36,19 @@ const Sidebar = () => {
       icon: <Boxes size={20} />,
     },
     {
-      name: "Content Hub",
-      path: "/content-hub",
-      icon: <FileText size={20} />,
-    },
-    {
       name: "AI Readiness",
       path: "/ai-readiness",
       icon: <FileStack size={20} />,
     },
     {
-      name: "Site Optimization",
-      path: "/site-optimization",
-      icon: <Globe size={20} />,
+      name: "Content Hub",
+      path: "/content-hub",
+      icon: <FileText size={20} />,
     },
     {
-      name: "Local SEO",
-      path: "/local-seo",
-      icon: <Map size={20} />,
+      name: "SEO Tools",
+      path: "/seo-tools",
+      icon: <Search size={20} />,
     },
     {
       name: "Social Media",
@@ -59,19 +56,9 @@ const Sidebar = () => {
       icon: <MessageSquare size={20} />,
     },
     {
-      name: "Content Studio",
-      path: "/content-studio",
-      icon: <PenTool size={20} />,
-    },
-    {
-      name: "Insights & Reports",
-      path: "/insights-reports",
-      icon: <BarChartHorizontal size={20} />,
-    },
-    {
       name: "Inbox",
       path: "/inbox",
-      icon: <MessageSquare size={20} />,
+      icon: <Inbox size={20} />,
     },
     {
       name: "Settings",
@@ -96,7 +83,7 @@ const Sidebar = () => {
           {!collapsed ? (
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/038add9b-dda0-4d51-b49c-3884a4465c77.png" 
+                src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
                 alt="MartechEngine.ai Logo" 
                 className="h-10 w-auto logo-glow"
               />
@@ -104,7 +91,7 @@ const Sidebar = () => {
           ) : (
             <div className="flex justify-center w-full">
               <img 
-                src="/lovable-uploads/038add9b-dda0-4d51-b49c-3884a4465c77.png" 
+                src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
                 alt="MartechEngine.ai" 
                 className="h-10 w-auto logo-glow"
               />

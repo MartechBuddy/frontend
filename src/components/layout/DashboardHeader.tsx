@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Bell, Search, Globe, LogOut } from "lucide-react";
+import { Bell, Search, Globe, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link } from "react-router-dom";
 
 const DashboardHeader = () => {
   const { logout } = useAuth();
@@ -31,6 +32,11 @@ const DashboardHeader = () => {
         </div>
         
         <div className="flex items-center space-x-1 md:space-x-3 animate-fade-in">
+          {/* AI Calls Remaining Indicator */}
+          <div className="hidden md:flex items-center mr-2 px-3 py-1 bg-white/5 rounded-md">
+            <span className="text-xs font-medium">AI Calls: <span className="text-primary">4</span>/5</span>
+          </div>
+          
           {/* Language switcher */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -98,8 +104,17 @@ const DashboardHeader = () => {
             <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuLabel>John Doe</DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-white/10" />
-              <DropdownMenuItem className="glass-button rounded-lg mt-1 mb-1 cursor-pointer">Profile</DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg mb-1 cursor-pointer">Settings</DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mt-1 mb-1 cursor-pointer">
+                <Link to="/settings/profile" className="w-full flex items-center">
+                  Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg mb-1 cursor-pointer">
+                <Link to="/settings" className="w-full flex items-center">
+                  <Settings size={16} className="mr-2" />
+                  Settings
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg cursor-pointer" onClick={logout}>
                 <LogOut size={16} className="mr-2" />
                 Log out

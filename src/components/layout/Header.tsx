@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuth } from "@/hooks/use-auth";
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 
 interface HeaderProps {
   isLoggedIn?: boolean;
@@ -33,9 +34,9 @@ const Header: React.FC<HeaderProps> = () => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img 
-              src="/lovable-uploads/038add9b-dda0-4d51-b49c-3884a4465c77.png" 
+              src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
               alt="MartechEngine.ai Logo" 
-              className="h-10 w-auto logo-glow mr-2"
+              className="h-10 w-auto logo-glow"
             />
           </Link>
         </div>
@@ -48,17 +49,37 @@ const Header: React.FC<HeaderProps> = () => {
           
           <DropdownMenu>
             <DropdownMenuTrigger className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
+              Features
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="glass-card border-white/10 p-2 rounded-xl">
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features-overview" className="w-full">Overview</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features/ai-readiness" className="w-full">AI Readiness</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features/content-automation" className="w-full">Content Automation</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features/seo-tools" className="w-full">SEO Tools</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features/social-media" className="w-full">Social Media</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger className="text-muted-foreground hover:text-foreground transition-colors flex items-center">
               Resources
             </DropdownMenuTrigger>
             <DropdownMenuContent className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/docs" className="w-full">Documentation</Link>
+                <Link to="/resources/blog" className="w-full">Blog</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/blog" className="w-full">Blog</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/community" className="w-full">Community</Link>
+                <Link to="/resources/faq" className="w-full">FAQ</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -69,13 +90,13 @@ const Header: React.FC<HeaderProps> = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/about" className="w-full">About</Link>
+                <Link to="/company/about" className="w-full">About</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/contact" className="w-full">Contact</Link>
+                <Link to="/company/contact" className="w-full">Contact</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/careers" className="w-full">Careers</Link>
+                <Link to="/company/careers" className="w-full">Careers</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -166,29 +187,46 @@ const Header: React.FC<HeaderProps> = () => {
             Pricing
           </Link>
           <div className="py-2">
+            <div className="font-medium mb-2">Features</div>
+            <div className="pl-4 flex flex-col space-y-2">
+              <Link to="/features-overview" className="text-muted-foreground hover:text-foreground transition-colors">
+                Overview
+              </Link>
+              <Link to="/features/ai-readiness" className="text-muted-foreground hover:text-foreground transition-colors">
+                AI Readiness
+              </Link>
+              <Link to="/features/content-automation" className="text-muted-foreground hover:text-foreground transition-colors">
+                Content Automation
+              </Link>
+              <Link to="/features/seo-tools" className="text-muted-foreground hover:text-foreground transition-colors">
+                SEO Tools
+              </Link>
+              <Link to="/features/social-media" className="text-muted-foreground hover:text-foreground transition-colors">
+                Social Media
+              </Link>
+            </div>
+          </div>
+          <div className="py-2">
             <div className="font-medium mb-2">Resources</div>
             <div className="pl-4 flex flex-col space-y-2">
-              <Link to="/docs" className="text-muted-foreground hover:text-foreground transition-colors">
-                Documentation
-              </Link>
-              <Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/resources/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                 Blog
               </Link>
-              <Link to="/community" className="text-muted-foreground hover:text-foreground transition-colors">
-                Community
+              <Link to="/resources/faq" className="text-muted-foreground hover:text-foreground transition-colors">
+                FAQ
               </Link>
             </div>
           </div>
           <div className="py-2">
             <div className="font-medium mb-2">Company</div>
             <div className="pl-4 flex flex-col space-y-2">
-              <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/company/about" className="text-muted-foreground hover:text-foreground transition-colors">
                 About
               </Link>
-              <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/company/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </Link>
-              <Link to="/careers" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/company/careers" className="text-muted-foreground hover:text-foreground transition-colors">
                 Careers
               </Link>
             </div>
