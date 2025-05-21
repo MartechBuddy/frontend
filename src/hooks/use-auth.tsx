@@ -1,95 +1,38 @@
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
-// Define the shape of the context
 interface AuthContextType {
   isLoggedIn: boolean;
-  login: (email: string, password: string) => boolean;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  user: UserType | null;
 }
 
-// Simple user type
-interface UserType {
-  email: string;
-  name: string;
-  role: string;
-}
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Create the context with a default value
-const AuthContext = createContext<AuthContextType>({
-  isLoggedIn: false,
-  login: () => false,
-  logout: () => {},
-  user: null
-});
-
-// The provider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<UserType | null>(null);
 
-  // Check localStorage on initial render
-  useEffect(() => {
-    const storedLoginState = localStorage.getItem("martechIsLoggedIn");
-    const storedUserEmail = localStorage.getItem("martechUserEmail");
-    
-    console.log("Initial auth check:", { storedLoginState, storedUserEmail });
-    
-    if (storedLoginState === "true" && storedUserEmail) {
-      setIsLoggedIn(true);
-      setUser({
-        email: storedUserEmail,
-        name: "John Doe", // Would normally come from a backend API
-        role: "Administrator"
-      });
-    }
-  }, []);
-
-  // Login function with email and password validation
-  const login = (email: string, password: string) => {
-    console.log("Login attempt with:", { email, password });
-    
-    // For demonstration purposes, check against test credentials
-    if (email === "test@example.com" && password === "test@123") {
-      // Save login state to localStorage
-      localStorage.setItem("martechIsLoggedIn", "true");
-      localStorage.setItem("martechUserEmail", email);
-      
-      // Update state
-      setIsLoggedIn(true);
-      setUser({
-        email,
-        name: "John Doe", // Would normally come from a backend API
-        role: "Administrator"
-      });
-      
-      console.log("Login successful");
-      return true;
-    }
-    
-    console.log("Login failed for:", email);
-    return false;
+  const login = async (email: string, password: string) => {
+    // This would typically call an API
+    console.log("Login attempt with:", email);
+    setIsLoggedIn(true);
   };
 
-  // Logout function
   const logout = () => {
-    console.log("Logging out user");
-    localStorage.removeItem("martechIsLoggedIn");
-    localStorage.removeItem("martechUserEmail");
     setIsLoggedIn(false);
-    setUser(null);
-    console.log("User logged out");
   };
-
-  console.log("Current auth state:", { isLoggedIn, user });
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, user }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook to use the auth context
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
