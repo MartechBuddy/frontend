@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from "react";
 interface AuthContextType {
   isLoggedIn: boolean;
   login: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -18,12 +19,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoggedIn(true);
   };
 
+  const signup = async (email: string, password: string) => {
+    // This would typically call an API to create a new user
+    console.log("Signup attempt with:", email);
+    setIsLoggedIn(true);
+  };
+
   const logout = () => {
     setIsLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

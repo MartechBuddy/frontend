@@ -1,10 +1,17 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
+  const [url, setUrl] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    window.location.href = `/ai-readiness/free-check?url=${encodeURIComponent(url)}`;
+  };
+
   return (
     <div className="relative py-20 md:py-32 overflow-hidden">
       {/* Background gradient effect */}
@@ -13,32 +20,46 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center animate-fade-in">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Make Your Website 
-            <span className="text-gradient block mt-2">AI-Ready & Automate Marketing</span>
+            Master AI Search: 
+            <span className="text-gradient block mt-2">Get Your Free AI Readiness Score Now!</span>
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Boost your website's performance with AI-powered tools. 
-            Optimize content, automate marketing, and get actionable insights.
+            Discover how well your website is optimized for modern AI search engines. 
+            Ensure your content is easily readable and cited by AI models.
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/signup">
-              <Button 
-                size="lg" 
-                className="text-base"
+          <form onSubmit={handleSubmit} className="mb-8 max-w-xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="url"
+                placeholder="Enter your website URL (e.g., yourcompany.com)"
+                className="flex-1 px-4 py-3 rounded-md sm:rounded-r-none border border-white/10 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="bg-primary text-white px-6 py-3 rounded-md sm:rounded-l-none hover:bg-primary/90 transition"
               >
-                Start Free Trial
+                Get My Free Score
+              </button>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              1 check per IP address per day. No data stored. Sign up for unlimited analysis.
+            </p>
+          </form>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/ai-readiness/free-check">
+              <Button size="lg" className="text-base">
+                Check Your Website Free
               </Button>
             </Link>
             
-            <Link to="/contact">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="glass-button text-base"
-              >
-                See Demo <ArrowRight size={16} className="ml-2" />
+            <Link to="/features/ai-readiness">
+              <Button variant="outline" size="lg" className="glass-button text-base">
+                Learn More About AI Readiness <ArrowRight size={16} className="ml-2" />
               </Button>
             </Link>
           </div>
