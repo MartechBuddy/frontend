@@ -1,55 +1,71 @@
 
 import React from "react";
-import { Bot, Search, LineChart, FileText } from "lucide-react";
+import { Bot, Brain, LineChart, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const reasons = [
+const features = [
   {
-    icon: <Bot className="h-8 w-8 text-primary" />,
+    icon: <Bot className="h-10 w-10 text-primary" />,
     title: "Be AI-Friendly",
-    description: "Optimize content to be easily consumed and cited by AI models."
+    description: "Optimize content to be easily consumed and cited by AI models like ChatGPT and Google's Gemini."
   },
   {
-    icon: <Search className="h-8 w-8 text-primary" />,
+    icon: <LineChart className="h-10 w-10 text-primary" />,
     title: "Gain Visibility",
-    description: "Position your site for top rankings in AI-driven search results."
+    description: "Position your site for top rankings in AI-driven search results and featured snippets."
   },
   {
-    icon: <LineChart className="h-8 w-8 text-primary" />,
+    icon: <Shield className="h-10 w-10 text-primary" />,
     title: "Future-Proof Your SEO",
-    description: "Adapt to the evolving landscape of digital search."
+    description: "Adapt to the evolving landscape of digital search with AI-ready content strategies."
   },
   {
-    icon: <FileText className="h-8 w-8 text-primary" />,
+    icon: <Brain className="h-10 w-10 text-primary" />,
     title: "Actionable Insights",
-    description: "Get specific recommendations to improve AI readability and citability."
+    description: "Get specific recommendations to improve AI readability and citability of your content."
   }
 ];
 
-const WhyAiReadinessSection: React.FC = () => {
+const WhyAiReadinessSection = () => {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl font-bold mb-4">Why AI Readiness is Your Next SEO Frontier</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            With the rise of AI-powered search, structured and comprehensible content is key for AI models.
+            With the rise of AI-powered search, structured and comprehensible content 
+            is key for AI models to understand and recommend your website.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {reasons.map((reason, idx) => (
-            <div 
+          {features.map((feature, idx) => (
+            <Card 
               key={idx} 
-              className="glass-card p-6 rounded-xl border border-white/5 transition hover:border-primary/20 animate-scale-in"
+              className="glass-card border-white/5 hover:border-primary/20 transition-all duration-300 animate-scale-in"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              <div className="p-3 rounded-full bg-primary/10 inline-block mb-4">
-                {reason.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{reason.title}</h3>
-              <p className="text-muted-foreground">{reason.description}</p>
-            </div>
+              <CardHeader className="pb-2">
+                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <CardTitle className="text-xl">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
           ))}
+        </div>
+        
+        <div className="flex justify-center mt-12">
+          <Link to="/features/ai-readiness">
+            <Button size="lg" className="glass-button">
+              Explore AI Readiness Features
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

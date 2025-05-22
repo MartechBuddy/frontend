@@ -17,6 +17,7 @@ import AboutPage from "./pages/public/company/AboutPage";
 import ContactPage from "./pages/public/company/ContactPage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import { Toaster } from "./components/ui/sonner";
@@ -81,6 +82,7 @@ function App() {
           <Route path="/" element={<AuthLayout />}>
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignupPage />} />
+            <Route path="forgot-password" element={<ForgotPasswordPage />} />
           </Route>
 
           {/* Protected Dashboard Routes */}
