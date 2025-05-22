@@ -32,6 +32,8 @@ import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
 import CampaignsPage from "./pages/content-hub/CampaignsPage";
 import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
+import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
+import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
@@ -131,6 +133,8 @@ function App() {
             <Route path="library" element={<ContentLibraryPage />} />
             <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="media/library" element={<MediaLibraryPage />} />
+            <Route path="media/upload" element={<MediaUploadPage />} />
+            <Route path="media/generate" element={<MediaGeneratePage />} />
           </Route>
 
           {/* Protected Routes for SEO Tools */}
