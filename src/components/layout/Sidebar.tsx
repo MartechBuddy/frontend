@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Boxes, 
@@ -10,19 +10,17 @@ import {
   ChevronRight, 
   FileStack,
   Globe,
-  MapPin,
-  MessageSquare,
-  PenTool,
-  BarChart,
-  HelpCircle,
   Search,
-  Inbox
+  MessageSquare,
+  Inbox,
+  HelpCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
   const navigationItems = [
     {
@@ -44,16 +42,32 @@ const Sidebar = () => {
       name: "Content Hub",
       path: "/content-hub",
       icon: <FileText size={20} />,
+      subItems: [
+        { name: "Overview", path: "/content-hub" },
+        { name: "Create Content", path: "/content-hub/create" },
+        { name: "Library", path: "/content-hub/library" },
+        { name: "Campaigns", path: "/content-hub/campaigns" },
+        { name: "Media", path: "/content-hub/media/library" }
+      ]
     },
     {
       name: "SEO Tools",
       path: "/seo-tools",
       icon: <Search size={20} />,
+      subItems: [
+        { name: "Keyword Metrics", path: "/seo-tools/keyword-metrics" },
+        { name: "Site Audit", path: "/seo-tools/site-audit" },
+        { name: "Competitor Analysis", path: "/seo-tools/competitors" }
+      ]
     },
     {
       name: "Social Media",
       path: "/social-media",
       icon: <MessageSquare size={20} />,
+      subItems: [
+        { name: "Scheduler", path: "/social-media/scheduler" },
+        { name: "Analytics", path: "/social-media/analytics" }
+      ]
     },
     {
       name: "Inbox",
@@ -64,11 +78,39 @@ const Sidebar = () => {
       name: "Settings",
       path: "/settings",
       icon: <Settings size={20} />,
+      subItems: [
+        { name: "Profile", path: "/settings/profile" },
+        { name: "Billing", path: "/settings/billing" },
+        { name: "AI Usage", path: "/settings/ai-usage" },
+        { name: "Team Management", path: "/settings/team-management" }
+      ]
     },
   ];
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
+  };
+
+  // Check if a path is active, including parent paths
+  const isPathActive = (path: string) => {
+    return location.pathname === path || 
+           (path !== '/dashboard' && location.pathname.startsWith(path));
+  };
+
+  // Check if any subitem is active
+  const isAnySubItemActive = (subItems?: Array<{name: string, path: string}>) => {
+    if (!subItems) return false;
+    return subItems.some(item => location.pathname === item.path);
+  };
+
+  // Track expanded menu sections
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (path: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [path]: !prev[path]
+    }));
   };
 
   return (
@@ -126,35 +168,109 @@ const Sidebar = () => {
         {/* Navigation */}
         <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow scrollbar-hide">
           {navigationItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path === "/dashboard"}
-              className={({ isActive }) => 
-                cn(
-                  "flex items-center py-2.5 px-3 rounded-md transition duration-200",
-                  "hover:bg-white/5",
-                  isActive ? "bg-white/5 border-l-2 border-primary" : "border-l-2 border-transparent",
-                  collapsed && "justify-center"
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
+            <div key={item.path} className="flex flex-col">
+              {/* Main menu item */}
+              {item.subItems ? (
+                // Items with subitems
+                <button
+                  onClick={() => toggleSection(item.path)}
+                  className={cn(
+                    "flex items-center py-2.5 px-3 rounded-md transition duration-200",
+                    "hover:bg-white/5",
+                    (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
+                      "bg-white/5 border-l-2 border-primary" : 
+                      "border-l-2 border-transparent",
+                    collapsed && "justify-center"
+                  )}
+                >
+                  <div className={cn(
+                    "transition", 
+                    (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
+                      "text-primary" : 
+                      "text-muted-foreground"
+                  )}>
                     {item.icon}
                   </div>
                   {!collapsed && (
                     <span className={cn(
-                      "ml-3 tracking-tight whitespace-nowrap transition", 
-                      isActive ? "font-medium text-foreground" : "text-muted-foreground"
+                      "ml-3 tracking-tight whitespace-nowrap transition flex-1 text-left", 
+                      (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
+                        "font-medium text-foreground" : 
+                        "text-muted-foreground"
                     )}>
                       {item.name}
                     </span>
                   )}
-                </>
+                  {!collapsed && item.subItems && (
+                    <ChevronRight 
+                      size={16} 
+                      className={cn(
+                        "transition-transform duration-200",
+                        expandedSections[item.path] ? "rotate-90" : ""
+                      )} 
+                    />
+                  )}
+                </button>
+              ) : (
+                // Items without subitems
+                <NavLink
+                  to={item.path}
+                  end={item.path === "/dashboard"}
+                  className={({ isActive }) => 
+                    cn(
+                      "flex items-center py-2.5 px-3 rounded-md transition duration-200",
+                      "hover:bg-white/5",
+                      isActive ? "bg-white/5 border-l-2 border-primary" : "border-l-2 border-transparent",
+                      collapsed && "justify-center"
+                    )
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
+                        {item.icon}
+                      </div>
+                      {!collapsed && (
+                        <span className={cn(
+                          "ml-3 tracking-tight whitespace-nowrap transition", 
+                          isActive ? "font-medium text-foreground" : "text-muted-foreground"
+                        )}>
+                          {item.name}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </NavLink>
               )}
-            </NavLink>
+              
+              {/* Subitems if not collapsed and section is expanded */}
+              {!collapsed && item.subItems && expandedSections[item.path] && (
+                <div className="ml-8 mt-1 mb-1 border-l border-white/10 pl-3 space-y-1">
+                  {item.subItems.map((subItem) => (
+                    <NavLink
+                      key={subItem.path}
+                      to={subItem.path}
+                      className={({ isActive }) => 
+                        cn(
+                          "flex items-center py-2 px-3 rounded-md text-sm transition duration-200",
+                          "hover:bg-white/5",
+                          isActive ? "bg-white/5 text-foreground" : "text-muted-foreground"
+                        )
+                      }
+                    >
+                      {({ isActive }) => (
+                        <span className={cn(
+                          "tracking-tight whitespace-nowrap transition",
+                          isActive ? "font-medium" : ""
+                        )}>
+                          {subItem.name}
+                        </span>
+                      )}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
 

@@ -24,6 +24,25 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomeLayout from "./layouts/HomeLayout";
 import { AuthProvider } from "./hooks/use-auth";
 
+// Import all dashboard pages
+import ProjectsPage from "./pages/projects/ProjectsPage";
+import AiReadinessPage from "./pages/ai-readiness/AiReadinessPage";
+import ContentHubPage from "./pages/content-hub/ContentHubPage";
+import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
+import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
+import CampaignsPage from "./pages/content-hub/CampaignsPage";
+import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
+import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
+import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
+import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
+import SocialSchedulerPage from "./pages/social-media/SocialSchedulerPage";
+import SocialAnalyticsPage from "./pages/social-media/SocialAnalyticsPage";
+import InboxPage from "./pages/inbox/InboxPage";
+import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
+import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
+import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
+import TeamManagementPage from "./pages/settings/TeamManagementPage";
+
 function App() {
   return (
     <Router>
@@ -72,10 +91,9 @@ function App() {
             }
           >
             <Route index element={<DashboardPage />} />
-            {/* We'll add more routes here as we build the dashboard */}
           </Route>
 
-          {/* Protected Routes for other sections */}
+          {/* Protected Routes for Projects */}
           <Route
             path="/projects"
             element={
@@ -84,9 +102,10 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route index element={<ProjectsPage />} />
           </Route>
 
+          {/* Protected Routes for AI Readiness */}
           <Route
             path="/ai-readiness"
             element={
@@ -95,9 +114,10 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route index element={<AiReadinessPage />} />
           </Route>
 
+          {/* Protected Routes for Content Hub */}
           <Route
             path="/content-hub"
             element={
@@ -106,9 +126,14 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route index element={<ContentHubPage />} />
+            <Route path="create" element={<ContentCreatePage />} />
+            <Route path="library" element={<ContentLibraryPage />} />
+            <Route path="campaigns" element={<CampaignsPage />} />
+            <Route path="media/library" element={<MediaLibraryPage />} />
           </Route>
 
+          {/* Protected Routes for SEO Tools */}
           <Route
             path="/seo-tools"
             element={
@@ -117,9 +142,12 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
+            <Route path="site-audit" element={<SiteAuditPage />} />
+            <Route path="competitors" element={<CompetitorAnalysisPage />} />
           </Route>
 
+          {/* Protected Routes for Social Media */}
           <Route
             path="/social-media"
             element={
@@ -128,9 +156,11 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route path="scheduler" element={<SocialSchedulerPage />} />
+            <Route path="analytics" element={<SocialAnalyticsPage />} />
           </Route>
 
+          {/* Protected Route for Inbox */}
           <Route
             path="/inbox"
             element={
@@ -139,9 +169,10 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route index element={<InboxPage />} />
           </Route>
 
+          {/* Protected Routes for Settings */}
           <Route
             path="/settings"
             element={
@@ -150,7 +181,10 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardPage />} />
+            <Route path="profile" element={<ProfileSettingsPage />} />
+            <Route path="billing" element={<BillingSettingsPage />} />
+            <Route path="ai-usage" element={<AiUsageSettingsPage />} />
+            <Route path="team-management" element={<TeamManagementPage />} />
           </Route>
 
           {/* 404 Route */}
