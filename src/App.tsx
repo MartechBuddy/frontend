@@ -25,7 +25,7 @@ import { Toaster } from "./components/ui/sonner";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomeLayout from "./layouts/HomeLayout";
 import { AuthProvider } from "./hooks/use-auth";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "./hooks/use-theme";
 
 // Import all dashboard pages
 import ProjectsPage from "./pages/projects/ProjectsPage";
@@ -41,6 +41,7 @@ import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
 import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
 import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
+import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
 import SocialSchedulerPage from "./pages/social-media/SocialSchedulerPage";
@@ -54,7 +55,7 @@ import TeamManagementPage from "./pages/settings/TeamManagementPage";
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider defaultTheme="light" storageKey="martech-theme">
+      <ThemeProvider defaultTheme="system" storageKey="martech-theme">
         <AuthProvider>
           <Toaster />
           <Routes>
@@ -162,6 +163,7 @@ function App() {
               }
             >
               <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
+              <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
               <Route path="site-audit" element={<SiteAuditPage />} />
               <Route path="competitors" element={<CompetitorAnalysisPage />} />
             </Route>
