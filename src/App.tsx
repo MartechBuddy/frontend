@@ -33,6 +33,9 @@ import AiReadinessPage from "./pages/ai-readiness/AiReadinessPage";
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
 import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
+import ContentKeywordsPage from "./pages/content-hub/ContentKeywordsPage";
+import ContentRepurposePage from "./pages/content-hub/ContentRepurposePage";
+import SchedulerPage from "./pages/content-hub/SchedulerPage";
 import CampaignsPage from "./pages/content-hub/CampaignsPage";
 import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
 import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
@@ -47,7 +50,6 @@ import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
 import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
 import TeamManagementPage from "./pages/settings/TeamManagementPage";
-import SettingsLayout from "./layouts/SettingsLayout";
 
 function App() {
   return (
@@ -141,6 +143,9 @@ function App() {
               <Route index element={<ContentHubPage />} />
               <Route path="create" element={<ContentCreatePage />} />
               <Route path="library" element={<ContentLibraryPage />} />
+              <Route path="keywords" element={<ContentKeywordsPage />} />
+              <Route path="repurpose" element={<ContentRepurposePage />} />
+              <Route path="scheduler" element={<SchedulerPage />} />
               <Route path="campaigns" element={<CampaignsPage />} />
               <Route path="media/library" element={<MediaLibraryPage />} />
               <Route path="media/upload" element={<MediaUploadPage />} />
