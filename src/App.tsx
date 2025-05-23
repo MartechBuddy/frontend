@@ -42,10 +42,15 @@ import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
 import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
 import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
+import KeywordPlannerPage from "./pages/seo-tools/KeywordPlannerPage";
+import TrafficKeywordsPage from "./pages/seo-tools/TrafficKeywordsPage";
+import ContentOptimizerPage from "./pages/seo-tools/ContentOptimizerPage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
 import SocialSchedulerPage from "./pages/social-media/SocialSchedulerPage";
 import SocialAnalyticsPage from "./pages/social-media/SocialAnalyticsPage";
+import SocialAccountsPage from "./pages/social-media/SocialAccountsPage";
+import SocialPostsPage from "./pages/social-media/SocialPostsPage";
 import InboxPage from "./pages/inbox/InboxPage";
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
@@ -164,6 +169,9 @@ function App() {
             >
               <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
               <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
+              <Route path="keyword-planner" element={<KeywordPlannerPage />} />
+              <Route path="traffic-keywords" element={<TrafficKeywordsPage />} />
+              <Route path="content-optimizer" element={<ContentOptimizerPage />} />
               <Route path="site-audit" element={<SiteAuditPage />} />
               <Route path="competitors" element={<CompetitorAnalysisPage />} />
             </Route>
@@ -177,6 +185,8 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route path="accounts" element={<SocialAccountsPage />} />
+              <Route path="posts" element={<SocialPostsPage />} />
               <Route path="scheduler" element={<SocialSchedulerPage />} />
               <Route path="analytics" element={<SocialAnalyticsPage />} />
             </Route>
