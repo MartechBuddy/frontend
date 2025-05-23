@@ -1,149 +1,78 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bot, Brain, LineChart, Megaphone, Search, Share2, Target, Zap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-const features = [
-  {
-    icon: <Bot className="h-12 w-12 text-primary" />,
-    title: "AI Readiness Check",
-    description: "Optimize your website for AI-powered search engines. Get detailed scores and actionable recommendations to improve AI visibility.",
-    link: "/features/ai-readiness",
-    highlight: true
-  },
-  {
-    icon: <Brain className="h-12 w-12 text-primary" />,
-    title: "Content Automation",
-    description: "Generate high-quality, SEO-optimized content using advanced AI. Create blogs, social posts, and marketing copy in minutes.",
-    link: "/features/content-automation",
-    highlight: false
-  },
-  {
-    icon: <Search className="h-12 w-12 text-primary" />,
-    title: "SEO Tools Suite",
-    description: "Complete SEO toolkit including keyword research, site audits, competitor analysis, and technical optimization tools.",
-    link: "/features/seo-tools",
-    highlight: false
-  },
-  {
-    icon: <Share2 className="h-12 w-12 text-primary" />,
-    title: "Social Media Optimization",
-    description: "Manage, schedule, and optimize your social media presence across multiple platforms with AI-powered insights.",
-    link: "/features/social-media",
-    highlight: false
-  }
-];
-
-const additionalFeatures = [
-  {
-    icon: <Target className="h-8 w-8 text-primary" />,
-    title: "Campaign Management",
-    description: "Create and manage multi-platform marketing campaigns"
-  },
-  {
-    icon: <LineChart className="h-8 w-8 text-primary" />,
-    title: "Analytics & Reporting",
-    description: "Track performance with comprehensive analytics"
-  },
-  {
-    icon: <Megaphone className="h-8 w-8 text-primary" />,
-    title: "Content Syndication",
-    description: "Distribute content across multiple channels automatically"
-  },
-  {
-    icon: <Zap className="h-8 w-8 text-primary" />,
-    title: "AI-Powered Automation",
-    description: "Automate repetitive marketing tasks with intelligent AI"
-  }
-];
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Bot, FileText, Search, BarChart, ArrowRight } from "lucide-react";
 
 const FeaturesOverviewPage: React.FC = () => {
+  const features = [
+    {
+      title: "AI Readiness",
+      description: "Optimize your content to be AI-friendly and ensure your website is easily readable by AI models.",
+      icon: <Bot className="h-7 w-7 text-primary" />,
+      link: "/features/ai-readiness"
+    },
+    {
+      title: "Content Automation",
+      description: "Generate, optimize, and manage content with AI-powered tools to save time and improve quality.",
+      icon: <FileText className="h-7 w-7 text-primary" />,
+      link: "/features/content-automation"
+    },
+    {
+      title: "SEO Tools",
+      description: "Comprehensive suite of tools to improve your search engine rankings and visibility.",
+      icon: <Search className="h-7 w-7 text-primary" />,
+      link: "/features/seo-tools"
+    },
+    {
+      title: "Social Media",
+      description: "Schedule, manage, and analyze your social media presence with intelligent insights.",
+      icon: <BarChart className="h-7 w-7 text-primary" />,
+      link: "/features/social-media"
+    }
+  ];
+  
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Platform Features</h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Everything you need to master AI-powered digital marketing. 
-          From AI readiness optimization to content automation and beyond.
+    <div className="container mx-auto py-16 px-4">
+      <div className="text-center mb-16 animate-fade-in">
+        <h1 className="text-4xl font-bold mb-4">MartechEngine Features</h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Our comprehensive suite of marketing technology tools powered by AI
         </p>
       </div>
-
-      {/* Main Features */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         {features.map((feature, idx) => (
           <Card 
             key={idx} 
-            className={`glass-card transition-all duration-300 hover:scale-105 ${
-              feature.highlight ? 'border-primary/30 shadow-lg shadow-primary/10' : 'border-white/10'
-            }`}
+            className="glass-card border-white/5 p-6 rounded-xl hover:border-primary/30 transition-all duration-300 animate-scale-in"
+            style={{ animationDelay: `${idx * 0.1}s` }}
           >
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`rounded-full p-3 ${
-                  feature.highlight ? 'bg-primary/20' : 'bg-primary/10'
-                }`}>
-                  {feature.icon}
-                </div>
-                {feature.highlight && (
-                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                    Featured
-                  </span>
-                )}
-              </div>
-              <CardTitle className="text-2xl">{feature.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-6">{feature.description}</p>
-              <Link to={feature.link}>
-                <Button variant="outline" className="w-full">
-                  Learn More
-                </Button>
+            <div className="p-3 rounded-full bg-primary/10 inline-block mb-4">
+              {feature.icon}
+            </div>
+            
+            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+            <p className="text-muted-foreground mb-4">{feature.description}</p>
+            
+            <Button variant="ghost" className="p-0" asChild>
+              <Link to={feature.link} className="flex items-center text-primary">
+                Learn more <ArrowRight size={16} className="ml-2" />
               </Link>
-            </CardContent>
+            </Button>
           </Card>
         ))}
       </div>
-
-      {/* Additional Features Grid */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Additional Capabilities</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {additionalFeatures.map((feature, idx) => (
-            <Card key={idx} className="glass-card border-white/10">
-              <CardHeader className="pb-2">
-                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-3">
-                  {feature.icon}
-                </div>
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="glass-card p-8 rounded-xl text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Join thousands of businesses already using MartechEngine to optimize their digital presence for the AI era.
+      
+      <div className="glass-card border-white/10 rounded-2xl p-8 text-center animate-fade-in">
+        <h2 className="text-2xl font-bold mb-4">Ready to transform your digital marketing?</h2>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Join thousands of businesses using MartechEngine to stay ahead in the AI-driven digital landscape.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/ai-readiness/free-check">
-            <Button size="lg" className="w-full sm:w-auto">
-              Try Free AI Check
-            </Button>
-          </Link>
-          <Link to="/signup">
-            <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              Sign Up Free
-            </Button>
-          </Link>
-        </div>
+        <Link to="/signup">
+          <Button size="lg">Start Your Free Trial</Button>
+        </Link>
       </div>
     </div>
   );

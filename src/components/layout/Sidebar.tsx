@@ -46,9 +46,6 @@ const Sidebar = () => {
         { name: "Overview", path: "/content-hub" },
         { name: "Create Content", path: "/content-hub/create" },
         { name: "Library", path: "/content-hub/library" },
-        { name: "Keywords", path: "/content-hub/keywords" },
-        { name: "Repurpose", path: "/content-hub/repurpose" },
-        { name: "Scheduler", path: "/content-hub/scheduler" },
         { name: "Campaigns", path: "/content-hub/campaigns" },
         { name: "Media", path: "/content-hub/media/library" }
       ]
@@ -59,8 +56,6 @@ const Sidebar = () => {
       icon: <Search size={20} />,
       subItems: [
         { name: "Keyword Metrics", path: "/seo-tools/keyword-metrics" },
-        { name: "Keyword Generator", path: "/seo-tools/keyword-generator" },
-        { name: "Keyword Planner", path: "/seo-tools/keyword-planner" },
         { name: "Site Audit", path: "/seo-tools/site-audit" },
         { name: "Competitor Analysis", path: "/seo-tools/competitors" }
       ]
