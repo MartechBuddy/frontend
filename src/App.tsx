@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import SettingsLayout from "./layouts/SettingsLayout";
 import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
 import AiReadinessFreeCheckPage from "./pages/public/AiReadinessFreeCheckPage";
@@ -30,17 +31,31 @@ import AiReadinessPage from "./pages/ai-readiness/AiReadinessPage";
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
 import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
+import ContentKeywordsPage from "./pages/content-hub/ContentKeywordsPage";
+import ContentRepurposePage from "./pages/content-hub/ContentRepurposePage";
+import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
 import CampaignsPage from "./pages/content-hub/CampaignsPage";
 import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
+import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
+import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
+import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
+import KeywordPlannerPage from "./pages/seo-tools/KeywordPlannerPage";
+import TrafficKeywordsPage from "./pages/seo-tools/TrafficKeywordsPage";
+import ContentOptimizerPage from "./pages/seo-tools/ContentOptimizerPage";
+import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
+import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
+import SocialAccountsPage from "./pages/social-media/SocialAccountsPage";
+import SocialPostsPage from "./pages/social-media/SocialPostsPage";
 import SocialSchedulerPage from "./pages/social-media/SocialSchedulerPage";
 import SocialAnalyticsPage from "./pages/social-media/SocialAnalyticsPage";
 import InboxPage from "./pages/inbox/InboxPage";
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
 import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
+import PreferencesSettingsPage from "./pages/settings/PreferencesSettingsPage";
 import TeamManagementPage from "./pages/settings/TeamManagementPage";
 
 function App() {
@@ -129,8 +144,13 @@ function App() {
             <Route index element={<ContentHubPage />} />
             <Route path="create" element={<ContentCreatePage />} />
             <Route path="library" element={<ContentLibraryPage />} />
+            <Route path="keywords" element={<ContentKeywordsPage />} />
+            <Route path="repurpose" element={<ContentRepurposePage />} />
+            <Route path="scheduler" element={<ContentSchedulerPage />} />
             <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="media/library" element={<MediaLibraryPage />} />
+            <Route path="media/upload" element={<MediaUploadPage />} />
+            <Route path="media/generate" element={<MediaGeneratePage />} />
           </Route>
 
           {/* Protected Routes for SEO Tools */}
@@ -143,6 +163,12 @@ function App() {
             }
           >
             <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
+            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
+            <Route path="keyword-planner" element={<KeywordPlannerPage />} />
+            <Route path="traffic-keywords" element={<TrafficKeywordsPage />} />
+            <Route path="content-optimizer" element={<ContentOptimizerPage />} />
+            <Route path="backlinks" element={<BacklinkAnalyzerPage />} />
+            <Route path="schema" element={<SchemaGeneratorPage />} />
             <Route path="site-audit" element={<SiteAuditPage />} />
             <Route path="competitors" element={<CompetitorAnalysisPage />} />
           </Route>
@@ -156,6 +182,8 @@ function App() {
               </ProtectedRoute>
             }
           >
+            <Route path="accounts" element={<SocialAccountsPage />} />
+            <Route path="posts" element={<SocialPostsPage />} />
             <Route path="scheduler" element={<SocialSchedulerPage />} />
             <Route path="analytics" element={<SocialAnalyticsPage />} />
           </Route>
@@ -181,10 +209,14 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="profile" element={<ProfileSettingsPage />} />
-            <Route path="billing" element={<BillingSettingsPage />} />
-            <Route path="ai-usage" element={<AiUsageSettingsPage />} />
-            <Route path="team-management" element={<TeamManagementPage />} />
+            <Route index element={<SettingsLayout />}>
+              <Route index element={<ProfileSettingsPage />} />
+              <Route path="profile" element={<ProfileSettingsPage />} />
+              <Route path="billing" element={<BillingSettingsPage />} />
+              <Route path="ai-usage" element={<AiUsageSettingsPage />} />
+              <Route path="preferences" element={<PreferencesSettingsPage />} />
+              <Route path="team-management" element={<TeamManagementPage />} />
+            </Route>
           </Route>
 
           {/* 404 Route */}

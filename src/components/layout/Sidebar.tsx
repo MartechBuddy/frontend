@@ -13,7 +13,8 @@ import {
   Search,
   MessageSquare,
   Inbox,
-  HelpCircle
+  HelpCircle,
+  Bot
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,7 @@ const Sidebar = () => {
     {
       name: "AI Readiness",
       path: "/ai-readiness",
-      icon: <FileStack size={20} />,
+      icon: <Bot size={20} />,
     },
     {
       name: "Content Hub",
@@ -46,27 +47,63 @@ const Sidebar = () => {
         { name: "Overview", path: "/content-hub" },
         { name: "Create Content", path: "/content-hub/create" },
         { name: "Library", path: "/content-hub/library" },
-        { name: "Campaigns", path: "/content-hub/campaigns" },
-        { name: "Media", path: "/content-hub/media/library" }
+        { name: "Keywords", path: "/content-hub/keywords" },
+        { name: "Repurpose", path: "/content-hub/repurpose" }
       ]
+    },
+    {
+      name: "Campaigns",
+      path: "/content-hub/campaigns",
+      icon: <FileStack size={20} />,
+      subItems: [
+        { name: "New Campaign", path: "/content-hub/campaigns/create" },
+        { name: "Campaign Library", path: "/content-hub/campaigns" },
+        { name: "Analytics", path: "/content-hub/campaigns/analytics" }
+      ]
+    },
+    {
+      name: "Media Manager",
+      path: "/content-hub/media",
+      icon: <Globe size={20} />,
+      subItems: [
+        { name: "Upload Media", path: "/content-hub/media/upload" },
+        { name: "Generate Media", path: "/content-hub/media/generate" },
+        { name: "Media Library", path: "/content-hub/media/library" }
+      ]
+    },
+    {
+      name: "Scheduler",
+      path: "/content-hub/scheduler",
+      icon: <MessageSquare size={20} />,
     },
     {
       name: "SEO Tools",
       path: "/seo-tools",
       icon: <Search size={20} />,
       subItems: [
-        { name: "Keyword Metrics", path: "/seo-tools/keyword-metrics" },
+        { name: "Keyword Research", path: "/seo-tools/keyword-metrics", subItems: [
+          { name: "Metrics", path: "/seo-tools/keyword-metrics" },
+          { name: "Generator", path: "/seo-tools/keyword-generator" },
+          { name: "Planner", path: "/seo-tools/keyword-planner" }
+        ]},
+        { name: "Traffic Insights", path: "/seo-tools/traffic-keywords" },
         { name: "Site Audit", path: "/seo-tools/site-audit" },
-        { name: "Competitor Analysis", path: "/seo-tools/competitors" }
+        { name: "Content Optimizer", path: "/seo-tools/content-optimizer" },
+        { name: "Backlinks", path: "/seo-tools/backlinks" },
+        { name: "Competitors", path: "/seo-tools/competitors" },
+        { name: "Schema", path: "/seo-tools/schema" }
       ]
     },
     {
-      name: "Social Media",
+      name: "Social Media Suite",
       path: "/social-media",
       icon: <MessageSquare size={20} />,
       subItems: [
+        { name: "Accounts", path: "/social-media/accounts" },
+        { name: "Posts", path: "/social-media/posts" },
         { name: "Scheduler", path: "/social-media/scheduler" },
-        { name: "Analytics", path: "/social-media/analytics" }
+        { name: "Analytics", path: "/social-media/analytics" },
+        { name: "Inbox", path: "/social-media/inbox" }
       ]
     },
     {
@@ -82,6 +119,7 @@ const Sidebar = () => {
         { name: "Profile", path: "/settings/profile" },
         { name: "Billing", path: "/settings/billing" },
         { name: "AI Usage", path: "/settings/ai-usage" },
+        { name: "Preferences", path: "/settings/preferences" },
         { name: "Team Management", path: "/settings/team-management" }
       ]
     },
