@@ -2,9 +2,7 @@
 // Public Pages
 export { default as HomePage } from './public/HomePage';
 export { default as PricingPage } from './public/PricingPage';
-export { default as AiReadinessFreeCheckPage } from './public/AiReadinessFreeCheckPage';
 export { default as FeaturesOverviewPage } from './public/features/FeaturesOverviewPage';
-export { default as AiReadinessFeaturePage } from './public/features/AiReadinessFeaturePage';
 export { default as ContentAutomationPage } from './public/features/ContentAutomationPage';
 export { default as SeoToolsPage } from './public/features/SeoToolsPage';
 export { default as SocialMediaPage } from './public/features/SocialMediaPage';
@@ -22,9 +20,6 @@ export { default as DashboardPage } from './dashboard/DashboardPage';
 
 // Project Pages
 export { default as ProjectsPage } from './projects/ProjectsPage';
-
-// AI Readiness Pages
-export { default as AiReadinessPage } from './ai-readiness/AiReadinessPage';
 
 // Content Hub Pages
 export { default as ContentHubPage } from './content-hub/ContentHubPage';
