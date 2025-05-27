@@ -12,9 +12,7 @@ import { Toaster } from "./components/ui/sonner";
 import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
-import ContentAutomationPage from "./pages/public/features/ContentAutomationPage";
 import SeoToolsPage from "./pages/public/features/SeoToolsPage";
-import SocialMediaPage from "./pages/public/features/SocialMediaPage";
 import BlogListPage from "./pages/public/resources/BlogListPage";
 import FAQPage from "./pages/public/resources/FAQPage";
 import AboutPage from "./pages/public/company/AboutPage";
@@ -32,11 +30,7 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
 import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
-import ContentRepurposePage from "./pages/content-hub/ContentRepurposePage";
-import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
 import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
-import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
-import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
 
 // SEO Tools
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
@@ -87,9 +81,7 @@ function App() {
             {/* Features Pages */}
             <Route path="features" element={<FeaturesOverviewPage />} />
             <Route path="features-overview" element={<FeaturesOverviewPage />} />
-            <Route path="features/content-automation" element={<ContentAutomationPage />} />
             <Route path="features/seo-tools" element={<SeoToolsPage />} />
-            <Route path="features/social-media" element={<SocialMediaPage />} />
             <Route path="features/comparison" element={<SeoToolsPage />} />
             
             {/* Resources Pages */}
@@ -144,11 +136,7 @@ function App() {
             <Route index element={<ContentHubPage />} />
             <Route path="create" element={<ContentCreatePage />} />
             <Route path="library" element={<ContentLibraryPage />} />
-            <Route path="repurpose" element={<ContentRepurposePage />} />
-            <Route path="scheduler" element={<ContentSchedulerPage />} />
             <Route path="media/library" element={<MediaLibraryPage />} />
-            <Route path="media/upload" element={<MediaUploadPage />} />
-            <Route path="media/generate" element={<MediaGeneratePage />} />
           </Route>
 
           {/* Protected Routes for SEO Tools */}

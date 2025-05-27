@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, Search, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, Globe } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,18 +11,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { useAuth } from "@/hooks/use-auth";
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 
-interface HeaderProps {
-  isLoggedIn?: boolean;
-}
-
-const Header: React.FC<HeaderProps> = () => {
+const PublicHeader: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
-  const { isLoggedIn, logout } = useAuth();
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -53,19 +45,22 @@ const Header: React.FC<HeaderProps> = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/features-overview" className="w-full">Overview</Link>
+                <Link to="/features" className="w-full">Overview</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/features/ai-readiness" className="w-full">AI Readiness</Link>
+                <Link to="/features/seo-audit" className="w-full">SEO Audit</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/features/content-automation" className="w-full">Content Automation</Link>
+                <Link to="/features/keyword-intelligence" className="w-full">Keyword Intelligence</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/features/seo-tools" className="w-full">SEO Tools</Link>
+                <Link to="/features/ai-content-writer" className="w-full">AI Content Writer</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
-                <Link to="/features/social-media" className="w-full">Social Media</Link>
+                <Link to="/features/internal-link-planner" className="w-full">Internal Link Planner</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/features/automation-workflows" className="w-full">Automation Workflows</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -79,7 +74,16 @@ const Header: React.FC<HeaderProps> = () => {
                 <Link to="/resources/blog" className="w-full">Blog</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/resources/guides" className="w-full">Guides</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/resources/documentation" className="w-full">Documentation</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
                 <Link to="/resources/faq" className="w-full">FAQ</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/resources/case-studies" className="w-full">Case Studies</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -97,6 +101,12 @@ const Header: React.FC<HeaderProps> = () => {
               </DropdownMenuItem>
               <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
                 <Link to="/company/careers" className="w-full">Careers</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/company/partners" className="w-full">Partners</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="glass-button rounded-lg my-1 cursor-pointer">
+                <Link to="/company/press" className="w-full">Press</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -129,43 +139,19 @@ const Header: React.FC<HeaderProps> = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          {!isLoggedIn ? (
-            <>
-              <Link to="/login">
-                <Button 
-                  variant="ghost" 
-                  className="hidden md:flex"
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signup">
-                <Button className="hidden md:flex">
-                  Try Free
-                </Button>
-              </Link>
-            </>
-          ) : (
-            <>
-              {/* Search Bar (for logged-in users) */}
-              <div className="relative hidden md:block w-full max-w-[300px]">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
-                <input
-                  type="text"
-                  placeholder="Search content..."
-                  className="pl-10 glass-button py-2 px-4 rounded-md w-full bg-transparent border border-white/10"
-                  aria-label="Search content"
-                />
-              </div>
-              
-              <Button 
-                variant="ghost" 
-                onClick={logout}
-              >
-                Log Out
-              </Button>
-            </>
-          )}
+          <Link to="/login">
+            <Button 
+              variant="ghost" 
+              className="hidden md:flex"
+            >
+              Login
+            </Button>
+          </Link>
+          <Link to="/signup">
+            <Button className="hidden md:flex">
+              Try Free
+            </Button>
+          </Link>
           
           {/* Mobile menu button */}
           <Button 
@@ -189,20 +175,17 @@ const Header: React.FC<HeaderProps> = () => {
           <div className="py-2">
             <div className="font-medium mb-2">Features</div>
             <div className="pl-4 flex flex-col space-y-2">
-              <Link to="/features-overview" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/features" className="text-muted-foreground hover:text-foreground transition-colors">
                 Overview
               </Link>
-              <Link to="/features/ai-readiness" className="text-muted-foreground hover:text-foreground transition-colors">
-                AI Readiness
+              <Link to="/features/seo-audit" className="text-muted-foreground hover:text-foreground transition-colors">
+                SEO Audit
               </Link>
-              <Link to="/features/content-automation" className="text-muted-foreground hover:text-foreground transition-colors">
-                Content Automation
+              <Link to="/features/keyword-intelligence" className="text-muted-foreground hover:text-foreground transition-colors">
+                Keyword Intelligence
               </Link>
-              <Link to="/features/seo-tools" className="text-muted-foreground hover:text-foreground transition-colors">
-                SEO Tools
-              </Link>
-              <Link to="/features/social-media" className="text-muted-foreground hover:text-foreground transition-colors">
-                Social Media
+              <Link to="/features/ai-content-writer" className="text-muted-foreground hover:text-foreground transition-colors">
+                AI Content Writer
               </Link>
             </div>
           </div>
@@ -215,6 +198,9 @@ const Header: React.FC<HeaderProps> = () => {
               <Link to="/resources/faq" className="text-muted-foreground hover:text-foreground transition-colors">
                 FAQ
               </Link>
+              <Link to="/resources/case-studies" className="text-muted-foreground hover:text-foreground transition-colors">
+                Case Studies
+              </Link>
             </div>
           </div>
           <div className="py-2">
@@ -226,29 +212,24 @@ const Header: React.FC<HeaderProps> = () => {
               <Link to="/company/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </Link>
-              <Link to="/company/careers" className="text-muted-foreground hover:text-foreground transition-colors">
-                Careers
-              </Link>
             </div>
           </div>
-          {!isLoggedIn && (
-            <div className="flex space-x-2 pt-2">
-              <Link to="/login" className="flex-1">
-                <Button variant="ghost" className="w-full">
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signup" className="flex-1">
-                <Button className="w-full">
-                  Try Free
-                </Button>
-              </Link>
-            </div>
-          )}
+          <div className="flex space-x-2 pt-2">
+            <Link to="/login" className="flex-1">
+              <Button variant="ghost" className="w-full">
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup" className="flex-1">
+              <Button className="w-full">
+                Try Free
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </header>
   );
 };
 
-export default Header;
+export default PublicHeader;
