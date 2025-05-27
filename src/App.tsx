@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
-import SettingsLayout from "./layouts/SettingsLayout";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomeLayout from "./layouts/HomeLayout";
 import { AuthProvider } from "./hooks/use-auth";
@@ -250,7 +249,7 @@ function App() {
             <Route index element={<InboxPage />} />
           </Route>
 
-          {/* Protected Routes for Settings */}
+          {/* Protected Routes for Settings - Fixed structure */}
           <Route
             path="/settings"
             element={
@@ -259,14 +258,12 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<SettingsLayout />}>
-              <Route index element={<ProfileSettingsPage />} />
-              <Route path="profile" element={<ProfileSettingsPage />} />
-              <Route path="billing" element={<BillingSettingsPage />} />
-              <Route path="ai-usage" element={<AiUsageSettingsPage />} />
-              <Route path="preferences" element={<PreferencesSettingsPage />} />
-              <Route path="team-management" element={<TeamManagementPage />} />
-            </Route>
+            <Route index element={<ProfileSettingsPage />} />
+            <Route path="profile" element={<ProfileSettingsPage />} />
+            <Route path="billing" element={<BillingSettingsPage />} />
+            <Route path="ai-usage" element={<AiUsageSettingsPage />} />
+            <Route path="preferences" element={<PreferencesSettingsPage />} />
+            <Route path="team-management" element={<TeamManagementPage />} />
           </Route>
 
           {/* 404 Route */}
