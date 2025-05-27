@@ -32,10 +32,8 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
 import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
-import ContentKeywordsPage from "./pages/content-hub/ContentKeywordsPage";
 import ContentRepurposePage from "./pages/content-hub/ContentRepurposePage";
 import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
-import CampaignsPage from "./pages/content-hub/CampaignsPage";
 import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
 import MediaUploadPage from "./pages/content-hub/MediaUploadPage";
 import MediaGeneratePage from "./pages/content-hub/MediaGeneratePage";
@@ -50,12 +48,6 @@ import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
 import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
-
-// Social Media Pages
-import SocialAccountsPage from "./pages/social-media/SocialAccountsPage";
-import SocialPostsPage from "./pages/social-media/SocialPostsPage";
-import SocialSchedulerPage from "./pages/social-media/SocialSchedulerPage";
-import SocialAnalyticsPage from "./pages/social-media/SocialAnalyticsPage";
 
 // Workflow Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
@@ -152,10 +144,8 @@ function App() {
             <Route index element={<ContentHubPage />} />
             <Route path="create" element={<ContentCreatePage />} />
             <Route path="library" element={<ContentLibraryPage />} />
-            <Route path="keywords" element={<ContentKeywordsPage />} />
             <Route path="repurpose" element={<ContentRepurposePage />} />
             <Route path="scheduler" element={<ContentSchedulerPage />} />
-            <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="media/library" element={<MediaLibraryPage />} />
             <Route path="media/upload" element={<MediaUploadPage />} />
             <Route path="media/generate" element={<MediaGeneratePage />} />
@@ -179,21 +169,6 @@ function App() {
             <Route path="schema" element={<SchemaGeneratorPage />} />
             <Route path="site-audit" element={<SiteAuditPage />} />
             <Route path="competitors" element={<CompetitorAnalysisPage />} />
-          </Route>
-
-          {/* Protected Routes for Social Media */}
-          <Route
-            path="/social-media"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="accounts" element={<SocialAccountsPage />} />
-            <Route path="posts" element={<SocialPostsPage />} />
-            <Route path="scheduler" element={<SocialSchedulerPage />} />
-            <Route path="analytics" element={<SocialAnalyticsPage />} />
           </Route>
 
           {/* Protected Routes for Workflows */}

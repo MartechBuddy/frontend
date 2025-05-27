@@ -3,16 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Bot, FileText, Search, BarChart, ArrowRight } from "lucide-react";
+import { FileText, Search, BarChart, ArrowRight } from "lucide-react";
 
 const FeaturesOverviewPage: React.FC = () => {
   const features = [
-    {
-      title: "AI Readiness",
-      description: "Optimize your content to be AI-friendly and ensure your website is easily readable by AI models.",
-      icon: <Bot className="h-7 w-7 text-primary" />,
-      link: "/features/ai-readiness"
-    },
     {
       title: "Content Automation",
       description: "Generate, optimize, and manage content with AI-powered tools to save time and improve quality.",
@@ -42,7 +36,7 @@ const FeaturesOverviewPage: React.FC = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {features.map((feature, idx) => (
           <Card 
             key={idx} 

@@ -5,17 +5,14 @@ import {
   LayoutDashboard, 
   Boxes, 
   Search, 
-  FileText, 
-  MessageSquare,
+  FileText,
   Inbox,
   Settings, 
   ChevronLeft, 
   ChevronRight, 
   HelpCircle,
-  Bot,
   Cog,
-  BarChart,
-  Users
+  BarChart
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -59,24 +56,11 @@ const Sidebar = () => {
         { name: "Overview", path: "/content-hub" },
         { name: "Create Content", path: "/content-hub/create" },
         { name: "Content Library", path: "/content-hub/library" },
-        { name: "Keywords", path: "/content-hub/keywords" },
         { name: "Repurpose", path: "/content-hub/repurpose" },
         { name: "Scheduler", path: "/content-hub/scheduler" },
-        { name: "Campaigns", path: "/content-hub/campaigns" },
         { name: "Media Library", path: "/content-hub/media/library" },
         { name: "Media Upload", path: "/content-hub/media/upload" },
         { name: "Media Generate", path: "/content-hub/media/generate" }
-      ]
-    },
-    {
-      name: "Social Media",
-      path: "/social-media",
-      icon: <MessageSquare size={20} />,
-      subItems: [
-        { name: "Accounts", path: "/social-media/accounts" },
-        { name: "Posts", path: "/social-media/posts" },
-        { name: "Scheduler", path: "/social-media/scheduler" },
-        { name: "Analytics", path: "/social-media/analytics" }
       ]
     },
     {
