@@ -11,7 +11,10 @@ import { Toaster } from "./components/ui/sonner";
 // Public Pages
 import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
+import DemoPage from "./pages/public/DemoPage";
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
+import ComparisonPage from "./pages/public/features/ComparisonPage";
+import SeoAuditPage from "./pages/public/features/SeoAuditPage";
 import SeoToolsPage from "./pages/public/features/SeoToolsPage";
 import BlogListPage from "./pages/public/resources/BlogListPage";
 import FAQPage from "./pages/public/resources/FAQPage";
@@ -76,13 +79,14 @@ function App() {
           <Route path="/" element={<PublicLayout />}>
             {/* Basic Pages */}
             <Route path="pricing" element={<PricingPage />} />
-            <Route path="demo" element={<div>Demo Page Coming Soon</div>} />
+            <Route path="demo" element={<DemoPage />} />
             
             {/* Features Pages */}
             <Route path="features" element={<FeaturesOverviewPage />} />
             <Route path="features-overview" element={<FeaturesOverviewPage />} />
+            <Route path="features/comparison" element={<ComparisonPage />} />
+            <Route path="features/seo-audit" element={<SeoAuditPage />} />
             <Route path="features/seo-tools" element={<SeoToolsPage />} />
-            <Route path="features/comparison" element={<SeoToolsPage />} />
             
             {/* Resources Pages */}
             <Route path="resources/blog" element={<BlogListPage />} />

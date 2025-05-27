@@ -28,7 +28,7 @@ const PublicHeader: React.FC = () => {
             <img 
               src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
               alt="MartechEngine.ai Logo" 
-              className="h-10 w-auto logo-glow"
+              className="h-10 w-auto"
             />
           </Link>
         </div>
