@@ -11,9 +11,7 @@ import { Toaster } from "./components/ui/sonner";
 // Public Pages
 import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
-import AiReadinessFreeCheckPage from "./pages/public/AiReadinessFreeCheckPage";
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
-import AiReadinessFeaturePage from "./pages/public/features/AiReadinessFeaturePage";
 import ContentAutomationPage from "./pages/public/features/ContentAutomationPage";
 import SeoToolsPage from "./pages/public/features/SeoToolsPage";
 import SocialMediaPage from "./pages/public/features/SocialMediaPage";
@@ -29,7 +27,6 @@ import SignupPage from "./pages/auth/SignupPage";
 // Dashboard Pages
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
-import AiReadinessPage from "./pages/ai-readiness/AiReadinessPage";
 
 // Content Hub
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
@@ -93,13 +90,11 @@ function App() {
           <Route path="/" element={<PublicLayout />}>
             {/* Basic Pages */}
             <Route path="pricing" element={<PricingPage />} />
-            <Route path="demo" element={<AiReadinessFreeCheckPage />} />
-            <Route path="ai-readiness/free-check" element={<AiReadinessFreeCheckPage />} />
+            <Route path="demo" element={<div>Demo Page Coming Soon</div>} />
             
             {/* Features Pages */}
             <Route path="features" element={<FeaturesOverviewPage />} />
             <Route path="features-overview" element={<FeaturesOverviewPage />} />
-            <Route path="features/ai-readiness" element={<AiReadinessFeaturePage />} />
             <Route path="features/content-automation" element={<ContentAutomationPage />} />
             <Route path="features/seo-tools" element={<SeoToolsPage />} />
             <Route path="features/social-media" element={<SocialMediaPage />} />
@@ -143,18 +138,6 @@ function App() {
             }
           >
             <Route index element={<ProjectsPage />} />
-          </Route>
-
-          {/* Protected Routes for AI Readiness */}
-          <Route
-            path="/ai-readiness"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<AiReadinessPage />} />
           </Route>
 
           {/* Protected Routes for Content Hub */}
@@ -249,7 +232,7 @@ function App() {
             <Route index element={<InboxPage />} />
           </Route>
 
-          {/* Protected Routes for Settings - Fixed structure */}
+          {/* Protected Routes for Settings */}
           <Route
             path="/settings"
             element={

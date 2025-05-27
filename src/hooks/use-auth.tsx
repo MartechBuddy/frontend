@@ -18,42 +18,26 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  // Remove authentication logic - set to always logged in for now
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [user, setUser] = useState<User | null>({
+    email: "user@example.com",
+    name: "Demo User"
+  });
   const navigate = useNavigate();
 
   const login = async (email: string, password: string) => {
-    // Test user credentials
-    if (email === "test@example.com" && password === "Admin123") {
-      console.log("Login attempt with:", email);
-      setIsLoggedIn(true);
-      setUser({
-        email: "test@example.com",
-        name: "Test User"
-      });
-      navigate("/dashboard");
-      return;
-    }
-    
-    // If credentials don't match
-    throw new Error("Invalid email or password");
+    // Simplified - just navigate to dashboard
+    navigate("/dashboard");
   };
 
   const signup = async (email: string, password: string) => {
-    // This would typically call an API to create a new user
-    console.log("Signup attempt with:", email);
-    setIsLoggedIn(true);
-    setUser({
-      email: email,
-      name: email.split('@')[0]
-    });
+    // Simplified - just navigate to dashboard
     navigate("/dashboard");
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
-    setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
