@@ -25,17 +25,12 @@ export { default as ProjectsPage } from './projects/ProjectsPage';
 export { default as ContentHubPage } from './content-hub/ContentHubPage';
 export { default as ContentCreatePage } from './content-hub/ContentCreatePage';
 export { default as ContentLibraryPage } from './content-hub/ContentLibraryPage';
-export { default as CampaignsPage } from './content-hub/CampaignsPage';
 export { default as MediaLibraryPage } from './content-hub/MediaLibraryPage';
 
 // SEO Tools Pages
 export { default as KeywordMetricsPage } from './seo-tools/KeywordMetricsPage';
 export { default as SiteAuditPage } from './seo-tools/SiteAuditPage';
 export { default as CompetitorAnalysisPage } from './seo-tools/CompetitorAnalysisPage';
-
-// Social Media Pages
-export { default as SocialSchedulerPage } from './social-media/SocialSchedulerPage';
-export { default as SocialAnalyticsPage } from './social-media/SocialAnalyticsPage';
 
 // Inbox Pages
 export { default as InboxPage } from './inbox/InboxPage';
