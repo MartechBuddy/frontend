@@ -4,17 +4,18 @@ import { NavLink, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Boxes, 
+  Search, 
   FileText, 
+  MessageSquare,
+  Inbox,
   Settings, 
   ChevronLeft, 
   ChevronRight, 
-  FileStack,
-  Globe,
-  Search,
-  MessageSquare,
-  Inbox,
   HelpCircle,
-  Bot
+  Bot,
+  Cog,
+  BarChart,
+  Users
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -35,9 +36,20 @@ const Sidebar = () => {
       icon: <Boxes size={20} />,
     },
     {
-      name: "AI Readiness",
-      path: "/ai-readiness",
-      icon: <Bot size={20} />,
+      name: "SEO Tools",
+      path: "/seo-tools",
+      icon: <Search size={20} />,
+      subItems: [
+        { name: "Site Audit", path: "/seo-tools/site-audit" },
+        { name: "Keyword Metrics", path: "/seo-tools/keyword-metrics" },
+        { name: "Keyword Generator", path: "/seo-tools/keyword-generator" },
+        { name: "Keyword Planner", path: "/seo-tools/keyword-planner" },
+        { name: "Traffic Keywords", path: "/seo-tools/traffic-keywords" },
+        { name: "Content Optimizer", path: "/seo-tools/content-optimizer" },
+        { name: "Backlinks", path: "/seo-tools/backlinks" },
+        { name: "Competitors", path: "/seo-tools/competitors" },
+        { name: "Schema", path: "/seo-tools/schema" }
+      ]
     },
     {
       name: "Content Hub",
@@ -46,65 +58,36 @@ const Sidebar = () => {
       subItems: [
         { name: "Overview", path: "/content-hub" },
         { name: "Create Content", path: "/content-hub/create" },
-        { name: "Library", path: "/content-hub/library" },
+        { name: "Content Library", path: "/content-hub/library" },
         { name: "Keywords", path: "/content-hub/keywords" },
-        { name: "Repurpose", path: "/content-hub/repurpose" }
+        { name: "Repurpose", path: "/content-hub/repurpose" },
+        { name: "Scheduler", path: "/content-hub/scheduler" },
+        { name: "Campaigns", path: "/content-hub/campaigns" },
+        { name: "Media Library", path: "/content-hub/media/library" },
+        { name: "Media Upload", path: "/content-hub/media/upload" },
+        { name: "Media Generate", path: "/content-hub/media/generate" }
       ]
     },
     {
-      name: "Campaigns",
-      path: "/content-hub/campaigns",
-      icon: <FileStack size={20} />,
-      subItems: [
-        { name: "New Campaign", path: "/content-hub/campaigns/create" },
-        { name: "Campaign Library", path: "/content-hub/campaigns" },
-        { name: "Analytics", path: "/content-hub/campaigns/analytics" }
-      ]
-    },
-    {
-      name: "Media Manager",
-      path: "/content-hub/media",
-      icon: <Globe size={20} />,
-      subItems: [
-        { name: "Upload Media", path: "/content-hub/media/upload" },
-        { name: "Generate Media", path: "/content-hub/media/generate" },
-        { name: "Media Library", path: "/content-hub/media/library" }
-      ]
-    },
-    {
-      name: "Scheduler",
-      path: "/content-hub/scheduler",
-      icon: <MessageSquare size={20} />,
-    },
-    {
-      name: "SEO Tools",
-      path: "/seo-tools",
-      icon: <Search size={20} />,
-      subItems: [
-        { name: "Keyword Research", path: "/seo-tools/keyword-metrics", subItems: [
-          { name: "Metrics", path: "/seo-tools/keyword-metrics" },
-          { name: "Generator", path: "/seo-tools/keyword-generator" },
-          { name: "Planner", path: "/seo-tools/keyword-planner" }
-        ]},
-        { name: "Traffic Insights", path: "/seo-tools/traffic-keywords" },
-        { name: "Site Audit", path: "/seo-tools/site-audit" },
-        { name: "Content Optimizer", path: "/seo-tools/content-optimizer" },
-        { name: "Backlinks", path: "/seo-tools/backlinks" },
-        { name: "Competitors", path: "/seo-tools/competitors" },
-        { name: "Schema", path: "/seo-tools/schema" }
-      ]
-    },
-    {
-      name: "Social Media Suite",
+      name: "Social Media",
       path: "/social-media",
       icon: <MessageSquare size={20} />,
       subItems: [
         { name: "Accounts", path: "/social-media/accounts" },
         { name: "Posts", path: "/social-media/posts" },
         { name: "Scheduler", path: "/social-media/scheduler" },
-        { name: "Analytics", path: "/social-media/analytics" },
-        { name: "Inbox", path: "/social-media/inbox" }
+        { name: "Analytics", path: "/social-media/analytics" }
       ]
+    },
+    {
+      name: "Workflows",
+      path: "/workflows",
+      icon: <Cog size={20} />,
+    },
+    {
+      name: "Reports",
+      path: "/reports",
+      icon: <BarChart size={20} />,
     },
     {
       name: "Inbox",
@@ -189,7 +172,7 @@ const Sidebar = () => {
           </Button>
         </div>
 
-        {/* LLM Status indicator */}
+        {/* AI Status indicator */}
         <div className={cn(
           "mt-4 px-3 py-2",
           collapsed ? "text-center" : ""
@@ -199,7 +182,7 @@ const Sidebar = () => {
             collapsed ? "justify-center" : ""
           )}>
             <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
-            {!collapsed && <span className="text-xs text-muted-foreground">LLM Active</span>}
+            {!collapsed && <span className="text-xs text-muted-foreground">AI Active</span>}
           </div>
         </div>
         

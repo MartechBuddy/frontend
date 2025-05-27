@@ -1,19 +1,29 @@
 
 import React from 'react';
 import HeroSection from '@/components/home/HeroSection';
-import WhyAiReadinessSection from '@/components/home/WhyAiReadinessSection';
+import ValuePropositionSection from '@/components/home/ValuePropositionSection';
+import FeatureShowcaseSection from '@/components/home/FeatureShowcaseSection';
 import HowItWorksSection from '@/components/home/HowItWorksSection';
-import FAQSection from '@/components/home/FAQSection';
-import CTASection from '@/components/home/CTASection';
+import ComparisonSection from '@/components/home/ComparisonSection';
+import PricingPreviewSection from '@/components/home/PricingPreviewSection';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import BlogHighlightsSection from '@/components/home/BlogHighlightsSection';
+import MiniFAQSection from '@/components/home/MiniFAQSection';
+import FinalCTASection from '@/components/home/FinalCTASection';
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <WhyAiReadinessSection />
+      <ValuePropositionSection />
+      <FeatureShowcaseSection />
       <HowItWorksSection />
-      <FAQSection />
-      <CTASection />
+      <ComparisonSection />
+      <PricingPreviewSection />
+      <TestimonialsSection />
+      <BlogHighlightsSection />
+      <MiniFAQSection />
+      <FinalCTASection />
     </>
   );
 };

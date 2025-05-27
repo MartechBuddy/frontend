@@ -1,78 +1,56 @@
 
-import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Play } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
-  const [url, setUrl] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    window.location.href = `/ai-readiness/free-check?url=${encodeURIComponent(url)}`;
-  };
-
   return (
-    <div className="relative py-20 md:py-32 overflow-hidden">
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent"></div>
+    <section className="relative py-20 lg:py-32 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center animate-fade-in">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Master AI Search: 
-            <span className="text-gradient block mt-2">Get Your Free AI Readiness Score Now!</span>
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Hero Headlines */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-gradient">AI-Powered SEO Automation</span>
+            <br />
+            for Unrivaled Growth
           </h1>
           
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Discover how well your website is optimized for modern AI search engines. 
-            Ensure your content is easily readable and cited by AI models.
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+            MartechEngine goes beyond traditional tools with intelligent workflows, 
+            real-time AI optimization, and direct publishing.
           </p>
           
-          <form onSubmit={handleSubmit} className="mb-8 max-w-xl mx-auto">
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="url"
-                placeholder="Enter your website URL (e.g., yourcompany.com)"
-                className="flex-1 px-4 py-3 rounded-md sm:rounded-r-none border border-white/10 bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="bg-primary text-white px-6 py-3 rounded-md sm:rounded-l-none hover:bg-primary/90 transition"
-              >
-                Get My Free Score
-              </button>
-            </div>
-            <p className="mt-2 text-xs text-muted-foreground">
-              1 check per IP address per day. No data stored. Sign up for unlimited analysis.
-            </p>
-          </form>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/ai-readiness/free-check">
-              <Button size="lg" className="text-base">
-                Check Your Website Free
+          {/* Primary CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link to="/signup">
+              <Button size="lg" className="text-lg px-8 py-4 group">
+                Try MartechEngine Free
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             
-            <Link to="/features/ai-readiness">
-              <Button variant="outline" size="lg" className="glass-button text-base">
-                Learn More About AI Readiness <ArrowRight size={16} className="ml-2" />
+            <Link to="/demo">
+              <Button variant="outline" size="lg" className="text-lg px-8 py-4 glass-button group">
+                <Play className="mr-2 h-5 w-5" />
+                Request a Demo
               </Button>
+            </Link>
+          </div>
+          
+          {/* Mini Login Link */}
+          <div className="text-sm text-muted-foreground">
+            Already have an account? 
+            <Link to="/login" className="text-primary hover:underline ml-1">
+              Sign in
             </Link>
           </div>
         </div>
       </div>
-
-      {/* Animated gradient orbs */}
-      <div className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 w-screen overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-40 animate-pulse-subtle" style={{ animationDelay: "0s" }}></div>
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-30 animate-pulse-subtle" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-primary/15 rounded-full blur-3xl opacity-20 animate-pulse-subtle" style={{ animationDelay: "0.5s" }}></div>
-      </div>
-    </div>
+    </section>
   );
 };
 
