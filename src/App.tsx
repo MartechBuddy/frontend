@@ -85,6 +85,9 @@ import WorkflowsPage from "./pages/workflows/WorkflowsPage";
 // Reports Pages
 import ReportsPage from "./pages/reports/ReportsPage";
 
+// Inbox Pages
+import InboxPage from "./pages/inbox/InboxPage";
+
 // Settings Pages
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
 import PreferencesSettingsPage from "./pages/settings/PreferencesSettingsPage";
@@ -193,6 +196,29 @@ function App() {
             <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
           </Route>
 
+          {/* Protected Routes for Global SEO Tools */}
+          <Route
+            path="/seo-tools"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="site-audit" element={<SiteAuditPage />} />
+            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
+            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
+            <Route path="keyword-cluster" element={<KeywordClusterPage />} />
+            <Route path="backlinks" element={<BacklinkAnalyzerPage />} />
+            <Route path="competitors" element={<CompetitorAnalysisPage />} />
+            <Route path="internal-links" element={<InternalLinksPage />} />
+            <Route path="schema-markup" element={<SchemaGeneratorPage />} />
+            <Route path="sitemap-audit" element={<SitemapAuditPage />} />
+            <Route path="robots-txt" element={<RobotsTxtPage />} />
+            <Route path="serp-insights" element={<SerpInsightsPage />} />
+            <Route path="local-seo" element={<LocalSeoPage />} />
+          </Route>
+
           {/* Protected Routes for Content Hub */}
           <Route
             path="/content-hub"
@@ -209,6 +235,7 @@ function App() {
             <Route path="repurpose" element={<ContentRepurposePage />} />
             <Route path="media" element={<MediaLibraryPage />} />
             <Route path="scheduler" element={<ContentSchedulerPage />} />
+            <Route path="versions" element={<ContentVersionsPage />} />
             <Route path="versions/:id" element={<ContentVersionsPage />} />
           </Route>
 
@@ -234,6 +261,18 @@ function App() {
             }
           >
             <Route index element={<ReportsPage />} />
+          </Route>
+
+          {/* Protected Routes for Inbox */}
+          <Route
+            path="/inbox"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<InboxPage />} />
           </Route>
 
           {/* Protected Routes for Settings */}
