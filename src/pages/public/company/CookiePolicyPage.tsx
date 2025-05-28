@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from "@/components/ui/card";
 
@@ -87,7 +86,8 @@ const CookiePolicyPage: React.FC = () => {
               <p className="text-muted-foreground leading-relaxed">
                 If you have any questions about our use of cookies or this Cookie Policy, please contact us at privacy@martechengine.com.
               </p>
-            </div>
+            </section>
+          </div>
         </Card>
       </div>
     </div>
