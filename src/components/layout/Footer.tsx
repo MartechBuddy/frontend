@@ -12,37 +12,41 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold mb-4">MartechEngine.ai</h3>
             <p className="text-sm text-muted-foreground">
-              Make your website AI-ready with one click. Optimize your digital presence for AI algorithms.
+              AI-Powered SEO Automation for Unrivaled Growth. Make your website AI-ready with intelligent workflows and real-time optimization.
             </p>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Product</h3>
+            <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/features/ai-readiness" className="text-muted-foreground hover:text-foreground transition">AI Readiness</Link></li>
-              <li><Link to="/features/content-hub" className="text-muted-foreground hover:text-foreground transition">Content Hub</Link></li>
-              <li><Link to="/features/seo-tools" className="text-muted-foreground hover:text-foreground transition">SEO Tools</Link></li>
-              <li><Link to="/pricing" className="text-muted-foreground hover:text-foreground transition">Pricing</Link></li>
+              <li><Link to="/company/about" className="text-muted-foreground hover:text-foreground transition">About</Link></li>
+              <li><Link to="/company/contact" className="text-muted-foreground hover:text-foreground transition">Contact</Link></li>
+              <li><Link to="/company/careers" className="text-muted-foreground hover:text-foreground transition">Careers</Link></li>
+              <li><Link to="/company/partners" className="text-muted-foreground hover:text-foreground transition">Partners</Link></li>
+              <li><Link to="/company/press" className="text-muted-foreground hover:text-foreground transition">Press</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/blog" className="text-muted-foreground hover:text-foreground transition">Blog</Link></li>
-              <li><Link to="/resources/docs" className="text-muted-foreground hover:text-foreground transition">Documentation</Link></li>
+              <li><Link to="/resources/blog" className="text-muted-foreground hover:text-foreground transition">Blog</Link></li>
+              <li><Link to="/resources/guides" className="text-muted-foreground hover:text-foreground transition">Guides</Link></li>
+              <li><Link to="/resources/documentation" className="text-muted-foreground hover:text-foreground transition">Documentation</Link></li>
               <li><Link to="/resources/faq" className="text-muted-foreground hover:text-foreground transition">FAQ</Link></li>
-              <li><Link to="/community" className="text-muted-foreground hover:text-foreground transition">Community</Link></li>
+              <li><Link to="/resources/seo-glossary" className="text-muted-foreground hover:text-foreground transition">SEO Glossary</Link></li>
+              <li><Link to="/resources/community" className="text-muted-foreground hover:text-foreground transition">Community</Link></li>
+              <li><Link to="/resources/case-studies" className="text-muted-foreground hover:text-foreground transition">Case Studies</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
+            <h3 className="font-semibold mb-4">Product</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition">About</Link></li>
-              <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition">Contact</Link></li>
-              <li><Link to="/privacy" className="text-muted-foreground hover:text-foreground transition">Privacy</Link></li>
-              <li><Link to="/terms" className="text-muted-foreground hover:text-foreground transition">Terms</Link></li>
+              <li><Link to="/features" className="text-muted-foreground hover:text-foreground transition">Features</Link></li>
+              <li><Link to="/features/comparison" className="text-muted-foreground hover:text-foreground transition">Comparison</Link></li>
+              <li><Link to="/pricing" className="text-muted-foreground hover:text-foreground transition">Pricing</Link></li>
+              <li><Link to="/demo" className="text-muted-foreground hover:text-foreground transition">Request Demo</Link></li>
             </ul>
           </div>
         </div>
@@ -50,9 +54,9 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/5 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>© {currentYear} MartechEngine.ai. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link to="/privacy" className="hover:text-foreground transition">Privacy</Link>
-            <Link to="/terms" className="hover:text-foreground transition">Terms</Link>
-            <Link to="/cookies" className="hover:text-foreground transition">Cookies</Link>
+            <Link to="/company/privacy-policy" className="hover:text-foreground transition">Privacy</Link>
+            <Link to="/company/terms-of-service" className="hover:text-foreground transition">Terms</Link>
+            <Link to="/company/cookie-policy" className="hover:text-foreground transition">Cookies</Link>
           </div>
         </div>
       </div>

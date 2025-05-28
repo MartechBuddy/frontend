@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Boxes, 
@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  const { id: projectId } = useParams();
 
   const navigationItems = [
     {
@@ -37,15 +38,18 @@ const Sidebar = () => {
       path: "/seo-tools",
       icon: <Search size={20} />,
       subItems: [
-        { name: "Site Audit", path: "/seo-tools/site-audit" },
-        { name: "Keyword Metrics", path: "/seo-tools/keyword-metrics" },
-        { name: "Keyword Generator", path: "/seo-tools/keyword-generator" },
-        { name: "Keyword Planner", path: "/seo-tools/keyword-planner" },
-        { name: "Traffic Keywords", path: "/seo-tools/traffic-keywords" },
-        { name: "Content Optimizer", path: "/seo-tools/content-optimizer" },
-        { name: "Backlinks", path: "/seo-tools/backlinks" },
-        { name: "Competitors", path: "/seo-tools/competitors" },
-        { name: "Schema", path: "/seo-tools/schema" }
+        { name: "Site Audit", path: projectId ? `/projects/${projectId}/seo-tools/site-audit` : "/seo-tools/site-audit" },
+        { name: "Keyword Metrics", path: projectId ? `/projects/${projectId}/seo-tools/keyword-metrics` : "/seo-tools/keyword-metrics" },
+        { name: "Keyword Generator", path: projectId ? `/projects/${projectId}/seo-tools/keyword-generator` : "/seo-tools/keyword-generator" },
+        { name: "Keyword Cluster", path: projectId ? `/projects/${projectId}/seo-tools/keyword-cluster` : "/seo-tools/keyword-cluster" },
+        { name: "Backlinks", path: projectId ? `/projects/${projectId}/seo-tools/backlinks` : "/seo-tools/backlinks" },
+        { name: "Competitors", path: projectId ? `/projects/${projectId}/seo-tools/competitors` : "/seo-tools/competitors" },
+        { name: "Internal Links", path: projectId ? `/projects/${projectId}/seo-tools/internal-links` : "/seo-tools/internal-links" },
+        { name: "Schema Markup", path: projectId ? `/projects/${projectId}/seo-tools/schema-markup` : "/seo-tools/schema-markup" },
+        { name: "Sitemap Audit", path: projectId ? `/projects/${projectId}/seo-tools/sitemap-audit` : "/seo-tools/sitemap-audit" },
+        { name: "Robots.txt", path: projectId ? `/projects/${projectId}/seo-tools/robots-txt` : "/seo-tools/robots-txt" },
+        { name: "SERP Insights", path: projectId ? `/projects/${projectId}/seo-tools/serp-insights` : "/seo-tools/serp-insights" },
+        { name: "Local SEO", path: projectId ? `/projects/${projectId}/seo-tools/local-seo` : "/seo-tools/local-seo" }
       ]
     },
     {
@@ -58,9 +62,8 @@ const Sidebar = () => {
         { name: "Content Library", path: "/content-hub/library" },
         { name: "Repurpose", path: "/content-hub/repurpose" },
         { name: "Scheduler", path: "/content-hub/scheduler" },
-        { name: "Media Library", path: "/content-hub/media/library" },
-        { name: "Media Upload", path: "/content-hub/media/upload" },
-        { name: "Media Generate", path: "/content-hub/media/generate" }
+        { name: "Media Library", path: "/content-hub/media" },
+        { name: "Versions", path: "/content-hub/versions" }
       ]
     },
     {
@@ -87,7 +90,8 @@ const Sidebar = () => {
         { name: "Billing", path: "/settings/billing" },
         { name: "AI Usage", path: "/settings/ai-usage" },
         { name: "Preferences", path: "/settings/preferences" },
-        { name: "Team Management", path: "/settings/team-management" }
+        { name: "Team Management", path: "/settings/team" },
+        { name: "Integrations", path: "/settings/integrations" }
       ]
     },
   ];
