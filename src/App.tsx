@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -99,6 +98,14 @@ import IntegrationsPage from "./pages/settings/IntegrationsPage";
 // Error Pages
 import NotFoundPage from "./pages/404/NotFoundPage";
 
+// Add new detail page imports
+import BlogPostPage from "./pages/public/resources/BlogPostPage";
+import GuideDetailPage from "./pages/public/resources/GuideDetailPage";
+import CaseStudyDetailPage from "./pages/public/resources/CaseStudyDetailPage";
+import DocumentationDetailPage from "./pages/public/resources/DocumentationDetailPage";
+import WebinarDetailPage from "./pages/public/resources/WebinarDetailPage";
+import CareerDetailPage from "./pages/public/company/CareerDetailPage";
+
 function App() {
   return (
     <Router>
@@ -127,18 +134,24 @@ function App() {
             
             {/* Resources Pages */}
             <Route path="resources/blog" element={<BlogListPage />} />
+            <Route path="resources/blog/:slug" element={<BlogPostPage />} />
             <Route path="resources/guides" element={<GuidesPage />} />
+            <Route path="resources/guides/:slug" element={<GuideDetailPage />} />
             <Route path="resources/documentation" element={<DocumentationPage />} />
+            <Route path="resources/documentation/:category/:slug" element={<DocumentationDetailPage />} />
             <Route path="resources/faq" element={<FAQPage />} />
             <Route path="resources/seo-glossary" element={<SeoGlossaryPage />} />
             <Route path="resources/community" element={<CommunityPage />} />
             <Route path="resources/webinars" element={<WebinarsPage />} />
+            <Route path="resources/webinars/:id" element={<WebinarDetailPage />} />
             <Route path="resources/case-studies" element={<CaseStudiesPage />} />
+            <Route path="resources/case-studies/:slug" element={<CaseStudyDetailPage />} />
             
             {/* Company Pages */}
             <Route path="company/about" element={<AboutPage />} />
             <Route path="company/contact" element={<ContactPage />} />
             <Route path="company/careers" element={<CareersPage />} />
+            <Route path="company/careers/:id" element={<CareerDetailPage />} />
             <Route path="company/partners" element={<PartnersPage />} />
             <Route path="company/press" element={<PressPage />} />
             <Route path="company/terms-of-service" element={<TermsOfServicePage />} />
