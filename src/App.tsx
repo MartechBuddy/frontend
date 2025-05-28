@@ -72,22 +72,13 @@ import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
 import KeywordClusterPage from "./pages/seo-tools/KeywordClusterPage";
 import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
-import InternalLinksPage from "./pages/seo-tools/InternalLinksPage";
 import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
-import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
-import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
-import SerpInsightsPage from "./pages/seo-tools/SerpInsightsPage";
-import LocalSeoPage from "./pages/seo-tools/LocalSeoPage";
 
 // Workflow Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
-import WorkflowExecutionPage from "./pages/workflows/WorkflowExecutionPage";
-import WorkflowResultsPage from "./pages/workflows/WorkflowResultsPage";
 
 // Reports Pages
 import ReportsPage from "./pages/reports/ReportsPage";
-import ReportGeneratePage from "./pages/reports/ReportGeneratePage";
-import ReportViewPage from "./pages/reports/ReportViewPage";
 
 // Settings Pages
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
@@ -189,12 +180,7 @@ function App() {
             <Route path=":id/seo-tools/keyword-cluster" element={<KeywordClusterPage />} />
             <Route path=":id/seo-tools/backlinks" element={<BacklinkAnalyzerPage />} />
             <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
-            <Route path=":id/seo-tools/internal-links" element={<InternalLinksPage />} />
             <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
-            <Route path=":id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
-            <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
-            <Route path=":id/seo-tools/serp-insights" element={<SerpInsightsPage />} />
-            <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
           </Route>
 
           {/* Protected Routes for Content Hub */}
@@ -226,8 +212,6 @@ function App() {
             }
           >
             <Route index element={<WorkflowsPage />} />
-            <Route path=":workflowName" element={<WorkflowExecutionPage />} />
-            <Route path=":workflowName/results/:runId" element={<WorkflowResultsPage />} />
           </Route>
 
           {/* Protected Routes for Reports */}
@@ -240,8 +224,6 @@ function App() {
             }
           >
             <Route index element={<ReportsPage />} />
-            <Route path="generate" element={<ReportGeneratePage />} />
-            <Route path=":id" element={<ReportViewPage />} />
           </Route>
 
           {/* Protected Routes for Settings */}
