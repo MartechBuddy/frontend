@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -20,6 +21,9 @@ import KeywordIntelligencePage from "./pages/public/features/KeywordIntelligence
 import AiContentWriterPage from "./pages/public/features/AiContentWriterPage";
 import InternalLinkPlannerPage from "./pages/public/features/InternalLinkPlannerPage";
 import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflowsPage";
+import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
+import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
+import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
 
 // Resources Pages
 import BlogListPage from "./pages/public/resources/BlogListPage";
@@ -30,6 +34,7 @@ import SeoGlossaryPage from "./pages/public/resources/SeoGlossaryPage";
 import CommunityPage from "./pages/public/resources/CommunityPage";
 import WebinarsPage from "./pages/public/resources/WebinarsPage";
 import CaseStudiesPage from "./pages/public/resources/CaseStudiesPage";
+import ApiDocumentationPage from "./pages/public/resources/ApiDocumentationPage";
 
 // Company Pages
 import AboutPage from "./pages/public/company/AboutPage";
@@ -131,6 +136,9 @@ function App() {
             <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
             <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
             <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
+            <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
+            <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
+            <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
             
             {/* Resources Pages */}
             <Route path="resources/blog" element={<BlogListPage />} />
@@ -139,6 +147,7 @@ function App() {
             <Route path="resources/guides/:slug" element={<GuideDetailPage />} />
             <Route path="resources/documentation" element={<DocumentationPage />} />
             <Route path="resources/documentation/:category/:slug" element={<DocumentationDetailPage />} />
+            <Route path="resources/api-documentation" element={<ApiDocumentationPage />} />
             <Route path="resources/faq" element={<FAQPage />} />
             <Route path="resources/seo-glossary" element={<SeoGlossaryPage />} />
             <Route path="resources/community" element={<CommunityPage />} />
