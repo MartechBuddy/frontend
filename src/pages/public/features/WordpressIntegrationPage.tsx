@@ -1,9 +1,8 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { WordPress, Zap, Shield, ArrowRight, CheckCircle, Globe, FileText, Settings } from "lucide-react";
+import { Globe, Zap, Shield, ArrowRight, CheckCircle, FileText, Settings } from "lucide-react";
 
 const WordpressIntegrationPage = () => {
   const features = [
@@ -35,7 +34,7 @@ const WordpressIntegrationPage = () => {
       <section className="py-20 px-6 md:px-8">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-            <WordPress className="h-8 w-8 text-primary" />
+            <Globe className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
             WordPress Integration
