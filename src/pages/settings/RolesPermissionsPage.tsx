@@ -196,19 +196,22 @@ const RolesPermissionsPage: React.FC = () => {
                         {category.label}
                       </td>
                     </tr>
-                    {Object.keys(roles[0].permissions[category.key as keyof typeof roles[0].permissions]).map((action) => (
+                    {Object.keys(roles[0].permissions.projects).map((action) => (
                       <tr key={`${category.key}-${action}`} className="border-b">
                         <td className="p-2 pl-6 text-sm">
                           {action.charAt(0).toUpperCase() + action.slice(1)}
                         </td>
-                        {roles.map((role) => (
-                          <td key={role.id} className="text-center p-2">
-                            <Switch
-                              checked={role.permissions[category.key as keyof typeof role.permissions][action as keyof typeof role.permissions.projects]}
-                              disabled={role.name === 'Owner'}
-                            />
-                          </td>
-                        ))}
+                        {roles.map((role) => {
+                          const categoryPermissions = role.permissions[category.key as keyof typeof role.permissions] as any;
+                          return (
+                            <td key={role.id} className="text-center p-2">
+                              <Switch
+                                checked={categoryPermissions[action]}
+                                disabled={role.name === 'Owner'}
+                              />
+                            </td>
+                          );
+                        })}
                       </tr>
                     ))}
                   </React.Fragment>
