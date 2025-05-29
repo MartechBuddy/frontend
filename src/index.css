@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -193,15 +194,6 @@
   /* Light mode text gradient */
   .light .text-gradient {
     @apply bg-gradient-to-br from-cyan-600 via-cyan-500 to-teal-600 bg-clip-text text-transparent;
-  }
-  
-  .logo-glow {
-    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
-  }
-  
-  /* Light mode logo glow */
-  .light .logo-glow {
-    filter: drop-shadow(0 0 8px rgba(0, 180, 180, 0.4));
   }
   
   /* Animation utilities */

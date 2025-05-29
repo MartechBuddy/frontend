@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { 
@@ -136,15 +135,15 @@ const Sidebar = () => {
               <img 
                 src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
                 alt="MartechEngine.ai Logo" 
-                className="h-10 w-auto logo-glow"
+                className="h-10 w-auto"
               />
             </div>
           ) : (
             <div className="flex justify-center w-full">
               <img 
-                src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
+                src="/lovable-uploads/930155f5-bc69-4113-a0f3-3e443cbe200e.png" 
                 alt="MartechEngine.ai" 
-                className="h-10 w-auto logo-glow"
+                className="h-8 w-8"
               />
             </div>
           )}

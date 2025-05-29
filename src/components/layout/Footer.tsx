@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -10,7 +9,13 @@ const Footer: React.FC = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold mb-4">MartechEngine.ai</h3>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/930155f5-bc69-4113-a0f3-3e443cbe200e.png" 
+                alt="MartechEngine.ai Logo" 
+                className="h-10 w-auto"
+              />
+            </div>
             <p className="text-sm text-muted-foreground">
               AI-Powered SEO Automation for Unrivaled Growth. Make your website AI-ready with intelligent workflows and real-time optimization.
             </p>
