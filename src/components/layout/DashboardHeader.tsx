@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Bell, Search, Globe, LogOut, Settings } from "lucide-react";
+import { Bell, Search, LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -36,31 +36,6 @@ const DashboardHeader = () => {
           <div className="hidden md:flex items-center mr-2 px-3 py-1 bg-white/5 rounded-md">
             <span className="text-xs font-medium">AI Calls: <span className="text-primary">4</span>/5</span>
           </div>
-          
-          {/* Language switcher */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Select language">
-                <Globe size={18} />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
-              <DropdownMenuLabel>Language</DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-white/10" />
-              <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
-                Español
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
-                Français
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
-                العربية
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
 
           {/* Theme toggle */}
           <ThemeToggle />

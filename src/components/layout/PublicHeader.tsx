@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -115,29 +115,6 @@ const PublicHeader: React.FC = () => {
         <div className="flex items-center space-x-4">
           {/* Theme Toggle */}
           <ThemeToggle />
-          
-          {/* Language Selector */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Select language">
-                <Globe size={18} />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
-              <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
-                Español
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg cursor-pointer">
-                Français
-              </DropdownMenuItem>
-              <DropdownMenuItem className="glass-button rounded-lg mt-1 cursor-pointer">
-                العربية
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
           
           <Link to="/login">
             <Button 
