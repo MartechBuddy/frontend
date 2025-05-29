@@ -99,6 +99,9 @@ import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
 import TeamManagementPage from "./pages/settings/TeamManagementPage";
 import IntegrationsPage from "./pages/settings/IntegrationsPage";
+import LlmConfigurationPage from "./pages/settings/LlmConfigurationPage";
+import RolesPermissionsPage from "./pages/settings/RolesPermissionsPage";
+import UserManagementPage from "./pages/settings/UserManagementPage";
 
 // Error Pages
 import NotFoundPage from "./pages/404/NotFoundPage";
@@ -313,6 +316,9 @@ function App() {
             <Route path="billing" element={<BillingSettingsPage />} />
             <Route path="team" element={<TeamManagementPage />} />
             <Route path="integrations" element={<IntegrationsPage />} />
+            <Route path="llm" element={<LlmConfigurationPage />} />
+            <Route path="roles-permissions" element={<RolesPermissionsPage />} />
+            <Route path="user-management" element={<UserManagementPage />} />
           </Route>
 
           {/* 404 Route */}
