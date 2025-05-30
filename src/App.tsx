@@ -24,8 +24,11 @@ import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflows
 import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
 import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
 import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
+import LocalSeoPage from "./pages/public/features/LocalSeoPage";
+import SchemaMarkupPage from "./pages/public/features/SchemaMarkupPage";
 
 // Resources Pages
+import ResourcesHubPage from "./pages/public/resources/ResourcesHubPage";
 import BlogListPage from "./pages/public/resources/BlogListPage";
 import GuidesPage from "./pages/public/resources/GuidesPage";
 import DocumentationPage from "./pages/public/resources/DocumentationPage";
