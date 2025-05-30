@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -24,7 +23,7 @@ import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflows
 import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
 import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
 import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
-import LocalSeoPage from "./pages/public/features/LocalSeoPage";
+import LocalSeoFeaturePage from "./pages/public/features/LocalSeoPage";
 import SchemaMarkupPage from "./pages/public/features/SchemaMarkupPage";
 
 // Resources Pages
@@ -145,6 +144,8 @@ function App() {
             <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
             <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
             <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
+            <Route path="features/local-seo" element={<LocalSeoFeaturePage />} />
+            <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
             {/* Resources Pages */}
             <Route path="resources/blog" element={<BlogListPage />} />
