@@ -148,6 +148,7 @@ function App() {
             <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
             {/* Resources Pages */}
+            <Route path="resources" element={<ResourcesHubPage />} />
             <Route path="resources/blog" element={<BlogListPage />} />
             <Route path="resources/blog/:slug" element={<BlogPostPage />} />
             <Route path="resources/guides" element={<GuidesPage />} />
