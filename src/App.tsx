@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -18,13 +19,6 @@ import ComparisonPage from "./pages/public/features/ComparisonPage";
 import SeoAuditPage from "./pages/public/features/SeoAuditPage";
 import KeywordIntelligencePage from "./pages/public/features/KeywordIntelligencePage";
 import AiContentWriterPage from "./pages/public/features/AiContentWriterPage";
-import InternalLinkPlannerPage from "./pages/public/features/InternalLinkPlannerPage";
-import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflowsPage";
-import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
-import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
-import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
-import LocalSeoPage from "./pages/public/features/LocalSeoPage";
-import SchemaMarkupPage from "./pages/public/features/SchemaMarkupPage";
 
 // Resources Pages
 import ResourcesHubPage from "./pages/public/resources/ResourcesHubPage";
@@ -80,6 +74,7 @@ import BacklinkInsightsToolPage from "./pages/seo-tools/BacklinkInsightsPage";
 import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
 import SchemaMetaPage from "./pages/seo-tools/SchemaMetaPage";
 import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
+import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
 import RankTrackerPage from "./pages/seo-tools/RankTrackerPage";
 import CompetitorTrackerPage from "./pages/seo-tools/CompetitorTrackerPage";
 import IndexingMonitorPage from "./pages/seo-tools/IndexingMonitorPage";
@@ -135,13 +130,6 @@ function App() {
             <Route path="features/seo-audit" element={<SeoAuditPage />} />
             <Route path="features/keyword-intelligence" element={<KeywordIntelligencePage />} />
             <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
-            <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
-            <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
-            <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
-            <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
-            <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
-            <Route path="features/local-seo" element={<LocalSeoPage />} />
-            <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
             {/* Resources Pages */}
             <Route path="resources" element={<ResourcesHubPage />} />
