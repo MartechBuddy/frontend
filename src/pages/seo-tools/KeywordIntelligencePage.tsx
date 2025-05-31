@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -257,7 +256,7 @@ const KeywordIntelligencePage: React.FC = () => {
                           </div>
                           <div className="flex justify-between text-sm">
                             <span>Difficulty:</span>
-                            <Badge size="sm" className={getDifficultyColor(cluster.difficulty)}>
+                            <Badge className={getDifficultyColor(cluster.difficulty)}>
                               {cluster.difficulty}
                             </Badge>
                           </div>
