@@ -16,14 +16,14 @@ import DemoPage from "./pages/public/DemoPage";
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
 import ComparisonPage from "./pages/public/features/ComparisonPage";
 import SeoAuditPage from "./pages/public/features/SeoAuditPage";
-import KeywordIntelligenceFeaturePage from "./pages/public/features/KeywordIntelligencePage";
+import KeywordIntelligencePage from "./pages/public/features/KeywordIntelligencePage";
 import AiContentWriterPage from "./pages/public/features/AiContentWriterPage";
 import InternalLinkPlannerPage from "./pages/public/features/InternalLinkPlannerPage";
 import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflowsPage";
 import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
 import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
-import BacklinkInsightsFeaturePage from "./pages/public/features/BacklinkInsightsPage";
-import LocalSeoFeaturePage from "./pages/public/features/LocalSeoPage";
+import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
+import LocalSeoPage from "./pages/public/features/LocalSeoPage";
 import SchemaMarkupPage from "./pages/public/features/SchemaMarkupPage";
 
 // Resources Pages
@@ -72,28 +72,26 @@ import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
 import ContentVersionsPage from "./pages/content-hub/ContentVersionsPage";
 
 // SEO Tools
+import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
-import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
-import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
-import KeywordClusterPage from "./pages/seo-tools/KeywordClusterPage";
-import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
-import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
-import InternalLinksPage from "./pages/seo-tools/InternalLinksPage";
-import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
-import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
-import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
-import SerpInsightsPage from "./pages/seo-tools/SerpInsightsPage";
-import LocalSeoPage from "./pages/seo-tools/LocalSeoPage";
 import VisualAuditPage from "./pages/seo-tools/VisualAuditPage";
+import KeywordIntelligenceToolPage from "./pages/seo-tools/KeywordIntelligencePage";
+import BacklinkInsightsToolPage from "./pages/seo-tools/BacklinkInsightsPage";
+import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
+import SchemaMetaPage from "./pages/seo-tools/SchemaMetaPage";
+import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
+import RankTrackerPage from "./pages/seo-tools/RankTrackerPage";
+import CompetitorTrackerPage from "./pages/seo-tools/CompetitorTrackerPage";
+import IndexingMonitorPage from "./pages/seo-tools/IndexingMonitorPage";
+import BrokenLinksPage from "./pages/seo-tools/BrokenLinksPage";
 
 // Workflow Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
+import WorkflowExecutionPage from "./pages/workflows/WorkflowExecutionPage";
+import WorkflowResultsPage from "./pages/workflows/WorkflowResultsPage";
 
 // Reports Pages
 import ReportsPage from "./pages/reports/ReportsPage";
-
-// Inbox Pages
-import InboxPage from "./pages/inbox/InboxPage";
 
 // Settings Pages
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
@@ -102,26 +100,17 @@ import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
 import TeamManagementPage from "./pages/settings/TeamManagementPage";
 import IntegrationsPage from "./pages/settings/IntegrationsPage";
-import LlmConfigurationPage from "./pages/settings/LlmConfigurationPage";
-import RolesPermissionsPage from "./pages/settings/RolesPermissionsPage";
-import UserManagementPage from "./pages/settings/UserManagementPage";
 
 // Error Pages
 import NotFoundPage from "./pages/404/NotFoundPage";
 
-// Add new detail page imports
+// Detail page imports
 import BlogPostPage from "./pages/public/resources/BlogPostPage";
 import GuideDetailPage from "./pages/public/resources/GuideDetailPage";
 import CaseStudyDetailPage from "./pages/public/resources/CaseStudyDetailPage";
 import DocumentationDetailPage from "./pages/public/resources/DocumentationDetailPage";
 import WebinarDetailPage from "./pages/public/resources/WebinarDetailPage";
 import CareerDetailPage from "./pages/public/company/CareerDetailPage";
-
-// SEO Tools
-import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
-import KeywordIntelligencePage from "./pages/seo-tools/KeywordIntelligencePage";
-import BacklinkInsightsPage from "./pages/seo-tools/BacklinkInsightsPage";
-import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
 
 function App() {
   return (
@@ -144,14 +133,14 @@ function App() {
             <Route path="features-overview" element={<FeaturesOverviewPage />} />
             <Route path="features/comparison" element={<ComparisonPage />} />
             <Route path="features/seo-audit" element={<SeoAuditPage />} />
-            <Route path="features/keyword-intelligence" element={<KeywordIntelligenceFeaturePage />} />
+            <Route path="features/keyword-intelligence" element={<KeywordIntelligencePage />} />
             <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
             <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
             <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
             <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
             <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
-            <Route path="features/backlink-insights" element={<BacklinkInsightsFeaturePage />} />
-            <Route path="features/local-seo" element={<LocalSeoFeaturePage />} />
+            <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
+            <Route path="features/local-seo" element={<LocalSeoPage />} />
             <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
             {/* Resources Pages */}
@@ -222,100 +211,34 @@ function App() {
             <Route path=":id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path=":id/seo-tools/site-audit" element={<SiteAuditPage />} />
             <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
-            <Route path=":id/seo-tools/keyword-intelligence" element={<KeywordIntelligencePage />} />
-            <Route path=":id/seo-tools/backlinks" element={<BacklinkInsightsPage />} />
+            <Route path=":id/seo-tools/keyword-intelligence" element={<KeywordIntelligenceToolPage />} />
+            <Route path=":id/seo-tools/backlinks" element={<BacklinkInsightsToolPage />} />
             <Route path=":id/seo-tools/internal-links" element={<InternalLinkingPage />} />
-            <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path=":id/seo-tools/keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
-            <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
+            <Route path=":id/seo-tools/schema-markup" element={<SchemaMetaPage />} />
             <Route path=":id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
             <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
-            <Route path=":id/seo-tools/serp-insights" element={<SerpInsightsPage />} />
-            <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
-          </Route>
-
-          {/* Protected Routes for Global SEO Tools */}
-          <Route
-            path="/seo-tools"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="domain-citation-score" element={<DomainCitationScorePage />} />
-            <Route path="site-audit" element={<SiteAuditPage />} />
-            <Route path="visual-audit" element={<VisualAuditPage />} />
-            <Route path="keyword-intelligence" element={<KeywordIntelligencePage />} />
-            <Route path="backlinks" element={<BacklinkInsightsPage />} />
-            <Route path="internal-links" element={<InternalLinkingPage />} />
-            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path="keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path="competitors" element={<CompetitorAnalysisPage />} />
-            <Route path="schema-markup" element={<SchemaGeneratorPage />} />
-            <Route path="sitemap-audit" element={<SitemapAuditPage />} />
-            <Route path="robots-txt" element={<RobotsTxtPage />} />
-            <Route path="serp-insights" element={<SerpInsightsPage />} />
-            <Route path="local-seo" element={<LocalSeoPage />} />
-          </Route>
-
-          {/* Protected Routes for Content Hub */}
-          <Route
-            path="/content-hub"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<ContentHubPage />} />
-            <Route path="create" element={<CreateContentPage />} />
-            <Route path="library" element={<ContentLibraryPage />} />
-            <Route path="edit/:id" element={<ContentEditPage />} />
-            <Route path="repurpose" element={<ContentRepurposePage />} />
-            <Route path="media" element={<MediaLibraryPage />} />
-            <Route path="scheduler" element={<ContentSchedulerPage />} />
-            <Route path="versions" element={<ContentVersionsPage />} />
-            <Route path="versions/:id" element={<ContentVersionsPage />} />
-          </Route>
-
-          {/* Protected Routes for Workflows */}
-          <Route
-            path="/workflows"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<WorkflowsPage />} />
-          </Route>
-
-          {/* Protected Routes for Reports */}
-          <Route
-            path="/reports"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<ReportsPage />} />
-          </Route>
-
-          {/* Protected Routes for Inbox */}
-          <Route
-            path="/inbox"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<InboxPage />} />
+            <Route path=":id/seo-tools/indexing" element={<IndexingMonitorPage />} />
+            <Route path=":id/seo-tools/broken-links" element={<BrokenLinksPage />} />
+            <Route path=":id/seo-tools/rank-tracker" element={<RankTrackerPage />} />
+            <Route path=":id/seo-tools/competitors" element={<CompetitorTrackerPage />} />
+            
+            {/* Project-specific Content Hub */}
+            <Route path=":id/content-hub" element={<ContentHubPage />} />
+            <Route path=":id/content-hub/create" element={<CreateContentPage />} />
+            <Route path=":id/content-hub/library" element={<ContentLibraryPage />} />
+            <Route path=":id/content-hub/edit/:articleId" element={<ContentEditPage />} />
+            <Route path=":id/content-hub/repurpose" element={<ContentRepurposePage />} />
+            <Route path=":id/content-hub/media" element={<MediaLibraryPage />} />
+            <Route path=":id/content-hub/scheduler" element={<ContentSchedulerPage />} />
+            <Route path=":id/content-hub/versions/:articleId" element={<ContentVersionsPage />} />
+            
+            {/* Project-specific Workflows */}
+            <Route path=":id/workflows" element={<WorkflowsPage />} />
+            <Route path=":id/workflows/:workflowName" element={<WorkflowExecutionPage />} />
+            <Route path=":id/workflows/results/:runId" element={<WorkflowResultsPage />} />
+            
+            {/* Project-specific Reports */}
+            <Route path=":id/reports" element={<ReportsPage />} />
           </Route>
 
           {/* Protected Routes for Settings */}
@@ -334,9 +257,6 @@ function App() {
             <Route path="billing" element={<BillingSettingsPage />} />
             <Route path="team" element={<TeamManagementPage />} />
             <Route path="integrations" element={<IntegrationsPage />} />
-            <Route path="llm" element={<LlmConfigurationPage />} />
-            <Route path="roles-permissions" element={<RolesPermissionsPage />} />
-            <Route path="user-management" element={<UserManagementPage />} />
           </Route>
 
           {/* 404 Route */}
