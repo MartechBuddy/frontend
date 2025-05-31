@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +19,8 @@ import {
 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+type UserTier = 'Test' | 'Starter' | 'Pro' | 'Entrepreneur' | 'Enterprise';
+
 const CreateContentPage: React.FC = () => {
   const { projectId } = useParams();
   const [currentStep, setCurrentStep] = useState(1);
@@ -33,19 +34,19 @@ const CreateContentPage: React.FC = () => {
   });
 
   // Mock data - would come from API based on user tier
-  const userTier = 'Starter'; // Test, Starter, Pro, Entrepreneur, Enterprise
+  const userTier: UserTier = 'Starter';
   const contentGenerationsRemaining = 2;
   const maxGenerations = 3;
 
   const getTierLimits = () => {
-    switch (userTier) {
-      case 'Test': return { max: 1, description: '1 blog generation per month' };
-      case 'Starter': return { max: 3, description: '3 blog generations per month' };
-      case 'Pro': return { max: 10, description: '10 blog generations per month' };
-      case 'Entrepreneur': return { max: 40, description: '40 blog generations per month' };
-      case 'Enterprise': return { max: -1, description: 'Unlimited blog generations' };
-      default: return { max: 0, description: '' };
-    }
+    const tierConfig: Record<UserTier, { max: number; description: string }> = {
+      'Test': { max: 1, description: '1 blog generation per month' },
+      'Starter': { max: 3, description: '3 blog generations per month' },
+      'Pro': { max: 10, description: '10 blog generations per month' },
+      'Entrepreneur': { max: 40, description: '40 blog generations per month' },
+      'Enterprise': { max: -1, description: 'Unlimited blog generations' }
+    };
+    return tierConfig[userTier];
   };
 
   const tierLimits = getTierLimits();
