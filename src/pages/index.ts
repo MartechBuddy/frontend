@@ -23,6 +23,11 @@ export { default as ContentLibraryPage } from './content-hub/ContentLibraryPage'
 export { default as MediaLibraryPage } from './content-hub/MediaLibraryPage';
 
 // SEO Tools Pages
+export { default as DomainCitationScorePage } from './seo-tools/DomainCitationScorePage';
+export { default as KeywordIntelligencePage } from './seo-tools/KeywordIntelligencePage';
+export { default as BacklinkInsightsPage } from './seo-tools/BacklinkInsightsPage';
+export { default as InternalLinkingPage } from './seo-tools/InternalLinkingPage';
+export { default as VisualAuditPage } from './seo-tools/VisualAuditPage';
 export { default as KeywordMetricsPage } from './seo-tools/KeywordMetricsPage';
 export { default as KeywordGeneratorPage } from './seo-tools/KeywordGeneratorPage';
 export { default as BacklinkAnalyzerPage } from './seo-tools/BacklinkAnalyzerPage';

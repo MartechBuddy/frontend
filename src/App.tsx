@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -118,6 +117,12 @@ import DocumentationDetailPage from "./pages/public/resources/DocumentationDetai
 import WebinarDetailPage from "./pages/public/resources/WebinarDetailPage";
 import CareerDetailPage from "./pages/public/company/CareerDetailPage";
 
+// SEO Tools
+import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
+import KeywordIntelligencePage from "./pages/seo-tools/KeywordIntelligencePage";
+import BacklinkInsightsPage from "./pages/seo-tools/BacklinkInsightsPage";
+import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
+
 function App() {
   return (
     <Router>
@@ -214,19 +219,21 @@ function App() {
             <Route path=":id/activity" element={<ProjectActivityPage />} />
             
             {/* Project-specific SEO Tools */}
+            <Route path=":id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path=":id/seo-tools/site-audit" element={<SiteAuditPage />} />
+            <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
+            <Route path=":id/seo-tools/keyword-intelligence" element={<KeywordIntelligencePage />} />
+            <Route path=":id/seo-tools/backlinks" element={<BacklinkInsightsPage />} />
+            <Route path=":id/seo-tools/internal-links" element={<InternalLinkingPage />} />
             <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
             <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
             <Route path=":id/seo-tools/keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path=":id/seo-tools/backlinks" element={<BacklinkAnalyzerPage />} />
             <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
-            <Route path=":id/seo-tools/internal-links" element={<InternalLinksPage />} />
             <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
             <Route path=":id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
             <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
             <Route path=":id/seo-tools/serp-insights" element={<SerpInsightsPage />} />
             <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
-            <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
           </Route>
 
           {/* Protected Routes for Global SEO Tools */}
@@ -238,19 +245,21 @@ function App() {
               </ProtectedRoute>
             }
           >
+            <Route path="domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path="site-audit" element={<SiteAuditPage />} />
+            <Route path="visual-audit" element={<VisualAuditPage />} />
+            <Route path="keyword-intelligence" element={<KeywordIntelligencePage />} />
+            <Route path="backlinks" element={<BacklinkInsightsPage />} />
+            <Route path="internal-links" element={<InternalLinkingPage />} />
             <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
             <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
             <Route path="keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path="backlinks" element={<BacklinkAnalyzerPage />} />
             <Route path="competitors" element={<CompetitorAnalysisPage />} />
-            <Route path="internal-links" element={<InternalLinksPage />} />
             <Route path="schema-markup" element={<SchemaGeneratorPage />} />
             <Route path="sitemap-audit" element={<SitemapAuditPage />} />
             <Route path="robots-txt" element={<RobotsTxtPage />} />
             <Route path="serp-insights" element={<SerpInsightsPage />} />
             <Route path="local-seo" element={<LocalSeoPage />} />
-            <Route path="visual-audit" element={<VisualAuditPage />} />
           </Route>
 
           {/* Protected Routes for Content Hub */}
