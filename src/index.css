@@ -45,43 +45,44 @@
     --sidebar-ring: 180 100% 35%;
   }
 
+  /* Remove light theme - force dark theme only */
   .light {
-    --background: 0 0% 100%;
-    --foreground: 224 71% 4%;
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card: 224 71% 6%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover: 224 71% 5%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 180 100% 30%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 180 100% 35%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 224 71% 4%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 225 14% 34%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 224 71% 4%;
+    --accent: 224 71% 4%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 180 100% 30%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 180 100% 35%;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 224 71% 4%;
-    --sidebar-primary: 180 100% 30%;
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 35%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14.3% 95.9%;
-    --sidebar-accent-foreground: 224 71% 4%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 180 100% 30%;
+    --sidebar-accent: 225 38% 10%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 224 71% 8%;
+    --sidebar-ring: 180 100% 35%;
   }
 }
 
@@ -93,25 +94,25 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    background: hsl(224 71% 4%);
     background-image: radial-gradient(
       circle at bottom center,
       hsl(180 100% 50% / 0.15) 0%,
       hsl(224 71% 4% / 0) 70%
     );
     background-attachment: fixed;
+    min-height: 100vh;
   }
 
   html {
     @apply scroll-smooth;
+    background: hsl(224 71% 4%);
   }
 
-  /* Light mode adjustments for the gradient */
-  .light body {
-    background-image: radial-gradient(
-      circle at bottom center,
-      hsl(180 100% 35% / 0.08) 0%,
-      hsl(0 0% 100% / 0) 70%
-    );
+  /* Ensure all pages have consistent dark background */
+  #root {
+    background: hsl(224 71% 4%);
+    min-height: 100vh;
   }
 }
 
@@ -125,8 +126,9 @@
     display: none;
   }
 
+  /* Standard glass card style - used across all pages */
   .glass-card {
-    @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+    @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-xl;
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 0 10px 1px rgba(0, 255, 255, 0.05);
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
@@ -136,64 +138,19 @@
     box-shadow: 0 6px 25px -3px rgba(0, 0, 0, 0.5), 0 0 15px 2px rgba(0, 255, 255, 0.1);
   }
 
-  /* Light mode glass card */
-  .light .glass-card {
-    @apply backdrop-blur-md bg-black/5 border border-black/10 shadow-lg;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1), 0 0 10px 1px rgba(0, 180, 180, 0.05);
-  }
-  
-  .light .glass-card:hover {
-    @apply backdrop-blur-lg bg-black/10 border-black/20;
-    box-shadow: 0 6px 25px -3px rgba(0, 0, 0, 0.2), 0 0 15px 2px rgba(0, 180, 180, 0.08);
-  }
-
   .glass-nav {
-    @apply backdrop-blur-xl bg-card/40 shadow-md;
+    @apply backdrop-blur-xl bg-card/40 shadow-md border-white/10;
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Light mode glass nav */
-  .light .glass-nav {
-    @apply backdrop-blur-xl bg-card/80 shadow-md;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
   }
   
   .glass-button {
     @apply backdrop-blur-sm bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-200;
     box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.3), 0 0 5px 1px rgba(0, 255, 255, 0.03);
   }
-  
-  /* Light mode glass button */
-  .light .glass-button {
-    @apply backdrop-blur-sm bg-transparent hover:bg-black/5 border border-black/10 hover:border-black/20 transition-all duration-200;
-    box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.1), 0 0 5px 1px rgba(0, 180, 180, 0.02);
-  }
 
-  /* Primary button improvements */
-  .btn-primary {
-    @apply bg-primary/90 hover:bg-primary text-white font-medium shadow-lg;
-    background: hsl(180 100% 35% / 0.9);
-  }
-
-  .btn-primary:hover {
-    background: hsl(180 100% 30%);
-  }
-
-  .light .btn-primary {
-    background: hsl(180 100% 30% / 0.95);
-  }
-
-  .light .btn-primary:hover {
-    background: hsl(180 100% 25%);
-  }
-  
+  /* Consistent text gradient */
   .text-gradient {
     @apply bg-gradient-to-br from-cyan-400 via-cyan-300 to-teal-400 bg-clip-text text-transparent;
-  }
-
-  /* Light mode text gradient */
-  .light .text-gradient {
-    @apply bg-gradient-to-br from-cyan-600 via-cyan-500 to-teal-600 bg-clip-text text-transparent;
   }
   
   /* Animation utilities */
@@ -224,8 +181,26 @@
       transform: translateY(0);
     }
   }
+
+  /* Consistent page background */
+  .page-background {
+    background: hsl(224 71% 4%);
+    background-image: radial-gradient(
+      circle at bottom center,
+      hsl(180 100% 50% / 0.15) 0%,
+      hsl(224 71% 4% / 0) 70%
+    );
+    min-height: 100vh;
+  }
+
+  /* Consistent gradient backgrounds for sections */
+  .section-gradient {
+    background: linear-gradient(135deg, hsl(224 71% 4%) 0%, hsl(224 71% 6%) 100%);
+  }
 }
 
 #root {
   @apply max-w-full m-0 p-0 text-left;
+  background: hsl(224 71% 4%);
+  min-height: 100vh;
 }
