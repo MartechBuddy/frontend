@@ -1,74 +1,59 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Globe, Brain, Rocket } from 'lucide-react';
+import { Search, Zap, Rocket } from 'lucide-react';
 
 const HowItWorksSection: React.FC = () => {
   const steps = [
     {
-      step: 1,
-      title: 'Connect Site',
-      description: 'Add your website and connect Google Search Console in seconds',
-      icon: <Globe className="h-12 w-12 text-primary" />
+      icon: <Search className="h-12 w-12 text-primary" />,
+      title: "1. Connect Your Website",
+      description: "Add your domain and get an instant Domain Citation Score analysis of your SEO health."
     },
     {
-      step: 2, 
-      title: 'AI Analyzes',
-      description: 'Our AI crawls, audits, and identifies optimization opportunities',
-      icon: <Brain className="h-12 w-12 text-primary" />
+      icon: <Zap className="h-12 w-12 text-primary" />,
+      title: "2. AI Identifies Opportunities",
+      description: "Our AI scans your site and identifies high-impact optimization opportunities using real-time data."
     },
     {
-      step: 3,
-      title: 'Automate & Publish',
-      description: 'Apply fixes, generate content, and publish directly to WordPress',
-      icon: <Rocket className="h-12 w-12 text-primary" />
+      icon: <Rocket className="h-12 w-12 text-primary" />,
+      title: "3. Automate & Optimize",
+      description: "Apply AI fixes with one click, generate SEO content, and watch your rankings improve automatically."
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-transparent to-primary/5">
+    <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            How It Works: <span className="text-gradient">3 Simple Steps</span>
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Visual representation of the core user journey
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {steps.map((step, index) => (
-            <div key={step.step} className="text-center relative">
-              {/* Step connector line */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-16 left-full w-full h-px bg-gradient-to-r from-primary/50 to-transparent z-0" />
-              )}
-              
-              <div className="glass-card p-8 rounded-xl relative z-10 animate-fade-in">
-                <div className="relative mb-6">
-                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold text-primary-foreground">
-                    {step.step}
-                  </div>
-                  <div className="flex justify-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              How MartechEngine <span className="text-gradient">Works</span>
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Three simple steps to transform your SEO performance with AI automation
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="glass-card p-8 mb-6 hover:scale-105 transition-transform duration-200">
+                  <div className="flex justify-center mb-6">
                     {step.icon}
                   </div>
+                  <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
+                    <div className="w-8 h-0.5 bg-gradient-to-r from-primary to-transparent"></div>
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Link to="/signup">
-            <Button size="lg">
-              Get Started in 3 Steps
-            </Button>
-          </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
