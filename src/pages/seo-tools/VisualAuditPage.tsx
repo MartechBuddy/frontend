@@ -1,67 +1,91 @@
 
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { Input } from '@/components/ui/input';
 import { 
   Eye, 
   Camera, 
+  Monitor, 
   Smartphone, 
   Tablet, 
-  Monitor, 
   Zap, 
+  ArrowRight, 
   Lock,
-  AlertTriangle,
+  Sparkles,
+  Clock,
   CheckCircle,
-  TrendingUp,
-  Download
+  AlertTriangle
 } from 'lucide-react';
 
 type UserTier = 'Test' | 'Starter' | 'Pro' | 'Entrepreneur' | 'Enterprise';
 
 const VisualAuditPage: React.FC = () => {
-  const { projectId } = useParams();
-  const [urlToAudit, setUrlToAudit] = useState('');
-  
-  // Mock data - would come from API based on user tier
+  const [auditUrl, setAuditUrl] = useState('');
+  const [isRunningAudit, setIsRunningAudit] = useState(false);
+
+  // Mock data - would come from API
   const userTier: UserTier = 'Pro';
-  const auditsRemaining = 3;
-  const projectDomain = 'example.com';
+  const visualAuditsRemaining = 3;
 
-  const getTierLimits = () => {
-    const tierConfig: Record<UserTier, { limit: number; description: string; canOnDemand: boolean }> = {
-      'Test': { limit: 20, description: '20 pages from DCS only', canOnDemand: false },
-      'Starter': { limit: 3, description: '3 on-demand audits/month', canOnDemand: true },
-      'Pro': { limit: 5, description: '5 on-demand audits/month', canOnDemand: true },
-      'Entrepreneur': { limit: 20, description: '20 on-demand audits/month', canOnDemand: true },
-      'Enterprise': { limit: -1, description: 'Unlimited audits', canOnDemand: true }
-    };
-    return tierConfig[userTier];
+  const tierLimits: Record<UserTier, { 
+    monthly: number; 
+    description: string; 
+    hasOnDemand: boolean;
+    tokensPerAudit: number;
+  }> = {
+    'Test': { monthly: 0, description: '20 pages from DCS only', hasOnDemand: false, tokensPerAudit: 0 },
+    'Starter': { monthly: 3, description: '3 visual audits per month', hasOnDemand: true, tokensPerAudit: 30 },
+    'Pro': { monthly: 5, description: '5 visual audits per month', hasOnDemand: true, tokensPerAudit: 30 },
+    'Entrepreneur': { monthly: 20, description: '20 visual audits per month', hasOnDemand: true, tokensPerAudit: 30 },
+    'Enterprise': { monthly: -1, description: 'Unlimited visual audits', hasOnDemand: true, tokensPerAudit: 30 }
   };
 
-  const tierLimits = getTierLimits();
-  const canRunAudit = tierLimits.limit === -1 || auditsRemaining > 0;
+  const currentTierConfig = tierLimits[userTier];
+  const canRunOnDemandAudit = currentTierConfig.hasOnDemand && (currentTierConfig.monthly === -1 || visualAuditsRemaining > 0);
 
-  const dcsPages = [
-    { url: '/', title: 'Homepage', issues: 3, score: 85 },
-    { url: '/about', title: 'About Page', issues: 1, score: 92 },
-    { url: '/services', title: 'Services', issues: 5, score: 78 },
-    { url: '/contact', title: 'Contact', issues: 2, score: 88 }
+  // Mock crawled pages from DCS report
+  const crawledPages = [
+    { 
+      url: 'https://example.com/', 
+      title: 'Homepage', 
+      screenshot: '/placeholder.svg',
+      issues: ['CLS issues detected', 'Button contrast low'],
+      lastAudit: '2 hours ago'
+    },
+    { 
+      url: 'https://example.com/about', 
+      title: 'About Page', 
+      screenshot: '/placeholder.svg',
+      issues: ['Mobile nav overlap', 'Font too small'],
+      lastAudit: '2 hours ago'
+    },
+    { 
+      url: 'https://example.com/contact', 
+      title: 'Contact Page', 
+      screenshot: '/placeholder.svg',
+      issues: ['Form not responsive'],
+      lastAudit: '2 hours ago'
+    }
   ];
 
-  const onDemandAudits = [
-    { url: '/products/ai-tool', title: 'AI Tool Product Page', date: '2 hours ago', issues: 4 },
-    { url: '/blog/latest-post', title: 'Latest Blog Post', date: '1 day ago', issues: 2 }
-  ];
-
-  const handleRunAudit = () => {
-    if (!canRunAudit) return;
-    console.log('Running visual audit for:', urlToAudit);
-    // Would trigger API call
+  const handleRunAudit = async () => {
+    if (!auditUrl.trim()) return;
+    
+    setIsRunningAudit(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsRunningAudit(false);
+      console.log('Visual audit completed for:', auditUrl);
+    }, 3000);
   };
+
+  const deviceTypes = [
+    { icon: <Monitor className="h-6 w-6" />, name: "Desktop", viewport: "1920x1080" },
+    { icon: <Tablet className="h-6 w-6" />, name: "Tablet", viewport: "1024x768" },
+    { icon: <Smartphone className="h-6 w-6" />, name: "Mobile", viewport: "375x667" }
+  ];
 
   return (
     <div className="space-y-8">
@@ -70,141 +94,162 @@ const VisualAuditPage: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-gradient">Visual SEO Audit</h1>
           <p className="text-muted-foreground mt-2">
-            AI-powered visual analysis of your pages with overlay recommendations
+            AI-powered visual analysis of your pages across devices
           </p>
         </div>
-        <div className="flex gap-3">
-          <Button variant="outline">
-            <Download size={16} className="mr-2" />
-            Export Report
-          </Button>
-        </div>
+        <Badge variant="outline" className="text-sm">
+          {currentTierConfig.monthly === -1 ? 'Unlimited' : `${visualAuditsRemaining}/${currentTierConfig.monthly} remaining`}
+        </Badge>
       </div>
 
-      {/* Usage Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="glass-card border-white/10">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Audits Remaining</p>
-                <p className="text-2xl font-bold">
-                  {tierLimits.limit === -1 ? '∞' : auditsRemaining}
-                </p>
-              </div>
-              <Eye className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="glass-card border-white/10">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Pages Analyzed</p>
-                <p className="text-2xl font-bold">24</p>
-              </div>
-              <Camera className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="glass-card border-white/10">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Issues Found</p>
-                <p className="text-2xl font-bold">15</p>
-              </div>
-              <AlertTriangle className="h-8 w-8 text-yellow-500" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="glass-card border-white/10">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Avg Score</p>
-                <p className="text-2xl font-bold">86</p>
-              </div>
-              <TrendingUp className="h-8 w-8 text-green-500" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* On-Demand Audit Section */}
-      {tierLimits.canOnDemand && (
+      {/* On-Demand Visual Audit Section */}
+      {currentTierConfig.hasOnDemand ? (
         <Card className="glass-card border-white/10">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="h-5 w-5 text-primary" />
-              Run On-Demand Visual Audit
+              <Camera className="h-5 w-5 text-primary" />
+              On-Demand Visual Audit
             </CardTitle>
             <CardDescription>
-              {tierLimits.description} • 30 tokens per audit
+              Run a comprehensive visual analysis on any page
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-3">
               <Input
-                placeholder="Enter page URL to audit"
-                value={urlToAudit}
-                onChange={(e) => setUrlToAudit(e.target.value)}
+                placeholder="Enter page URL to audit (e.g., https://example.com/page)"
+                value={auditUrl}
+                onChange={(e) => setAuditUrl(e.target.value)}
                 className="flex-1"
               />
               <Button 
                 onClick={handleRunAudit}
-                disabled={!canRunAudit || !urlToAudit}
+                disabled={!auditUrl.trim() || isRunningAudit || !canRunOnDemandAudit}
               >
-                <Eye size={16} className="mr-2" />
-                Run Audit
+                {isRunningAudit ? (
+                  <>
+                    <Clock className="mr-2 h-4 w-4 animate-spin" />
+                    Running...
+                  </>
+                ) : (
+                  <>
+                    <Camera className="mr-2 h-4 w-4" />
+                    Run Visual Audit
+                  </>
+                )}
               </Button>
             </div>
-            {!canRunAudit && tierLimits.limit !== -1 && (
-              <div className="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                <p className="text-sm text-yellow-700">
-                  You've reached your visual audit limit. Upgrade for more audits!
+
+            {!canRunOnDemandAudit && (
+              <div className="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                <div className="flex items-center gap-2 text-yellow-600 mb-2">
+                  <AlertTriangle className="h-4 w-4" />
+                  <span className="font-medium">Upgrade Required</span>
+                </div>
+                <p className="text-sm text-yellow-600/80">
+                  You've reached your visual audit limit. Upgrade for more audits per month.
                 </p>
+                <Button variant="outline" size="sm" className="mt-2">
+                  Upgrade Plan
+                </Button>
               </div>
             )}
+
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Zap className="h-4 w-4" />
+              <span>Each audit uses {currentTierConfig.tokensPerAudit} Martech Tokens</span>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="glass-card border-white/10">
+          <CardContent className="p-6 text-center">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Lock className="h-8 w-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">On-Demand Visual Audits</h3>
+            <p className="text-muted-foreground mb-4">
+              Upgrade to Starter to unlock on-demand visual audits for any page
+            </p>
+            <Button>
+              Upgrade to Starter
+            </Button>
           </CardContent>
         </Card>
       )}
 
-      {/* DCS Visual Analysis */}
+      {/* Crawled Pages from DCS */}
       <Card className="glass-card border-white/10">
         <CardHeader>
-          <CardTitle>Domain Citation Score Visual Analysis</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Eye className="h-5 w-5 text-primary" />
+            Pages from Domain Citation Score Report
+          </CardTitle>
           <CardDescription>
-            Initial 20-page visual analysis from your Domain Citation Score report
+            Visual analysis from your initial 20-page scan
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {dcsPages.map((page, index) => (
-              <div key={index} className="relative group">
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden">
-                  <img 
-                    src={`https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center&sig=${index}`}
-                    alt={page.title}
-                    className="w-full h-full object-cover opacity-75"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Button size="sm">
-                      <Eye size={14} className="mr-1" />
-                      View Analysis
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {crawledPages.map((page, index) => (
+              <Card key={index} className="glass-card border-white/10 hover:border-primary/20 transition-all duration-300 cursor-pointer">
+                <CardHeader className="pb-2">
+                  <div className="aspect-video bg-muted rounded-lg overflow-hidden mb-3">
+                    <img 
+                      src={page.screenshot} 
+                      alt={`Screenshot of ${page.title}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardTitle className="text-base truncate">{page.title}</CardTitle>
+                  <CardDescription className="text-xs truncate">{page.url}</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-2">
+                    {page.issues.slice(0, 2).map((issue, issueIndex) => (
+                      <div key={issueIndex} className="flex items-center gap-2 text-xs">
+                        <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                        <span className="text-muted-foreground truncate">{issue}</span>
+                      </div>
+                    ))}
+                    {page.issues.length > 2 && (
+                      <p className="text-xs text-muted-foreground">
+                        +{page.issues.length - 2} more issues
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
+                    <span className="text-xs text-muted-foreground">{page.lastAudit}</span>
+                    <Button size="sm" variant="ghost" className="text-xs">
+                      View Details
                     </Button>
                   </div>
-                  <div className="absolute top-2 right-2">
-                    <Badge className={page.issues > 3 ? 'bg-red-500' : page.issues > 1 ? 'bg-yellow-500' : 'bg-green-500'}>
-                      Score: {page.score}
-                    </Badge>
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <p className="text-sm font-medium">{page.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {page.issues} AI suggestions
-                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Device Testing Info */}
+      <Card className="glass-card border-white/10">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-primary" />
+            Multi-Device Analysis
+          </CardTitle>
+          <CardDescription>
+            Every visual audit captures screenshots across multiple viewports
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-3 gap-4">
+            {deviceTypes.map((device, index) => (
+              <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5">
+                <div className="text-primary">{device.icon}</div>
+                <div>
+                  <h4 className="font-medium">{device.name}</h4>
+                  <p className="text-sm text-muted-foreground">{device.viewport}</p>
                 </div>
               </div>
             ))}
@@ -212,98 +257,55 @@ const VisualAuditPage: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Recent On-Demand Audits */}
-      {tierLimits.canOnDemand && (
-        <Card className="glass-card border-white/10">
-          <CardHeader>
-            <CardTitle>Recent On-Demand Audits</CardTitle>
-            <CardDescription>
-              Your latest visual audit results
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {onDemandAudits.map((audit, index) => (
-                <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-8 bg-gradient-to-br from-gray-700 to-gray-800 rounded"></div>
-                    <div>
-                      <h4 className="font-medium text-sm">{audit.title}</h4>
-                      <p className="text-xs text-muted-foreground">{audit.url} • {audit.date}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <Badge variant="outline" className="text-xs">
-                      {audit.issues} issues
-                    </Badge>
-                    <Button size="sm" variant="ghost" className="text-xs ml-2">
-                      View Results
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Device Analysis */}
+      {/* What We Analyze */}
       <Card className="glass-card border-white/10">
         <CardHeader>
-          <CardTitle>Multi-Device Analysis</CardTitle>
+          <CardTitle>AI Visual Analysis Capabilities</CardTitle>
           <CardDescription>
-            Visual SEO performance across different screen sizes
+            Gemini Vision AI analyzes every visual element for SEO and UX issues
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Monitor, name: 'Desktop', score: 92, issues: 2 },
-              { icon: Tablet, name: 'Tablet', score: 88, issues: 3 },
-              { icon: Smartphone, name: 'Mobile', score: 85, issues: 4 }
-            ].map((device, index) => {
-              const Icon = device.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <Icon className="h-12 w-12 text-primary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">{device.name}</h3>
-                  <div className="space-y-2">
-                    <Progress value={device.score} className="h-2" />
-                    <p className="text-sm text-muted-foreground">
-                      Score: {device.score}/100
-                    </p>
-                    <Badge variant="outline" className="text-xs">
-                      {device.issues} issues
-                    </Badge>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Layout shifts and CLS issues</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Mobile responsiveness problems</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Button and CTA visibility</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Font readability and contrast</span>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Image optimization opportunities</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Navigation usability issues</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Above-the-fold content analysis</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Cross-browser compatibility</span>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
-
-      {/* Upgrade CTA for lower tiers */}
-      {userTier === 'Test' && (
-        <Card className="glass-card border-primary/20 bg-primary/5">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Lock className="h-5 w-5" />
-              Unlock Advanced Visual Audits
-            </CardTitle>
-            <CardDescription>
-              Upgrade to Starter to run on-demand visual audits for any page
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button className="w-full">
-              Upgrade to Starter - $29.99/mo
-            </Button>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 };
