@@ -16,13 +16,13 @@ import DemoPage from "./pages/public/DemoPage";
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
 import ComparisonPage from "./pages/public/features/ComparisonPage";
 import SeoAuditPage from "./pages/public/features/SeoAuditPage";
-import KeywordIntelligencePage from "./pages/public/features/KeywordIntelligencePage";
+import KeywordIntelligenceFeaturePage from "./pages/public/features/KeywordIntelligencePage";
 import AiContentWriterPage from "./pages/public/features/AiContentWriterPage";
 import InternalLinkPlannerPage from "./pages/public/features/InternalLinkPlannerPage";
 import AutomationWorkflowsPage from "./pages/public/features/AutomationWorkflowsPage";
 import WordpressIntegrationPage from "./pages/public/features/WordpressIntegrationPage";
 import VisualSeoAuditPage from "./pages/public/features/VisualSeoAuditPage";
-import BacklinkInsightsPage from "./pages/public/features/BacklinkInsightsPage";
+import BacklinkInsightsFeaturePage from "./pages/public/features/BacklinkInsightsPage";
 import LocalSeoFeaturePage from "./pages/public/features/LocalSeoPage";
 import SchemaMarkupPage from "./pages/public/features/SchemaMarkupPage";
 
@@ -144,13 +144,13 @@ function App() {
             <Route path="features-overview" element={<FeaturesOverviewPage />} />
             <Route path="features/comparison" element={<ComparisonPage />} />
             <Route path="features/seo-audit" element={<SeoAuditPage />} />
-            <Route path="features/keyword-intelligence" element={<KeywordIntelligencePage />} />
+            <Route path="features/keyword-intelligence" element={<KeywordIntelligenceFeaturePage />} />
             <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
             <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
             <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
             <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
             <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
-            <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
+            <Route path="features/backlink-insights" element={<BacklinkInsightsFeaturePage />} />
             <Route path="features/local-seo" element={<LocalSeoFeaturePage />} />
             <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
