@@ -19,16 +19,12 @@ export { default as ProjectsPage } from './projects/ProjectsPage';
 
 // Content Hub Pages
 export { default as ContentHubPage } from './content-hub/ContentHubPage';
-export { default as ContentCreatePage } from './content-hub/ContentCreatePage';
 export { default as ContentLibraryPage } from './content-hub/ContentLibraryPage';
 export { default as MediaLibraryPage } from './content-hub/MediaLibraryPage';
 
 // SEO Tools Pages
 export { default as KeywordMetricsPage } from './seo-tools/KeywordMetricsPage';
 export { default as KeywordGeneratorPage } from './seo-tools/KeywordGeneratorPage';
-export { default as KeywordPlannerPage } from './seo-tools/KeywordPlannerPage';
-export { default as TrafficKeywordsPage } from './seo-tools/TrafficKeywordsPage';
-export { default as ContentOptimizerPage } from './seo-tools/ContentOptimizerPage';
 export { default as BacklinkAnalyzerPage } from './seo-tools/BacklinkAnalyzerPage';
 export { default as SchemaGeneratorPage } from './seo-tools/SchemaGeneratorPage';
 export { default as SiteAuditPage } from './seo-tools/SiteAuditPage';

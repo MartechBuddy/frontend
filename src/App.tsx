@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -63,7 +64,7 @@ import ProjectActivityPage from "./pages/projects/ProjectActivityPage";
 
 // Content Hub
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
-import ContentCreatePage from "./pages/content-hub/ContentCreatePage";
+import CreateContentPage from "./pages/content-hub/CreateContentPage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
 import ContentEditPage from "./pages/content-hub/ContentEditPage";
 import ContentRepurposePage from "./pages/content-hub/ContentRepurposePage";
@@ -84,6 +85,7 @@ import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
 import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
 import SerpInsightsPage from "./pages/seo-tools/SerpInsightsPage";
 import LocalSeoPage from "./pages/seo-tools/LocalSeoPage";
+import VisualAuditPage from "./pages/seo-tools/VisualAuditPage";
 
 // Workflow Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
@@ -224,6 +226,7 @@ function App() {
             <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
             <Route path=":id/seo-tools/serp-insights" element={<SerpInsightsPage />} />
             <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
+            <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
           </Route>
 
           {/* Protected Routes for Global SEO Tools */}
@@ -247,6 +250,7 @@ function App() {
             <Route path="robots-txt" element={<RobotsTxtPage />} />
             <Route path="serp-insights" element={<SerpInsightsPage />} />
             <Route path="local-seo" element={<LocalSeoPage />} />
+            <Route path="visual-audit" element={<VisualAuditPage />} />
           </Route>
 
           {/* Protected Routes for Content Hub */}
@@ -259,7 +263,7 @@ function App() {
             }
           >
             <Route index element={<ContentHubPage />} />
-            <Route path="create" element={<ContentCreatePage />} />
+            <Route path="create" element={<CreateContentPage />} />
             <Route path="library" element={<ContentLibraryPage />} />
             <Route path="edit/:id" element={<ContentEditPage />} />
             <Route path="repurpose" element={<ContentRepurposePage />} />
