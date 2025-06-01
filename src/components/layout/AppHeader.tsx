@@ -31,8 +31,8 @@ const AppHeader: React.FC = () => {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-50">
-      <div className="flex items-center justify-between max-w-7xl mx-auto">
+    <header className="glass-nav border-b border-white/5 py-3 px-6 md:px-8 sticky top-0 z-50">
+      <div className="flex items-center justify-between">
         {/* Left side - Project Selector and Search */}
         <div className="flex items-center space-x-6">
           <ProjectSelector 
@@ -40,11 +40,11 @@ const AppHeader: React.FC = () => {
             onCreateProject={handleCreateProject}
           />
           
-          <div className="relative w-full max-w-[400px]">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <div className="relative w-full max-w-[400px] animate-fade-in">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
             <Input
               placeholder="Search across project..."
-              className="pl-10 bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+              className="pl-10 glass-button py-4 border-0 focus-visible:ring-primary/40 focus-visible:ring-offset-0"
               aria-label="Search content"
             />
           </div>
@@ -57,27 +57,27 @@ const AppHeader: React.FC = () => {
           {/* Notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative hover:bg-gray-100">
-                <Bell size={18} className="text-gray-600" />
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell size={18} />
                 {notificationCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-red-500 text-xs text-white flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-white flex items-center justify-center">
                     {notificationCount}
                   </span>
                 )}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white border border-gray-200 w-80 shadow-lg">
-              <DropdownMenuLabel className="text-gray-900">Notifications</DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="glass-card border-white/10 w-80">
+              <DropdownMenuLabel>Notifications</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="flex flex-col items-start space-y-1 p-3 hover:bg-gray-50">
-                <span className="font-medium text-gray-900">Domain Citation Score Complete</span>
-                <span className="text-xs text-gray-600">Your website scored 67/100. View detailed report.</span>
-                <span className="text-xs text-gray-500">2 minutes ago</span>
+              <DropdownMenuItem className="flex flex-col items-start space-y-1 p-3">
+                <span className="font-medium">Domain Citation Score Complete</span>
+                <span className="text-xs text-muted-foreground">Your website scored 67/100. View detailed report.</span>
+                <span className="text-xs text-muted-foreground">2 minutes ago</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="flex flex-col items-start space-y-1 p-3 hover:bg-gray-50">
-                <span className="font-medium text-gray-900">New AI fix suggestions</span>
-                <span className="text-xs text-gray-600">5 optimization opportunities found for your homepage.</span>
-                <span className="text-xs text-gray-500">1 hour ago</span>
+              <DropdownMenuItem className="flex flex-col items-start space-y-1 p-3">
+                <span className="font-medium">New AI fix suggestions</span>
+                <span className="text-xs text-muted-foreground">5 optimization opportunities found for your homepage.</span>
+                <span className="text-xs text-muted-foreground">1 hour ago</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -85,38 +85,38 @@ const AppHeader: React.FC = () => {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-2 p-2 hover:bg-gray-100">
+              <Button variant="ghost" className="flex items-center space-x-2 p-2">
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="" alt="User avatar" />
-                  <AvatarFallback className="bg-blue-600 text-white">
+                  <AvatarFallback className="bg-primary text-primary-foreground">
                     {user?.name?.charAt(0) || 'U'}
                   </AvatarFallback>
                 </Avatar>
-                <ChevronDown size={14} className="text-gray-600" />
+                <ChevronDown size={14} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white border border-gray-200 w-48 shadow-lg">
+            <DropdownMenuContent align="end" className="glass-card border-white/10 w-48">
               <DropdownMenuLabel>
                 <div className="flex flex-col">
-                  <span className="text-gray-900">{user?.name || 'User'}</span>
-                  <span className="text-xs text-gray-600 font-normal">{user?.email}</span>
+                  <span>{user?.name || 'User'}</span>
+                  <span className="text-xs text-muted-foreground font-normal">{user?.email}</span>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate('/settings/profile')} className="hover:bg-gray-50">
+              <DropdownMenuItem onClick={() => navigate('/settings/profile')}>
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/settings')} className="hover:bg-gray-50">
+              <DropdownMenuItem onClick={() => navigate('/settings')}>
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/settings/billing')} className="hover:bg-gray-50">
+              <DropdownMenuItem onClick={() => navigate('/settings/billing')}>
                 <CreditCard className="mr-2 h-4 w-4" />
                 Billing
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout} className="hover:bg-gray-50 text-red-600">
+              <DropdownMenuItem onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Log out
               </DropdownMenuItem>

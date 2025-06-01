@@ -6,12 +6,13 @@ import {
   Boxes, 
   Search, 
   FileText,
-  BarChart,
+  Inbox,
   Settings, 
   ChevronLeft, 
   ChevronRight, 
   HelpCircle,
-  ChevronDown
+  Cog,
+  BarChart
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -62,9 +63,19 @@ const Sidebar = () => {
       ]
     },
     {
+      name: "Workflows",
+      path: "/workflows",
+      icon: <Cog size={20} />,
+    },
+    {
       name: "Reports",
       path: "/reports",
       icon: <BarChart size={20} />,
+    },
+    {
+      name: "Inbox",
+      path: "/inbox",
+      icon: <Inbox size={20} />,
     },
     {
       name: "Settings",
@@ -107,19 +118,18 @@ const Sidebar = () => {
   return (
     <div 
       className={cn(
-        "h-screen bg-white border-r border-gray-200 transition-all duration-300 ease-in-out relative", 
-        collapsed ? "w-16" : "w-64"
+        "h-screen glass-nav border-r border-white/5 transition-all duration-300 ease-in-out relative", 
+        collapsed ? "w-[78px]" : "w-[250px] lg:w-[280px]"
       )}
     >
-      <div className="py-6 px-4 flex flex-col h-full">
-        {/* Logo Section */}
-        <div className="flex items-center justify-between mb-6">
+      <div className="py-6 px-3 flex flex-col h-full">
+        <div className="flex items-center px-3 justify-between">
           {!collapsed ? (
             <div className="flex items-center">
               <img 
                 src="/lovable-uploads/0caa0ab7-c716-4409-a921-36af0d39b4ff.png" 
                 alt="MartechEngine.ai Logo" 
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
             </div>
           ) : (
@@ -136,7 +146,7 @@ const Sidebar = () => {
             variant="ghost" 
             size="icon"
             onClick={toggleSidebar}
-            className="absolute -right-3 top-8 h-6 w-6 rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50"
+            className="absolute -right-3 top-8 h-6 w-6 rounded-full border border-border bg-background shadow-md hover:bg-primary/15 transition-all duration-300"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
@@ -144,17 +154,21 @@ const Sidebar = () => {
         </div>
 
         {/* AI Status indicator */}
-        {!collapsed && (
-          <div className="mb-6">
-            <div className="flex items-center rounded-lg bg-green-50 px-3 py-2 border border-green-200">
-              <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
-              <span className="text-xs text-green-700 font-medium">AI Active</span>
-            </div>
+        <div className={cn(
+          "mt-4 px-3 py-2",
+          collapsed ? "text-center" : ""
+        )}>
+          <div className={cn(
+            "flex items-center rounded-md bg-white/5 px-3 py-2",
+            collapsed ? "justify-center" : ""
+          )}>
+            <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
+            {!collapsed && <span className="text-xs text-muted-foreground">AI Active</span>}
           </div>
-        )}
+        </div>
         
         {/* Navigation */}
-        <div className="flex flex-col gap-1 overflow-y-auto flex-grow">
+        <div className="mt-6 flex flex-col gap-1 overflow-y-auto flex-grow scrollbar-hide">
           {navigationItems.map((item) => (
             <div key={item.path} className="flex flex-col">
               {/* Main menu item */}
@@ -163,35 +177,40 @@ const Sidebar = () => {
                 <button
                   onClick={() => toggleSection(item.path)}
                   className={cn(
-                    "flex items-center py-3 px-3 rounded-lg transition duration-200 text-left w-full",
-                    "hover:bg-gray-100",
+                    "flex items-center py-2.5 px-3 rounded-md transition duration-200",
+                    "hover:bg-white/5",
                     (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
-                      "bg-blue-50 text-blue-700 border-l-4 border-blue-600" : 
-                      "text-gray-700",
-                    collapsed && "justify-center px-2"
+                      "bg-white/5 border-l-2 border-primary" : 
+                      "border-l-2 border-transparent",
+                    collapsed && "justify-center"
                   )}
                 >
                   <div className={cn(
-                    "transition flex-shrink-0", 
+                    "transition", 
                     (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
-                      "text-blue-600" : 
-                      "text-gray-500"
+                      "text-primary" : 
+                      "text-muted-foreground"
                   )}>
                     {item.icon}
                   </div>
                   {!collapsed && (
-                    <>
-                      <span className="ml-3 font-medium flex-1">
-                        {item.name}
-                      </span>
-                      <ChevronDown 
-                        size={16} 
-                        className={cn(
-                          "transition-transform duration-200 text-gray-400",
-                          expandedSections[item.path] ? "rotate-180" : ""
-                        )} 
-                      />
-                    </>
+                    <span className={cn(
+                      "ml-3 tracking-tight whitespace-nowrap transition flex-1 text-left", 
+                      (isPathActive(item.path) || isAnySubItemActive(item.subItems)) ? 
+                        "font-medium text-foreground" : 
+                        "text-muted-foreground"
+                    )}>
+                      {item.name}
+                    </span>
+                  )}
+                  {!collapsed && item.subItems && (
+                    <ChevronRight 
+                      size={16} 
+                      className={cn(
+                        "transition-transform duration-200",
+                        expandedSections[item.path] ? "rotate-90" : ""
+                      )} 
+                    />
                   )}
                 </button>
               ) : (
@@ -201,23 +220,23 @@ const Sidebar = () => {
                   end={item.path === "/dashboard"}
                   className={({ isActive }) => 
                     cn(
-                      "flex items-center py-3 px-3 rounded-lg transition duration-200",
-                      "hover:bg-gray-100",
-                      isActive ? "bg-blue-50 text-blue-700 border-l-4 border-blue-600" : "text-gray-700",
-                      collapsed && "justify-center px-2"
+                      "flex items-center py-2.5 px-3 rounded-md transition duration-200",
+                      "hover:bg-white/5",
+                      isActive ? "bg-white/5 border-l-2 border-primary" : "border-l-2 border-transparent",
+                      collapsed && "justify-center"
                     )
                   }
                 >
                   {({ isActive }) => (
                     <>
-                      <div className={cn(
-                        "transition flex-shrink-0", 
-                        isActive ? "text-blue-600" : "text-gray-500"
-                      )}>
+                      <div className={cn("transition", isActive ? "text-primary" : "text-muted-foreground")}>
                         {item.icon}
                       </div>
                       {!collapsed && (
-                        <span className="ml-3 font-medium">
+                        <span className={cn(
+                          "ml-3 tracking-tight whitespace-nowrap transition", 
+                          isActive ? "font-medium text-foreground" : "text-muted-foreground"
+                        )}>
                           {item.name}
                         </span>
                       )}
@@ -228,7 +247,7 @@ const Sidebar = () => {
               
               {/* Subitems if not collapsed and section is expanded */}
               {!collapsed && item.subItems && expandedSections[item.path] && (
-                <div className="ml-8 mt-1 mb-2 space-y-1">
+                <div className="ml-8 mt-1 mb-1 border-l border-white/10 pl-3 space-y-1">
                   {item.subItems.map((subItem) => (
                     <NavLink
                       key={subItem.path}
@@ -236,12 +255,19 @@ const Sidebar = () => {
                       className={({ isActive }) => 
                         cn(
                           "flex items-center py-2 px-3 rounded-md text-sm transition duration-200",
-                          "hover:bg-gray-100",
-                          isActive ? "bg-blue-50 text-blue-600 font-medium" : "text-gray-600"
+                          "hover:bg-white/5",
+                          isActive ? "bg-white/5 text-foreground" : "text-muted-foreground"
                         )
                       }
                     >
-                      {subItem.name}
+                      {({ isActive }) => (
+                        <span className={cn(
+                          "tracking-tight whitespace-nowrap transition",
+                          isActive ? "font-medium" : ""
+                        )}>
+                          {subItem.name}
+                        </span>
+                      )}
                     </NavLink>
                   ))}
                 </div>
@@ -250,12 +276,11 @@ const Sidebar = () => {
           ))}
         </div>
 
-        {/* Help Section */}
-        <div className="mt-auto pt-4 border-t border-gray-200">
+        <div className="mt-auto">
           {!collapsed ? (
             <Button 
               variant="outline" 
-              className="w-full flex items-center justify-center gap-2 border-gray-200 text-gray-700 hover:bg-gray-50"
+              className="w-full flex items-center justify-center gap-2 glass-button"
             >
               <HelpCircle size={16} />
               Help and Support
@@ -264,7 +289,7 @@ const Sidebar = () => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="w-10 h-10 mx-auto border-gray-200 text-gray-700 hover:bg-gray-50"
+              className="w-10 h-10 mx-auto glass-button"
               aria-label="Help and Support"
             >
               <HelpCircle size={16} />
