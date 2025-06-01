@@ -20,7 +20,7 @@ const DashboardHeader = () => {
   const { logout } = useAuth();
 
   return (
-    <header className="glass-nav border-b border-border py-3 px-6 md:px-8 sticky top-0 z-10">
+    <header className="glass-nav border-b border-white/5 py-3 px-6 md:px-8 sticky top-0 z-10">
       <div className="flex items-center justify-between">
         <div className="relative w-full max-w-[400px] animate-fade-in">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
@@ -33,7 +33,7 @@ const DashboardHeader = () => {
         
         <div className="flex items-center space-x-1 md:space-x-3 animate-fade-in">
           {/* AI Calls Remaining Indicator */}
-          <div className="hidden md:flex items-center mr-2 px-3 py-1 bg-card/50 rounded-md">
+          <div className="hidden md:flex items-center mr-2 px-3 py-1 bg-white/5 rounded-md">
             <span className="text-xs font-medium">AI Calls: <span className="text-primary">4</span>/5</span>
           </div>
 
@@ -48,9 +48,9 @@ const DashboardHeader = () => {
                 <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-primary animate-pulse-subtle" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="glass-card border-border p-2 rounded-xl">
+            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-border" />
+              <DropdownMenuSeparator className="bg-white/10" />
               <DropdownMenuItem className="glass-button rounded-lg mb-1 mt-1 cursor-pointer">
                 <div className="flex flex-col space-y-1">
                   <span className="text-sm">Campaign completed</span>
@@ -76,9 +76,9 @@ const DashboardHeader = () => {
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="glass-card border-border p-2 rounded-xl">
+            <DropdownMenuContent align="end" className="glass-card border-white/10 p-2 rounded-xl">
               <DropdownMenuLabel>John Doe</DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-border" />
+              <DropdownMenuSeparator className="bg-white/10" />
               <DropdownMenuItem className="glass-button rounded-lg mt-1 mb-1 cursor-pointer">
                 <Link to="/settings/profile" className="w-full flex items-center">
                   Profile

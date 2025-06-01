@@ -1,58 +1,53 @@
 
 import React from 'react';
-import { Zap, Target, Globe, BarChart3 } from 'lucide-react';
+import { Zap, Target, TrendingUp, Cpu } from 'lucide-react';
 
 const ValuePropositionSection: React.FC = () => {
-  const features = [
+  const problems = [
     {
       icon: <Zap className="h-8 w-8 text-primary" />,
-      title: "AI-Powered SEO Automation",
-      description: "Intelligent workflows that automatically optimize your website's SEO without manual intervention."
+      title: "Manual SEO Tasks",
+      description: "Stop wasting time on repetitive SEO work that AI can handle automatically"
     },
     {
       icon: <Target className="h-8 w-8 text-primary" />,
-      title: "Real-Time Deep Internet Search",
-      description: "Get live data and insights with our proprietary RTSIS technology for up-to-date SEO intelligence."
+      title: "Missed Opportunities", 
+      description: "Discover high-impact keywords and content gaps your competitors are missing"
     },
     {
-      icon: <Globe className="h-8 w-8 text-primary" />,
-      title: "Visual SEO Audit",
-      description: "See exactly what needs fixing with AI-generated visual overlays on your website screenshots."
+      icon: <TrendingUp className="h-8 w-8 text-primary" />,
+      title: "Slow Growth",
+      description: "Accelerate your SEO results with AI-powered optimization and automation"
     },
     {
-      icon: <BarChart3 className="h-8 w-8 text-primary" />,
-      title: "Domain Citation Score",
-      description: "Get a comprehensive 0-100 score of your website's SEO health with actionable insights."
+      icon: <Cpu className="h-8 w-8 text-primary" />,
+      title: "Outdated Tools",
+      description: "Traditional SEO tools can't match AI-driven insights and real-time optimization"
     }
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20 relative">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="text-gradient">Outsmart SEO Complexity</span> with AI
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              MartechEngine combines visual audits, real-time data, and intelligent automation 
-              to deliver SEO results that traditional tools simply can't match.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="glass-card p-6 text-center hover:scale-105 transition-transform duration-200">
-                <div className="flex justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Core SEO Pain Points <span className="text-gradient">Solved</span>
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Traditional SEO approaches are holding back your growth potential
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {problems.map((problem, index) => (
+            <div key={index} className="glass-card p-6 rounded-xl text-center animate-fade-in">
+              <div className="mb-4 flex justify-center">
+                {problem.icon}
               </div>
-            ))}
-          </div>
+              <h3 className="text-lg font-semibold mb-3">{problem.title}</h3>
+              <p className="text-muted-foreground text-sm">{problem.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

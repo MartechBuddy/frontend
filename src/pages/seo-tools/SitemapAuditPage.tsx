@@ -9,8 +9,8 @@ const SitemapAuditPage: React.FC = () => {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
-    <div className="page-background min-h-screen">
-      <div className="space-y-8 p-6">
+    <>
+      <div className="space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gradient">Sitemap Audit</h1>
@@ -24,7 +24,7 @@ const SitemapAuditPage: React.FC = () => {
           </Button>
         </div>
 
-        <Card>
+        <Card className="glass-card border-white/10">
           <CardHeader>
             <CardTitle>Sitemap Analysis</CardTitle>
             <CardDescription>Check your XML sitemaps for errors and indexing issues</CardDescription>
@@ -32,7 +32,7 @@ const SitemapAuditPage: React.FC = () => {
           <CardContent>
             <div className="text-center py-20">
               <FileText className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-xl font-medium mb-2 text-foreground">No sitemap audit available</h3>
+              <h3 className="text-xl font-medium mb-2">No sitemap audit available</h3>
               <p className="text-muted-foreground mb-4">
                 Run an audit to analyze your XML sitemaps
               </p>
@@ -48,7 +48,7 @@ const SitemapAuditPage: React.FC = () => {
         featureName="Sitemap Audit"
         description="Our sitemap analysis tool is currently under development and will be available soon."
       />
-    </div>
+    </>
   );
 };
 
