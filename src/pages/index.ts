@@ -1,4 +1,3 @@
-
 // Public Pages
 export { default as HomePage } from './public/HomePage';
 export { default as PricingPage } from './public/PricingPage';
@@ -22,17 +21,21 @@ export { default as ContentHubPage } from './content-hub/ContentHubPage';
 export { default as ContentLibraryPage } from './content-hub/ContentLibraryPage';
 export { default as MediaLibraryPage } from './content-hub/MediaLibraryPage';
 
-// SEO Tools Pages
+// Core SEO Tools Pages (MVP)
 export { default as DomainCitationScorePage } from './seo-tools/DomainCitationScorePage';
 export { default as KeywordIntelligencePage } from './seo-tools/KeywordIntelligencePage';
 export { default as BacklinkInsightsPage } from './seo-tools/BacklinkInsightsPage';
 export { default as InternalLinkingPage } from './seo-tools/InternalLinkingPage';
 export { default as VisualAuditPage } from './seo-tools/VisualAuditPage';
+export { default as SitemapAuditPage } from './seo-tools/SitemapAuditPage';
+export { default as RobotsTxtPage } from './seo-tools/RobotsTxtPage';
+export { default as SiteAuditPage } from './seo-tools/SiteAuditPage';
+
+// Additional SEO Tools (keeping existing functionality)
 export { default as KeywordMetricsPage } from './seo-tools/KeywordMetricsPage';
 export { default as KeywordGeneratorPage } from './seo-tools/KeywordGeneratorPage';
 export { default as BacklinkAnalyzerPage } from './seo-tools/BacklinkAnalyzerPage';
 export { default as SchemaGeneratorPage } from './seo-tools/SchemaGeneratorPage';
-export { default as SiteAuditPage } from './seo-tools/SiteAuditPage';
 export { default as CompetitorAnalysisPage } from './seo-tools/CompetitorAnalysisPage';
 
 // Workflow Pages

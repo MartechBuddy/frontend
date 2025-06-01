@@ -12,7 +12,7 @@ import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
 import DemoPage from "./pages/public/DemoPage";
 
-// Features Pages
+// Features Pages  
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
 import ComparisonPage from "./pages/public/features/ComparisonPage";
 import SeoAuditPage from "./pages/public/features/SeoAuditPage";
@@ -71,28 +71,27 @@ import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
 import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
 import ContentVersionsPage from "./pages/content-hub/ContentVersionsPage";
 
-// SEO Tools
+// SEO Tools - Core MVP Tools
+import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
-import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
-import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
-import KeywordClusterPage from "./pages/seo-tools/KeywordClusterPage";
-import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
-import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
-import InternalLinksPage from "./pages/seo-tools/InternalLinksPage";
-import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
+import VisualAuditPage from "./pages/seo-tools/VisualAuditPage";
+import KeywordIntelligencePage from "./pages/seo-tools/KeywordIntelligencePage";
+import BacklinkInsightsPage from "./pages/seo-tools/BacklinkInsightsPage";
+import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
 import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
 import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
-import SerpInsightsPage from "./pages/seo-tools/SerpInsightsPage";
 import LocalSeoPage from "./pages/seo-tools/LocalSeoPage";
-import VisualAuditPage from "./pages/seo-tools/VisualAuditPage";
 
-// Workflow Pages
+// Additional SEO Tools (keeping existing functionality)
+import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
+import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
+import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
+import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
+import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
+
+// Other Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
-
-// Reports Pages
 import ReportsPage from "./pages/reports/ReportsPage";
-
-// Inbox Pages
 import InboxPage from "./pages/inbox/InboxPage";
 
 // Settings Pages
@@ -109,19 +108,13 @@ import UserManagementPage from "./pages/settings/UserManagementPage";
 // Error Pages
 import NotFoundPage from "./pages/404/NotFoundPage";
 
-// Add new detail page imports
+// Detail page imports
 import BlogPostPage from "./pages/public/resources/BlogPostPage";
 import GuideDetailPage from "./pages/public/resources/GuideDetailPage";
 import CaseStudyDetailPage from "./pages/public/resources/CaseStudyDetailPage";
 import DocumentationDetailPage from "./pages/public/resources/DocumentationDetailPage";
 import WebinarDetailPage from "./pages/public/resources/WebinarDetailPage";
 import CareerDetailPage from "./pages/public/company/CareerDetailPage";
-
-// SEO Tools
-import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
-import KeywordIntelligencePage from "./pages/seo-tools/KeywordIntelligencePage";
-import BacklinkInsightsPage from "./pages/seo-tools/BacklinkInsightsPage";
-import InternalLinkingPage from "./pages/seo-tools/InternalLinkingPage";
 
 function App() {
   return (
@@ -218,22 +211,22 @@ function App() {
             <Route path=":id/settings" element={<ProjectSettingsPage />} />
             <Route path=":id/activity" element={<ProjectActivityPage />} />
             
-            {/* Project-specific SEO Tools */}
+            {/* Project-specific SEO Tools - Core MVP */}
             <Route path=":id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path=":id/seo-tools/site-audit" element={<SiteAuditPage />} />
             <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
             <Route path=":id/seo-tools/keyword-intelligence" element={<KeywordIntelligencePage />} />
             <Route path=":id/seo-tools/backlinks" element={<BacklinkInsightsPage />} />
             <Route path=":id/seo-tools/internal-links" element={<InternalLinkingPage />} />
-            <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path=":id/seo-tools/keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
-            <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
             <Route path=":id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
             <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
-            <Route path=":id/seo-tools/serp-insights" element={<SerpInsightsPage />} />
             <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
+            
+            {/* Additional SEO Tools */}
+            <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
+            <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
+            <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
+            <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
           </Route>
 
           {/* Protected Routes for Global SEO Tools */}
@@ -245,21 +238,22 @@ function App() {
               </ProtectedRoute>
             }
           >
+            {/* Core MVP SEO Tools */}
             <Route path="domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path="site-audit" element={<SiteAuditPage />} />
             <Route path="visual-audit" element={<VisualAuditPage />} />
             <Route path="keyword-intelligence" element={<KeywordIntelligencePage />} />
             <Route path="backlinks" element={<BacklinkInsightsPage />} />
             <Route path="internal-links" element={<InternalLinkingPage />} />
-            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path="keyword-cluster" element={<KeywordClusterPage />} />
-            <Route path="competitors" element={<CompetitorAnalysisPage />} />
-            <Route path="schema-markup" element={<SchemaGeneratorPage />} />
             <Route path="sitemap-audit" element={<SitemapAuditPage />} />
             <Route path="robots-txt" element={<RobotsTxtPage />} />
-            <Route path="serp-insights" element={<SerpInsightsPage />} />
             <Route path="local-seo" element={<LocalSeoPage />} />
+            
+            {/* Additional SEO Tools */}
+            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
+            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
+            <Route path="competitors" element={<CompetitorAnalysisPage />} />
+            <Route path="schema-markup" element={<SchemaGeneratorPage />} />
           </Route>
 
           {/* Protected Routes for Content Hub */}
