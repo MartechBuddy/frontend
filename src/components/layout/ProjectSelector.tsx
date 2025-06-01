@@ -44,44 +44,44 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2 h-auto hover:bg-gray-700 text-gray-300">
-          <Globe size={16} className="text-cyan-400" />
+        <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2 h-auto hover:bg-gray-100">
+          <Globe size={16} className="text-blue-600" />
           <div className="flex flex-col items-start">
-            <span className="text-sm font-medium text-gray-100">{currentProject.name}</span>
-            <span className="text-xs text-gray-400">{currentProject.domain}</span>
+            <span className="text-sm font-medium text-gray-900">{currentProject.name}</span>
+            <span className="text-xs text-gray-600">{currentProject.domain}</span>
           </div>
-          <ChevronDown size={14} className="text-gray-400" />
+          <ChevronDown size={14} className="text-gray-600" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700 w-64 shadow-lg z-50">
-        <DropdownMenuLabel className="text-gray-100">Your Projects</DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-gray-700" />
+      <DropdownMenuContent align="start" className="bg-white border border-gray-200 w-64 shadow-lg">
+        <DropdownMenuLabel className="text-gray-900">Your Projects</DropdownMenuLabel>
+        <DropdownMenuSeparator />
         
         {projects.map((project) => (
           <DropdownMenuItem 
             key={project.id}
             onClick={() => onProjectSelect(project.id)}
-            className="flex items-center justify-between p-3 hover:bg-gray-700 text-gray-100"
+            className="flex items-center justify-between p-3 hover:bg-gray-50"
           >
             <div className="flex items-center space-x-2">
-              <Globe size={14} className="text-gray-400" />
+              <Globe size={14} className="text-gray-500" />
               <div className="flex flex-col">
-                <span className="text-sm font-medium">{project.name}</span>
-                <span className="text-xs text-gray-400">{project.domain}</span>
+                <span className="text-sm font-medium text-gray-900">{project.name}</span>
+                <span className="text-xs text-gray-600">{project.domain}</span>
               </div>
             </div>
             {project.status === 'processing' && (
-              <span className="text-xs bg-yellow-800 text-yellow-300 px-2 py-1 rounded border border-yellow-600">
+              <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded border border-yellow-200">
                 Processing
               </span>
             )}
           </DropdownMenuItem>
         ))}
         
-        <DropdownMenuSeparator className="bg-gray-700" />
-        <DropdownMenuItem onClick={onCreateProject} className="p-3 hover:bg-gray-700 text-gray-100">
-          <Plus size={14} className="mr-2 text-gray-400" />
-          <span>Create New Project</span>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={onCreateProject} className="p-3 hover:bg-gray-50">
+          <Plus size={14} className="mr-2 text-gray-500" />
+          <span className="text-gray-900">Create New Project</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

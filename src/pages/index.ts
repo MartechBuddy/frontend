@@ -31,7 +31,6 @@ export { default as SitemapAuditPage } from './seo-tools/SitemapAuditPage';
 export { default as RobotsTxtPage } from './seo-tools/RobotsTxtPage';
 export { default as SiteAuditPage } from './seo-tools/SiteAuditPage';
 export { default as LocalSeoPage } from './seo-tools/LocalSeoPage';
-export { default as OpportunitiesPage } from './seo-tools/OpportunitiesPage';
 
 // Legacy SEO Tools (keeping for compatibility)
 export { default as KeywordMetricsPage } from './seo-tools/KeywordMetricsPage';
