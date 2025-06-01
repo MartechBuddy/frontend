@@ -1,8 +1,9 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Bell, ChevronDown, User, Settings, CreditCard, LogOut, Plus } from "lucide-react";
+import { Bell, ChevronDown, User, Settings, CreditCard, LogOut, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import {
   DropdownMenu,
@@ -26,27 +27,27 @@ const AppHeader: React.FC = () => {
   };
 
   const handleCreateProject = () => {
-    // This would open a modal in a real implementation
     navigate('/projects/create');
   };
 
   return (
     <header className="glass-nav border-b border-white/5 py-3 px-6 md:px-8 sticky top-0 z-50">
       <div className="flex items-center justify-between">
-        {/* Left side - Logo and Project Selector */}
+        {/* Left side - Project Selector and Search */}
         <div className="flex items-center space-x-6">
-          <Link to="/dashboard" className="flex items-center">
-            <img 
-              src="/lovable-uploads/930155f5-bc69-4113-a0f3-3e443cbe200e.png" 
-              alt="MartechEngine Logo" 
-              className="h-8 w-auto"
-            />
-          </Link>
-          
           <ProjectSelector 
             onProjectSelect={handleProjectSelect}
             onCreateProject={handleCreateProject}
           />
+          
+          <div className="relative w-full max-w-[400px] animate-fade-in">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
+            <Input
+              placeholder="Search across project..."
+              className="pl-10 glass-button py-4 border-0 focus-visible:ring-primary/40 focus-visible:ring-offset-0"
+              aria-label="Search content"
+            />
+          </div>
         </div>
 
         {/* Right side - Token bar, notifications, user menu */}

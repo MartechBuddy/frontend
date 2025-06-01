@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { 
@@ -37,17 +38,14 @@ const Sidebar = () => {
       path: "/seo-tools",
       icon: <Search size={20} />,
       subItems: [
+        { name: "Domain Citation Score", path: projectId ? `/projects/${projectId}/seo-tools/domain-citation-score` : "/seo-tools/domain-citation-score" },
         { name: "Site Audit", path: projectId ? `/projects/${projectId}/seo-tools/site-audit` : "/seo-tools/site-audit" },
-        { name: "Keyword Metrics", path: projectId ? `/projects/${projectId}/seo-tools/keyword-metrics` : "/seo-tools/keyword-metrics" },
-        { name: "Keyword Generator", path: projectId ? `/projects/${projectId}/seo-tools/keyword-generator` : "/seo-tools/keyword-generator" },
-        { name: "Keyword Cluster", path: projectId ? `/projects/${projectId}/seo-tools/keyword-cluster` : "/seo-tools/keyword-cluster" },
-        { name: "Backlinks", path: projectId ? `/projects/${projectId}/seo-tools/backlinks` : "/seo-tools/backlinks" },
-        { name: "Competitors", path: projectId ? `/projects/${projectId}/seo-tools/competitors` : "/seo-tools/competitors" },
-        { name: "Internal Links", path: projectId ? `/projects/${projectId}/seo-tools/internal-links` : "/seo-tools/internal-links" },
-        { name: "Schema Markup", path: projectId ? `/projects/${projectId}/seo-tools/schema-markup` : "/seo-tools/schema-markup" },
+        { name: "Visual Audit", path: projectId ? `/projects/${projectId}/seo-tools/visual-audit` : "/seo-tools/visual-audit" },
+        { name: "Keyword Intelligence", path: projectId ? `/projects/${projectId}/seo-tools/keyword-intelligence` : "/seo-tools/keyword-intelligence" },
+        { name: "Backlink Insights", path: projectId ? `/projects/${projectId}/seo-tools/backlinks` : "/seo-tools/backlinks" },
+        { name: "Internal Linking", path: projectId ? `/projects/${projectId}/seo-tools/internal-links` : "/seo-tools/internal-links" },
         { name: "Sitemap Audit", path: projectId ? `/projects/${projectId}/seo-tools/sitemap-audit` : "/seo-tools/sitemap-audit" },
         { name: "Robots.txt", path: projectId ? `/projects/${projectId}/seo-tools/robots-txt` : "/seo-tools/robots-txt" },
-        { name: "SERP Insights", path: projectId ? `/projects/${projectId}/seo-tools/serp-insights` : "/seo-tools/serp-insights" },
         { name: "Local SEO", path: projectId ? `/projects/${projectId}/seo-tools/local-seo` : "/seo-tools/local-seo" }
       ]
     },
@@ -61,8 +59,7 @@ const Sidebar = () => {
         { name: "Content Library", path: "/content-hub/library" },
         { name: "Repurpose", path: "/content-hub/repurpose" },
         { name: "Scheduler", path: "/content-hub/scheduler" },
-        { name: "Media Library", path: "/content-hub/media" },
-        { name: "Versions", path: "/content-hub/versions" }
+        { name: "Media Library", path: "/content-hub/media" }
       ]
     },
     {
@@ -99,19 +96,16 @@ const Sidebar = () => {
     setCollapsed(!collapsed);
   };
 
-  // Check if a path is active, including parent paths
   const isPathActive = (path: string) => {
     return location.pathname === path || 
            (path !== '/dashboard' && location.pathname.startsWith(path));
   };
 
-  // Check if any subitem is active
   const isAnySubItemActive = (subItems?: Array<{name: string, path: string}>) => {
     if (!subItems) return false;
     return subItems.some(item => location.pathname === item.path);
   };
 
-  // Track expanded menu sections
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const toggleSection = (path: string) => {

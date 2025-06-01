@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -10,7 +11,6 @@ import { Toaster } from "./components/ui/sonner";
 // Public Pages
 import HomePage from "./pages/public/HomePage";
 import PricingPage from "./pages/public/PricingPage";
-import DemoPage from "./pages/public/DemoPage";
 
 // Features Pages  
 import FeaturesOverviewPage from "./pages/public/features/FeaturesOverviewPage";
@@ -54,14 +54,14 @@ import SignupPage from "./pages/auth/SignupPage";
 import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 
-// Dashboard Pages
+// MVP Dashboard Pages
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import ProjectDashboardPage from "./pages/projects/ProjectDashboardPage";
 import ProjectSettingsPage from "./pages/projects/ProjectSettingsPage";
 import ProjectActivityPage from "./pages/projects/ProjectActivityPage";
 
-// Content Hub
+// MVP Content Hub
 import ContentHubPage from "./pages/content-hub/ContentHubPage";
 import CreateContentPage from "./pages/content-hub/CreateContentPage";
 import ContentLibraryPage from "./pages/content-hub/ContentLibraryPage";
@@ -71,7 +71,7 @@ import MediaLibraryPage from "./pages/content-hub/MediaLibraryPage";
 import ContentSchedulerPage from "./pages/content-hub/ContentSchedulerPage";
 import ContentVersionsPage from "./pages/content-hub/ContentVersionsPage";
 
-// SEO Tools - Core MVP Tools
+// MVP SEO Tools
 import DomainCitationScorePage from "./pages/seo-tools/DomainCitationScorePage";
 import SiteAuditPage from "./pages/seo-tools/SiteAuditPage";
 import VisualAuditPage from "./pages/seo-tools/VisualAuditPage";
@@ -82,28 +82,25 @@ import SitemapAuditPage from "./pages/seo-tools/SitemapAuditPage";
 import RobotsTxtPage from "./pages/seo-tools/RobotsTxtPage";
 import LocalSeoPage from "./pages/seo-tools/LocalSeoPage";
 
-// Additional SEO Tools (keeping existing functionality)
+// Additional SEO Tools (legacy)
 import KeywordMetricsPage from "./pages/seo-tools/KeywordMetricsPage";
 import KeywordGeneratorPage from "./pages/seo-tools/KeywordGeneratorPage";
 import BacklinkAnalyzerPage from "./pages/seo-tools/BacklinkAnalyzerPage";
 import CompetitorAnalysisPage from "./pages/seo-tools/CompetitorAnalysisPage";
 import SchemaGeneratorPage from "./pages/seo-tools/SchemaGeneratorPage";
 
-// Other Pages
+// MVP Other Pages
 import WorkflowsPage from "./pages/workflows/WorkflowsPage";
 import ReportsPage from "./pages/reports/ReportsPage";
 import InboxPage from "./pages/inbox/InboxPage";
 
-// Settings Pages
+// MVP Settings Pages
 import ProfileSettingsPage from "./pages/settings/ProfileSettingsPage";
 import PreferencesSettingsPage from "./pages/settings/PreferencesSettingsPage";
 import AiUsageSettingsPage from "./pages/settings/AiUsageSettingsPage";
 import BillingSettingsPage from "./pages/settings/BillingSettingsPage";
 import TeamManagementPage from "./pages/settings/TeamManagementPage";
 import IntegrationsPage from "./pages/settings/IntegrationsPage";
-import LlmConfigurationPage from "./pages/settings/LlmConfigurationPage";
-import RolesPermissionsPage from "./pages/settings/RolesPermissionsPage";
-import UserManagementPage from "./pages/settings/UserManagementPage";
 
 // Error Pages
 import NotFoundPage from "./pages/404/NotFoundPage";
@@ -121,20 +118,17 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          {/* Home Page with special layout */}
+          {/* Home Page */}
           <Route path="/" element={<HomeLayout />}>
             <Route index element={<HomePage />} />
           </Route>
 
           {/* Public Routes */}
           <Route path="/" element={<PublicLayout />}>
-            {/* Basic Pages */}
             <Route path="pricing" element={<PricingPage />} />
-            <Route path="demo" element={<DemoPage />} />
             
-            {/* Features Pages */}
+            {/* Features */}
             <Route path="features" element={<FeaturesOverviewPage />} />
-            <Route path="features-overview" element={<FeaturesOverviewPage />} />
             <Route path="features/comparison" element={<ComparisonPage />} />
             <Route path="features/seo-audit" element={<SeoAuditPage />} />
             <Route path="features/keyword-intelligence" element={<KeywordIntelligenceFeaturePage />} />
@@ -147,7 +141,7 @@ function App() {
             <Route path="features/local-seo" element={<LocalSeoFeaturePage />} />
             <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
             
-            {/* Resources Pages */}
+            {/* Resources */}
             <Route path="resources" element={<ResourcesHubPage />} />
             <Route path="resources/blog" element={<BlogListPage />} />
             <Route path="resources/blog/:slug" element={<BlogPostPage />} />
@@ -164,7 +158,7 @@ function App() {
             <Route path="resources/case-studies" element={<CaseStudiesPage />} />
             <Route path="resources/case-studies/:slug" element={<CaseStudyDetailPage />} />
             
-            {/* Company Pages */}
+            {/* Company */}
             <Route path="company/about" element={<AboutPage />} />
             <Route path="company/contact" element={<ContactPage />} />
             <Route path="company/careers" element={<CareersPage />} />
@@ -184,34 +178,20 @@ function App() {
             <Route path="login/reset-password" element={<ResetPasswordPage />} />
           </Route>
 
-          {/* Protected Dashboard Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Protected MVP Dashboard Routes */}
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<DashboardPage />} />
           </Route>
 
-          {/* Protected Routes for Projects */}
-          <Route
-            path="/projects"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Protected Projects Routes */}
+          <Route path="/projects" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<ProjectsPage />} />
             <Route path="create" element={<ProjectsPage />} />
             <Route path=":id" element={<ProjectDashboardPage />} />
             <Route path=":id/settings" element={<ProjectSettingsPage />} />
             <Route path=":id/activity" element={<ProjectActivityPage />} />
             
-            {/* Project-specific SEO Tools - Core MVP */}
+            {/* Project SEO Tools */}
             <Route path=":id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path=":id/seo-tools/site-audit" element={<SiteAuditPage />} />
             <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
@@ -222,23 +202,15 @@ function App() {
             <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
             <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
             
-            {/* Additional SEO Tools */}
+            {/* Legacy SEO Tools */}
             <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
             <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
             <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
             <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
           </Route>
 
-          {/* Protected Routes for Global SEO Tools */}
-          <Route
-            path="/seo-tools"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            {/* Core MVP SEO Tools */}
+          {/* Protected Global SEO Tools */}
+          <Route path="/seo-tools" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route path="domain-citation-score" element={<DomainCitationScorePage />} />
             <Route path="site-audit" element={<SiteAuditPage />} />
             <Route path="visual-audit" element={<VisualAuditPage />} />
@@ -249,22 +221,15 @@ function App() {
             <Route path="robots-txt" element={<RobotsTxtPage />} />
             <Route path="local-seo" element={<LocalSeoPage />} />
             
-            {/* Additional SEO Tools */}
+            {/* Legacy Tools */}
             <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
             <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
             <Route path="competitors" element={<CompetitorAnalysisPage />} />
             <Route path="schema-markup" element={<SchemaGeneratorPage />} />
           </Route>
 
-          {/* Protected Routes for Content Hub */}
-          <Route
-            path="/content-hub"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Protected Content Hub Routes */}
+          <Route path="/content-hub" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<ContentHubPage />} />
             <Route path="create" element={<CreateContentPage />} />
             <Route path="library" element={<ContentLibraryPage />} />
@@ -273,54 +238,23 @@ function App() {
             <Route path="media" element={<MediaLibraryPage />} />
             <Route path="scheduler" element={<ContentSchedulerPage />} />
             <Route path="versions" element={<ContentVersionsPage />} />
-            <Route path="versions/:id" element={<ContentVersionsPage />} />
           </Route>
 
-          {/* Protected Routes for Workflows */}
-          <Route
-            path="/workflows"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Protected Other MVP Routes */}
+          <Route path="/workflows" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<WorkflowsPage />} />
           </Route>
 
-          {/* Protected Routes for Reports */}
-          <Route
-            path="/reports"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          <Route path="/reports" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<ReportsPage />} />
           </Route>
 
-          {/* Protected Routes for Inbox */}
-          <Route
-            path="/inbox"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          <Route path="/inbox" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<InboxPage />} />
           </Route>
 
-          {/* Protected Routes for Settings */}
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
+          {/* Protected Settings Routes */}
+          <Route path="/settings" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
             <Route index element={<ProfileSettingsPage />} />
             <Route path="profile" element={<ProfileSettingsPage />} />
             <Route path="preferences" element={<PreferencesSettingsPage />} />
@@ -328,9 +262,6 @@ function App() {
             <Route path="billing" element={<BillingSettingsPage />} />
             <Route path="team" element={<TeamManagementPage />} />
             <Route path="integrations" element={<IntegrationsPage />} />
-            <Route path="llm" element={<LlmConfigurationPage />} />
-            <Route path="roles-permissions" element={<RolesPermissionsPage />} />
-            <Route path="user-management" element={<UserManagementPage />} />
           </Route>
 
           {/* 404 Route */}
