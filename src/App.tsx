@@ -124,9 +124,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <AuthProvider>
-          <Toaster />
-          <Router>
+        <Router>
+          <AuthProvider>
+            <Toaster />
             <Routes>
               {/* Home Page */}
               <Route path="/" element={<HomeLayout />}>
@@ -249,8 +249,8 @@ function App() {
               {/* 404 Route */}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
-          </Router>
-        </AuthProvider>
+          </AuthProvider>
+        </Router>
       </ThemeProvider>
     </QueryClientProvider>
   );

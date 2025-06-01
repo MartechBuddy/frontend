@@ -1,6 +1,5 @@
 
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface User {
   email: string;
@@ -24,20 +23,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     email: "user@example.com",
     name: "Demo User"
   });
-  const navigate = useNavigate();
 
   const login = async (email: string, password: string) => {
-    // Simplified - just navigate to dashboard
-    navigate("/dashboard");
+    // Simplified - just set logged in state
+    setIsLoggedIn(true);
+    setUser({ email, name: "Demo User" });
   };
 
   const signup = async (email: string, password: string) => {
-    // Simplified - just navigate to dashboard
-    navigate("/dashboard");
+    // Simplified - just set logged in state
+    setIsLoggedIn(true);
+    setUser({ email, name: "Demo User" });
   };
 
   const logout = () => {
-    navigate("/");
+    setIsLoggedIn(false);
+    setUser(null);
   };
 
   return (
