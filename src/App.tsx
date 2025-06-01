@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -7,6 +6,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomeLayout from "./layouts/HomeLayout";
 import { AuthProvider } from "./hooks/use-auth";
 import { Toaster } from "./components/ui/sonner";
+import { QueryClient } from "react-query";
+import { ThemeProvider } from "next-themes";
+import LegalBasePage from "./pages/public/company/LegalBasePage";
 
 // Public Pages
 import HomePage from "./pages/public/HomePage";
@@ -47,6 +49,7 @@ import PressPage from "./pages/public/company/PressPage";
 import TermsOfServicePage from "./pages/public/company/TermsOfServicePage";
 import PrivacyPolicyPage from "./pages/public/company/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/public/company/CookiePolicyPage";
+import LegalBasePage from "./pages/public/company/LegalBasePage";
 
 // Auth Pages
 import LoginPage from "./pages/auth/LoginPage";
@@ -115,161 +118,131 @@ import CareerDetailPage from "./pages/public/company/CareerDetailPage";
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Home Page */}
-          <Route path="/" element={<HomeLayout />}>
-            <Route index element={<HomePage />} />
-          </Route>
-
-          {/* Public Routes */}
-          <Route path="/" element={<PublicLayout />}>
-            <Route path="pricing" element={<PricingPage />} />
-            
-            {/* Features */}
-            <Route path="features" element={<FeaturesOverviewPage />} />
-            <Route path="features/comparison" element={<ComparisonPage />} />
-            <Route path="features/seo-audit" element={<SeoAuditPage />} />
-            <Route path="features/keyword-intelligence" element={<KeywordIntelligenceFeaturePage />} />
-            <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
-            <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
-            <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
-            <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
-            <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
-            <Route path="features/backlink-insights" element={<BacklinkInsightsFeaturePage />} />
-            <Route path="features/local-seo" element={<LocalSeoFeaturePage />} />
-            <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
-            
-            {/* Resources */}
-            <Route path="resources" element={<ResourcesHubPage />} />
-            <Route path="resources/blog" element={<BlogListPage />} />
-            <Route path="resources/blog/:slug" element={<BlogPostPage />} />
-            <Route path="resources/guides" element={<GuidesPage />} />
-            <Route path="resources/guides/:slug" element={<GuideDetailPage />} />
-            <Route path="resources/documentation" element={<DocumentationPage />} />
-            <Route path="resources/documentation/:category/:slug" element={<DocumentationDetailPage />} />
-            <Route path="resources/api-documentation" element={<ApiDocumentationPage />} />
-            <Route path="resources/faq" element={<FAQPage />} />
-            <Route path="resources/seo-glossary" element={<SeoGlossaryPage />} />
-            <Route path="resources/community" element={<CommunityPage />} />
-            <Route path="resources/webinars" element={<WebinarsPage />} />
-            <Route path="resources/webinars/:id" element={<WebinarDetailPage />} />
-            <Route path="resources/case-studies" element={<CaseStudiesPage />} />
-            <Route path="resources/case-studies/:slug" element={<CaseStudyDetailPage />} />
-            
-            {/* Company */}
-            <Route path="company/about" element={<AboutPage />} />
-            <Route path="company/contact" element={<ContactPage />} />
-            <Route path="company/careers" element={<CareersPage />} />
-            <Route path="company/careers/:id" element={<CareerDetailPage />} />
-            <Route path="company/partners" element={<PartnersPage />} />
-            <Route path="company/press" element={<PressPage />} />
-            <Route path="company/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="company/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="company/cookie-policy" element={<CookiePolicyPage />} />
-          </Route>
-
-          {/* Authentication Routes */}
-          <Route path="/" element={<AuthLayout />}>
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<SignupPage />} />
-            <Route path="login/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="login/reset-password" element={<ResetPasswordPage />} />
-          </Route>
-
-          {/* Protected MVP Dashboard Routes */}
-          <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<DashboardPage />} />
-          </Route>
-
-          {/* Protected Projects Routes */}
-          <Route path="/projects" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<ProjectsPage />} />
-            <Route path="create" element={<ProjectsPage />} />
-            <Route path=":id" element={<ProjectDashboardPage />} />
-            <Route path=":id/settings" element={<ProjectSettingsPage />} />
-            <Route path=":id/activity" element={<ProjectActivityPage />} />
-            
-            {/* Project SEO Tools */}
-            <Route path=":id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
-            <Route path=":id/seo-tools/site-audit" element={<SiteAuditPage />} />
-            <Route path=":id/seo-tools/visual-audit" element={<VisualAuditPage />} />
-            <Route path=":id/seo-tools/keyword-intelligence" element={<KeywordIntelligencePage />} />
-            <Route path=":id/seo-tools/backlinks" element={<BacklinkInsightsPage />} />
-            <Route path=":id/seo-tools/internal-links" element={<InternalLinkingPage />} />
-            <Route path=":id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
-            <Route path=":id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
-            <Route path=":id/seo-tools/local-seo" element={<LocalSeoPage />} />
-            
-            {/* Legacy SEO Tools */}
-            <Route path=":id/seo-tools/keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path=":id/seo-tools/keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path=":id/seo-tools/competitors" element={<CompetitorAnalysisPage />} />
-            <Route path=":id/seo-tools/schema-markup" element={<SchemaGeneratorPage />} />
-          </Route>
-
-          {/* Protected Global SEO Tools */}
-          <Route path="/seo-tools" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route path="domain-citation-score" element={<DomainCitationScorePage />} />
-            <Route path="site-audit" element={<SiteAuditPage />} />
-            <Route path="visual-audit" element={<VisualAuditPage />} />
-            <Route path="keyword-intelligence" element={<KeywordIntelligencePage />} />
-            <Route path="backlinks" element={<BacklinkInsightsPage />} />
-            <Route path="internal-links" element={<InternalLinkingPage />} />
-            <Route path="sitemap-audit" element={<SitemapAuditPage />} />
-            <Route path="robots-txt" element={<RobotsTxtPage />} />
-            <Route path="local-seo" element={<LocalSeoPage />} />
-            
-            {/* Legacy Tools */}
-            <Route path="keyword-metrics" element={<KeywordMetricsPage />} />
-            <Route path="keyword-generator" element={<KeywordGeneratorPage />} />
-            <Route path="competitors" element={<CompetitorAnalysisPage />} />
-            <Route path="schema-markup" element={<SchemaGeneratorPage />} />
-          </Route>
-
-          {/* Protected Content Hub Routes */}
-          <Route path="/content-hub" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<ContentHubPage />} />
-            <Route path="create" element={<CreateContentPage />} />
-            <Route path="library" element={<ContentLibraryPage />} />
-            <Route path="edit/:id" element={<ContentEditPage />} />
-            <Route path="repurpose" element={<ContentRepurposePage />} />
-            <Route path="media" element={<MediaLibraryPage />} />
-            <Route path="scheduler" element={<ContentSchedulerPage />} />
-            <Route path="versions" element={<ContentVersionsPage />} />
-          </Route>
-
-          {/* Protected Other MVP Routes */}
-          <Route path="/workflows" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<WorkflowsPage />} />
-          </Route>
-
-          <Route path="/reports" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<ReportsPage />} />
-          </Route>
-
-          <Route path="/inbox" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<InboxPage />} />
-          </Route>
-
-          {/* Protected Settings Routes */}
-          <Route path="/settings" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-            <Route index element={<ProfileSettingsPage />} />
-            <Route path="profile" element={<ProfileSettingsPage />} />
-            <Route path="preferences" element={<PreferencesSettingsPage />} />
-            <Route path="ai-usage" element={<AiUsageSettingsPage />} />
-            <Route path="billing" element={<BillingSettingsPage />} />
-            <Route path="team" element={<TeamManagementPage />} />
-            <Route path="integrations" element={<IntegrationsPage />} />
-          </Route>
-
-          {/* 404 Route */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+    <QueryClient>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Toaster />
-      </AuthProvider>
-    </Router>
+        <Router>
+          <Routes>
+            {/* Home Page */}
+            <Route path="/" element={<HomeLayout />}>
+              <Route index element={<HomePage />} />
+            </Route>
+
+            {/* Public Routes */}
+            <Route path="/" element={<PublicLayout />}>
+              <Route path="pricing" element={<PricingPage />} />
+              
+              {/* Features Routes */}
+              <Route path="features" element={<FeaturesOverviewPage />} />
+              <Route path="features/seo-tools" element={<SeoToolsPage />} />
+              <Route path="features/keyword-intelligence" element={<KeywordIntelligencePage />} />
+              <Route path="features/backlink-insights" element={<BacklinkInsightsPage />} />
+              <Route path="features/internal-link-planner" element={<InternalLinkPlannerPage />} />
+              <Route path="features/visual-seo-audit" element={<VisualSeoAuditPage />} />
+              <Route path="features/local-seo" element={<LocalSeoPage />} />
+              <Route path="features/schema-markup" element={<SchemaMarkupPage />} />
+              <Route path="features/seo-audit" element={<SeoAuditPage />} />
+              <Route path="features/ai-content-writer" element={<AiContentWriterPage />} />
+              <Route path="features/automation-workflows" element={<AutomationWorkflowsPage />} />
+              <Route path="features/wordpress-integration" element={<WordpressIntegrationPage />} />
+              <Route path="features/comparison" element={<ComparisonPage />} />
+
+              {/* Resources Routes */}
+              <Route path="resources" element={<ResourcesHubPage />} />
+              <Route path="blog" element={<BlogListPage />} />
+              <Route path="blog/:slug" element={<BlogPostPage />} />
+              <Route path="guides" element={<GuidesPage />} />
+              <Route path="guides/:slug" element={<GuideDetailPage />} />
+              <Route path="case-studies" element={<CaseStudiesPage />} />
+              <Route path="case-studies/:slug" element={<CaseStudyDetailPage />} />
+              <Route path="webinars" element={<WebinarsPage />} />
+              <Route path="webinars/:slug" element={<WebinarDetailPage />} />
+              <Route path="documentation" element={<DocumentationPage />} />
+              <Route path="documentation/:slug" element={<DocumentationDetailPage />} />
+              <Route path="api-docs" element={<ApiDocumentationPage />} />
+              <Route path="community" element={<CommunityPage />} />
+              <Route path="faq" element={<FAQPage />} />
+              <Route path="seo-glossary" element={<SeoGlossaryPage />} />
+
+              {/* Company Routes */}
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<ContactPage />} />
+              <Route path="careers" element={<CareersPage />} />
+              <Route path="careers/:id" element={<CareerDetailPage />} />
+              <Route path="partners" element={<PartnersPage />} />
+              <Route path="press" element={<PressPage />} />
+              <Route path="privacy" element={<PrivacyPolicyPage />} />
+              <Route path="terms" element={<TermsOfServicePage />} />
+              <Route path="cookies" element={<CookiePolicyPage />} />
+              <Route path="legal" element={<LegalBasePage />} />
+            </Route>
+
+            {/* Authentication Routes */}
+            <Route path="/auth" element={<AuthLayout />}>
+              <Route path="login" element={<LoginPage />} />
+              <Route path="signup" element={<SignupPage />} />
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="reset-password" element={<ResetPasswordPage />} />
+            </Route>
+
+            {/* Protected MVP Dashboard Routes */}
+            <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+              {/* Main Dashboard */}
+              <Route path="dashboard" element={<DashboardPage />} />
+              
+              {/* Projects */}
+              <Route path="projects" element={<ProjectsPage />} />
+              <Route path="projects/:id" element={<ProjectDashboardPage />} />
+              <Route path="projects/:id/activity" element={<ProjectActivityPage />} />
+              <Route path="projects/:id/settings" element={<ProjectSettingsPage />} />
+              
+              {/* SEO Tools */}
+              <Route path="projects/:id/seo-tools/domain-citation-score" element={<DomainCitationScorePage />} />
+              <Route path="projects/:id/seo-tools/site-audit" element={<SiteAuditPage />} />
+              <Route path="projects/:id/seo-tools/visual-audit" element={<VisualAuditPage />} />
+              <Route path="projects/:id/seo-tools/keyword-intelligence" element={<KeywordIntelligencePage />} />
+              <Route path="projects/:id/seo-tools/backlinks" element={<BacklinkInsightsPage />} />
+              <Route path="projects/:id/seo-tools/internal-links" element={<InternalLinkingPage />} />
+              <Route path="projects/:id/seo-tools/sitemap-audit" element={<SitemapAuditPage />} />
+              <Route path="projects/:id/seo-tools/robots-txt" element={<RobotsTxtPage />} />
+              <Route path="projects/:id/seo-tools/local-seo" element={<LocalSeoPage />} />
+              <Route path="projects/:id/seo-tools/opportunities" element={<OpportunitiesPage />} />
+
+              {/* Content Hub */}
+              <Route path="content-hub" element={<ContentHubPage />} />
+              <Route path="content-hub/create" element={<CreateContentPage />} />
+              <Route path="content-hub/library" element={<ContentLibraryPage />} />
+              <Route path="content-hub/edit/:id" element={<ContentEditPage />} />
+              <Route path="content-hub/versions/:id" element={<ContentVersionsPage />} />
+              <Route path="content-hub/repurpose" element={<ContentRepurposePage />} />
+              <Route path="content-hub/scheduler" element={<ContentSchedulerPage />} />
+              <Route path="content-hub/media" element={<MediaLibraryPage />} />
+
+              {/* Reports */}
+              <Route path="reports" element={<ReportsPage />} />
+              
+              {/* Workflows */}
+              <Route path="workflows" element={<WorkflowsPage />} />
+              
+              {/* Inbox */}
+              <Route path="inbox" element={<InboxPage />} />
+
+              {/* Settings */}
+              <Route path="settings" element={<ProfileSettingsPage />} />
+              <Route path="settings/profile" element={<ProfileSettingsPage />} />
+              <Route path="settings/billing" element={<BillingSettingsPage />} />
+              <Route path="settings/ai-usage" element={<AiUsageSettingsPage />} />
+              <Route path="settings/preferences" element={<PreferencesSettingsPage />} />
+              <Route path="settings/team" element={<TeamManagementPage />} />
+              <Route path="settings/integrations" element={<IntegrationsPage />} />
+            </Route>
+
+            {/* 404 Route */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </QueryClient>
   );
 }
 

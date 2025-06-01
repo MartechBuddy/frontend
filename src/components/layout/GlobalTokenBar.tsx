@@ -19,12 +19,12 @@ const GlobalTokenBar: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-lg border border-gray-200">
-      <Zap size={16} className="text-blue-600" />
+    <div className="flex items-center space-x-3 px-3 py-2 bg-gray-800 rounded-lg border border-gray-600">
+      <Zap size={16} className="text-cyan-400" />
       <div className="flex flex-col min-w-[120px]">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium text-gray-700">Martech Tokens</span>
-          <span className="text-xs text-gray-600">{tokensRemaining}/{tokensTotal}</span>
+          <span className="text-xs font-medium text-gray-300">Martech Tokens</span>
+          <span className="text-xs text-gray-400">{tokensRemaining}/{tokensTotal}</span>
         </div>
         <Progress value={usagePercentage} className="h-1.5 mt-1" />
       </div>
@@ -32,7 +32,7 @@ const GlobalTokenBar: React.FC = () => {
         size="sm" 
         variant="outline" 
         onClick={handleTopUp}
-        className="text-xs px-2 py-1 h-auto border-gray-200 text-gray-700 hover:bg-gray-100"
+        className="text-xs px-2 py-1 h-auto border-gray-600 text-gray-300 hover:bg-gray-700 bg-gray-800"
       >
         <Plus size={12} className="mr-1" />
         Top-up
